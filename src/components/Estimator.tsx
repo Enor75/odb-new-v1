@@ -89,7 +89,7 @@ const Estimator = ({ onComplete, onRequestQuote }: EstimatorProps) => {
     `flex min-h-[3.25rem] items-center justify-center border px-5 py-3 text-center font-mono text-xs tracking-wide transition-all duration-300 ${
       selected
         ? 'border-primary bg-primary/10 text-foreground'
-        : 'border-foreground/20 text-foreground/70 hover:border-primary/60 hover:text-foreground'
+        : 'border-foreground/15 text-foreground/70 hover:border-primary/60 hover:text-foreground'
     }`;
 
   const monoMeta = 'font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50';
@@ -176,7 +176,7 @@ const Estimator = ({ onComplete, onRequestQuote }: EstimatorProps) => {
                   </div>
                   <button
                     onClick={() => setFinished(true)}
-                    className="mt-10 inline-flex items-center justify-center bg-primary px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-primary-foreground transition-colors duration-300 hover:bg-accent hover:text-accent-foreground"
+                    className="mt-10 inline-flex items-center justify-center border border-primary bg-transparent px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground transition-colors duration-300 hover:bg-primary hover:text-primary-foreground"
                   >
                     {est.seeEstimate}
                   </button>
@@ -194,7 +194,7 @@ const Estimator = ({ onComplete, onRequestQuote }: EstimatorProps) => {
             </p>
 
             {result && (
-              <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-3 border-t border-foreground/10 pt-6 font-mono text-xs text-foreground/60">
+              <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-8 gap-y-3 border-t border-foreground/15 pt-6 font-mono text-xs text-foreground/60">
                 <dt>{est.labels.typeLabels[selection.type ?? '']}</dt>
                 <dd className="text-right">{formatPrice(result.base)}</dd>
                 <dt>{est.labels.durationLabels[selection.duration ?? '']}</dt>
@@ -221,13 +221,13 @@ const Estimator = ({ onComplete, onRequestQuote }: EstimatorProps) => {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <button
                 onClick={continueToForm}
-                className="inline-flex items-center justify-center bg-primary px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-primary-foreground transition-colors duration-300 hover:bg-accent hover:text-accent-foreground"
+                className="inline-flex items-center justify-center border border-primary bg-transparent px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground transition-colors duration-300 hover:bg-primary hover:text-primary-foreground"
               >
                 {est.continueToForm} →
               </button>
               <button
                 onClick={reset}
-                className="inline-flex items-center justify-center border border-foreground/25 px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/70 transition-colors duration-300 hover:border-foreground hover:text-foreground"
+                className="inline-flex items-center justify-center border border-foreground/15 px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/70 transition-colors duration-300 hover:border-foreground hover:text-foreground"
               >
                 {est.recalculate}
               </button>

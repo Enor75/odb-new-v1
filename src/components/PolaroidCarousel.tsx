@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 /**
@@ -53,7 +52,7 @@ const PolaroidCard = ({
   showCaption: boolean;
 }) => (
   <div
-    className={`relative w-[280px] bg-foreground p-3 shadow-2xl md:w-[340px] ${
+    className={`relative w-[280px] bg-foreground p-3 shadow-[0_24px_60px_rgba(0,0,0,0.5)] md:w-[340px] ${
       showCaption ? 'pb-16' : 'pb-3'
     }`}
   >
@@ -65,15 +64,23 @@ const PolaroidCard = ({
           className="h-full w-full object-cover"
         />
       ) : (
-        /* Emplacement vide — lisible : cadre pointillé + icône photo */
+        /* Emplacement vide — croix fine centrée (F7) */
         <div className="relative flex h-full w-full items-center justify-center bg-secondary/40">
-          <div className="absolute inset-4 border border-dashed border-foreground/25" />
-          <ImageIcon className="h-8 w-8 text-foreground/30" strokeWidth={1} />
+          <svg
+            className="h-8 w-8 text-foreground/25"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+            aria-hidden="true"
+          >
+            <path d="M12 4v16M4 12h16" />
+          </svg>
         </div>
       )}
     </div>
     {showCaption && photo.name && photo.subtitle && (
-      <div className="absolute bottom-3 left-3 right-3">
+      <div className="absolute bottom-3 left-3 right-3 border-t border-background/25 pt-2">
         <h3 className="font-serif text-lg md:text-xl text-background">{photo.name}</h3>
         <p className="text-sm text-background/60">{photo.subtitle}</p>
       </div>

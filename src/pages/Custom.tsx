@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import designDrawing1 from '@/assets/design-drawing-1.png';
 import designDrawing2 from '@/assets/design-drawing-2.jpeg';
@@ -26,6 +27,7 @@ import gallery2 from '@/assets/gallery-2.jpeg';
  */
 const Custom = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.customTitle, t.meta.customDesc);
   const cp = t.customPage;
 
   /* Images provisoires — en attente des vraies photos d'atelier */
@@ -101,7 +103,7 @@ const Custom = () => {
                 </div>
 
                 {/* Fiche polaroid — se déplie sous l'image au survol (desktop) */}
-                <div className="absolute left-[-1px] top-[calc(100%-1px)] z-10 hidden w-[calc(100%+2px)] grid-rows-[0fr] transition-[grid-template-rows] duration-[250ms] ease-in-out group-hover:grid-rows-[1fr] md:grid">
+                <div className="absolute left-[-1px] top-[calc(100%-1px)] z-10 hidden w-[calc(100%+2px)] grid-rows-[0fr] transition-[grid-template-rows] duration-[180ms] ease-in-out group-hover:grid-rows-[1fr] md:grid">
                   <div className="overflow-hidden bg-foreground">
                     <div className="px-3 py-3">
                       <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
@@ -118,8 +120,8 @@ const Custom = () => {
                 </div>
 
                 {/* Légende statique mobile */}
-                <div className="mt-4 border-t border-foreground/20 pt-3 md:hidden">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
+                <div className="mt-4 border-t border-foreground/15 pt-3 md:hidden">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50 transition-colors group-hover:text-primary">
                     {cp.kicker}
                   </p>
                   <h3 className="mt-1 font-serif text-xl text-foreground">{block.title}</h3>
@@ -160,7 +162,7 @@ const Custom = () => {
                   {cp.specs.map((spec) => (
                     <div
                       key={spec.label}
-                      className="flex items-baseline justify-between gap-6 border-b-2 border-foreground/50 py-3.5"
+                      className="flex items-baseline justify-between gap-6 border-b border-foreground py-3.5"
                     >
                       <span className="text-sm font-light text-foreground/90">
                         {spec.label}
@@ -178,18 +180,34 @@ const Custom = () => {
             <div className="md:col-span-5">
               <Reveal delay={150}>
                 <div className="relative flex min-h-[30vh] w-full items-center justify-center overflow-hidden bg-foreground/[0.06] md:min-h-[450px]">
-                  <div className="absolute inset-4 border border-dashed border-foreground/25" />
                   <div className="text-center">
-                    <ImageIcon className="mx-auto h-8 w-8 text-foreground/30" strokeWidth={1} />
+                    <svg
+                      className="mx-auto h-8 w-8 text-foreground/25"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 4v16M4 12h16" />
+                    </svg>
                     <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
                       {cp.img1Label}
                     </p>
                   </div>
                 </div>
                 <div className="relative mt-4 hidden min-h-[450px] w-full items-center justify-center overflow-hidden bg-foreground/[0.06] md:flex">
-                  <div className="absolute inset-4 border border-dashed border-foreground/25" />
                   <div className="text-center">
-                    <ImageIcon className="mx-auto h-8 w-8 text-foreground/30" strokeWidth={1} />
+                    <svg
+                      className="mx-auto h-8 w-8 text-foreground/25"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 4v16M4 12h16" />
+                    </svg>
                     <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
                       {cp.img2Label}
                     </p>

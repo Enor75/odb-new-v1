@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import PolaroidCarousel from '@/components/PolaroidCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
@@ -59,6 +60,7 @@ const aspectClass = (photo: Photo) =>
 
 const Gallery = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.galleryTitle, t.meta.galleryDesc);
   const [active, setActive] = useState<number | null>(null);
 
   const close = useCallback(() => setActive(null), []);

@@ -1,56 +1,58 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import Ticker from './Ticker';
 
+/**
+ * Footer 2 lignes façon garciamateo (S5) : wordmark + une ligne de
+ * mentions séparées par « / ». Le ticker vit désormais sur la home,
+ * collé au mur de marques (S9).
+ */
 const Footer = () => {
   const { t } = useLanguage();
   const year = new Date().getFullYear();
 
+  const separator = (
+    <span aria-hidden="true" className="text-foreground/25">
+      /
+    </span>
+  );
+
   return (
-    <footer>
-      {/* Ticker — signature en fin de page */}
-      <Ticker items={t.ticker} />
+    <footer className="px-6 py-10 md:px-10 md:py-12">
+      <div className="mx-auto max-w-[1200px]">
+        <p className="font-serif text-3xl font-light leading-none tracking-tight md:text-4xl">
+          Orange Décibel
+        </p>
 
-      <div className="px-6 py-10 md:px-10 md:py-12">
-        <div className="mx-auto flex max-w-[1200px] flex-col gap-12">
-          <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-            <p className="font-serif text-3xl font-light leading-none tracking-tight md:text-4xl">
-              Orange Décibel
-            </p>
-
-            <div className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.2em] text-foreground/50 md:items-end">
-              <a
-                href="https://www.instagram.com/orangedecibel.italia/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-primary"
-              >
-                {t.contactPage.socialItalia}
-              </a>
-              <a
-                href="https://www.instagram.com/orange_decibel/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-primary"
-              >
-                {t.contactPage.socialFrance}
-              </a>
-              <a
-                href="https://www.linkedin.com/company/orange-decibel-italia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-primary"
-              >
-                {t.contactPage.socialLinkedIn}
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-3 border-t border-foreground/10 pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/40 md:flex-row md:items-center md:justify-between">
-            <p>
-              © {year} Orange Décibel — {t.footer.rights}
-            </p>
-            <p>{t.footer.madeIn}</p>
-          </div>
+        <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-foreground/15 pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+          <span>© {year} Orange Décibel</span>
+          {separator}
+          <a
+            href="https://www.instagram.com/orangedecibel.italia/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-primary"
+          >
+            {t.contactPage.socialItalia}
+          </a>
+          {separator}
+          <a
+            href="https://www.instagram.com/orange_decibel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-primary"
+          >
+            {t.contactPage.socialFrance}
+          </a>
+          {separator}
+          <a
+            href="https://www.linkedin.com/company/orange-decibel-italia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-primary"
+          >
+            {t.contactPage.socialLinkedIn}
+          </a>
+          {separator}
+          <span>{t.footer.madeIn}</span>
         </div>
       </div>
     </footer>

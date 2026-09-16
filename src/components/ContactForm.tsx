@@ -79,7 +79,7 @@ const ContactForm = ({ estimate }: ContactFormProps) => {
 
   const labelClass = 'font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50';
   const inputClass =
-    'w-full rounded-none border-0 border-b border-foreground/25 bg-transparent py-3 text-base text-foreground outline-none transition-colors duration-300 placeholder:text-foreground/30 focus:border-primary';
+    'w-full rounded-none border-0 border-b border-foreground/15 bg-transparent py-3 text-base text-foreground outline-none transition-colors duration-300 placeholder:text-foreground/30 focus:border-primary';
   const selectClass = `${inputClass} appearance-none cursor-pointer`;
 
   return (
@@ -256,7 +256,7 @@ const ContactForm = ({ estimate }: ContactFormProps) => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center justify-center bg-primary px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-primary-foreground transition-colors duration-300 hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
+          className="inline-flex items-center justify-center border border-primary bg-transparent px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground transition-colors duration-300 hover:bg-primary hover:text-primary-foreground disabled:opacity-50"
         >
           {isSubmitting ? t.contactPage.form.sending : t.contactPage.form.send}
         </button>

@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import { ArrowDown, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import PartnerLogos from '@/components/PartnerLogos';
+import Ticker from '@/components/Ticker';
 import heroImage from '@/assets/modular-1.jpeg';
 import architectureImage from '@/assets/architecture-1.jpeg';
 import context1Image from '@/assets/context-1.jpeg';
@@ -31,6 +33,7 @@ const arrowLinkClass =
  */
 const Index = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.indexTitle, t.meta.indexDesc);
 
   return (
     <main className="min-h-screen">
@@ -50,10 +53,12 @@ const Index = () => {
             <p className="animate-fade-in text-[11px] uppercase tracking-[0.25em] opacity-90 md:text-xs">
               {t.hero.caption}
             </p>
-            <p className="hidden animate-fade-in items-center gap-2 text-[11px] uppercase tracking-[0.25em] opacity-90 md:flex">
-              {t.hero.scroll}
-              <ArrowDown className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </p>
+            {/* Scroll cue — fine barre verticale animée (S6) */}
+            <div className="hidden animate-fade-in md:flex" aria-hidden="true">
+              <span className="relative h-12 w-px overflow-hidden bg-foreground/30">
+                <span className="absolute left-0 top-0 h-1/2 w-px animate-scroll-cue bg-foreground" />
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -61,7 +66,7 @@ const Index = () => {
       {/* ── Déclaration serif ────────────────────────────────────── */}
       <section className="px-6 py-16 md:px-10 md:py-24 lg:py-28">
         <div className="mx-auto max-w-[1200px]">
-          <p className={kickerClass}>01 — {t.home.statementKicker}</p>
+          <p className={kickerClass}>{t.home.statementKicker}</p>
           <h1 className="max-w-4xl font-serif text-3xl font-light leading-[1.15] tracking-tight md:text-5xl">
             {t.home.statementTitle}
           </h1>
@@ -81,9 +86,9 @@ const Index = () => {
       {/* ── Activités — grille collée façon Friendly Pressure ────── */}
       <section className="pb-16 md:pb-24 lg:pb-28">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <p className={`${kickerClass} mb-8 md:mb-10`}>02 — {t.home.activitiesKicker}</p>
+          <p className={`${kickerClass} mb-8 md:mb-10`}>{t.home.activitiesKicker}</p>
 
-          <div className="grid grid-cols-2 border-b border-foreground/60 md:grid-cols-4">
+          <div className="grid grid-cols-2 border-b border-foreground md:grid-cols-4">
             {t.home.activities.map((activity, i) => {
               const swap = activitySwapImages[i];
 
@@ -91,7 +96,7 @@ const Index = () => {
                 <Link
                   key={activity.title}
                   to={activityLinks[i]}
-                  className={`group relative block border-foreground/60 ${cellBorders[i]}`}
+                  className={`group relative block border-foreground ${cellBorders[i]}`}
                 >
                   <div className="film-grain relative overflow-hidden">
                     <img
@@ -120,9 +125,9 @@ const Index = () => {
                   </div>
 
                   {/* Légende statique — mobile uniquement (comme FP en mobile) */}
-                  <div className="mt-4 border-t border-foreground/20 pt-3 md:hidden">
+                  <div className="mt-4 border-t border-foreground/15 pt-3 md:hidden">
                     <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50 transition-colors group-hover:text-primary">
-                      0{i + 1} — {activity.link} →
+                      {activity.link} →
                     </p>
                     <h3 className="mt-2 font-serif text-xl font-light tracking-tight">
                       {activity.title}
@@ -136,11 +141,11 @@ const Index = () => {
                       carte crème plein contraste à texte sombre, hauteur 96px,
                       dépassement latéral 1px, transition height/padding 250ms. */}
                   <div
-                    className="absolute left-[-1px] top-[calc(100%-1px)] z-10 hidden h-0 w-[calc(100%+2px)] overflow-hidden bg-foreground px-0 py-0 transition-[height,padding] duration-[250ms] ease-in-out group-hover:h-24 group-hover:px-3 group-hover:py-3 md:block"
+                    className="absolute left-[-1px] top-[calc(100%-1px)] z-10 hidden h-0 w-[calc(100%+2px)] overflow-hidden bg-foreground px-0 py-0 transition-[height,padding] duration-[180ms] ease-in-out group-hover:h-24 group-hover:px-3 group-hover:py-3 md:block"
                     aria-hidden="true"
                   >
                     <p className="font-mono text-[10px] uppercase leading-none tracking-[0.2em] text-primary">
-                      0{i + 1} — {activity.link} →
+                      {activity.link} →
                     </p>
                     <h3 className="mt-1.5 font-serif text-base font-normal leading-tight tracking-tight text-background">
                       {activity.title}
@@ -159,7 +164,7 @@ const Index = () => {
       {/* ── Aperçu galerie ───────────────────────────────────────── */}
       <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
         <div className="mx-auto max-w-[1200px]">
-          <p className={kickerClass}>03 — {t.home.galleryKicker}</p>
+          <p className={kickerClass}>{t.home.galleryKicker}</p>
           <h2 className="mb-8 max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight md:mb-10 md:text-4xl">
             {t.home.galleryTitle}
           </h2>
@@ -187,15 +192,18 @@ const Index = () => {
       </section>
 
       {/* ── Mur de marques partenaires — bas de la home ──────────── */}
-      <section className="border-t border-foreground/10 px-6 py-16 md:px-10 md:py-20">
+      <section className="border-t border-foreground/15 px-6 pt-16 md:px-10 md:pt-20">
         <div className="mx-auto max-w-[1200px]">
-          <p className={kickerClass}>04 — {t.home.partnersKicker}</p>
-          <h2 className="mb-12 max-w-2xl font-serif text-2xl font-light tracking-tight md:mb-16 md:text-3xl">
+          <p className={`${kickerClass} text-center`}>{t.home.partnersKicker}</p>
+          <h2 className="mx-auto mb-12 max-w-2xl text-center font-serif text-2xl font-light tracking-tight md:mb-16 md:text-3xl">
             {t.home.partnersTitle}
           </h2>
           <PartnerLogos />
         </div>
       </section>
+
+      {/* Ticker — collé au mur de marques (S9) */}
+      <Ticker items={t.ticker} />
     </main>
   );
 };

@@ -21,7 +21,8 @@ l'éditeur et la preview Lovable.
 - **Typographie** : Fraunces (serif léger) pour les titres en taille modérée,
   Archivo fine pour le corps et les labels majuscules espacées. Pas de grosse
   typo display.
-- **Hero** : image nue plein écran + micro-légende + indicateur de scroll.
+- **Hero** : image nue plein écran + micro-légende + **fine barre verticale
+  animée** (scroll cue) à la place du texte « Scroll ».
   Photo actuelle : `modular-1.jpeg` (en attente d'une photo plus claire/lumineuse).
 - **Rythme & espacement** (pack « modéré », façon garciamateo) : sections home
   `py-16/24/28` (au lieu de 24/36/44), marges internes resserrées
@@ -32,14 +33,14 @@ l'éditeur et la preview Lovable.
 - **Home** : hero → déclaration serif → **4 activités en grille collée façon
   Friendly Pressure** (images carrées serrées, filets 1px ; au survol : cercle
   overlay crème, swap d'image sur les blocs 2 et 4, fiche polaroid crème qui
-  se déplie sous l'image — 96px, 250ms) → aperçu galerie →
-  **mur de marques en bas** → footer.
+  se déplie sous l'image — 96px, 180ms) → aperçu galerie →
+  **mur de marques en bas (titre centré)** + ticker collé → footer.
 - **Page /custom** : intro magazine (3 colonnes façon Stone Acoustic
   « Concepteurs ») → 3 blocs Matériaux/Design/Système son (fiche polaroid
   au survol, sans cercle) → carnet de caractéristiques (specs aux lignes
   épaisses + 2 encarts images en attente).
-- **Ticker** : un seul, en bas de page au-dessus du footer (toutes les pages),
-  séparateurs orange discrets.
+- **Ticker** : un seul, **sur la home uniquement, collé au mur de marques**
+  (plus dans le footer), séparateurs crème/40.
 - **Animations** : AUCUNE animation au scroll sur la home (par convention) ;
   apparitions au scroll sur galerie / philosophie / contact via `Reveal`.
   Hovers sophistiqués partout (zoom lents, flèches qui glissent, accents orange).
@@ -51,6 +52,15 @@ l'éditeur et la preview Lovable.
   « Selected Work » épinglé (scroll vertical → rail d'images, façon
   Editorial Portfolio).
 - **Langues** : EN par défaut / FR / IT (mémorisé en localStorage).
+- **Passe design 17/09** (grill-me, cadre conservateur) : numéros retirés des
+  kickers ; **orange réservé à l'interactif** (liens, hovers, CTA, focus —
+  kickers crème) ; filets unifiés en 2 valeurs (`foreground/15` séparations,
+  `foreground` cadres/specs) ; boutons CTA en filet orange (remplissage au
+  hover) ; placeholders photos en croix fine centrée ; soulignements offset 6 ;
+  focus clavier orange (`:focus-visible`) ; ombres polaroids longues et douces ;
+  footer 2 lignes garciamateo ; scrollbar fine ; durées 180/300/500 ms ;
+  favicon monogramme OD (SVG) ; titres + meta descriptions par page
+  (`usePageMeta`).
 
 ## Structure
 
@@ -66,15 +76,17 @@ src/
 │   └── NotFound.tsx     → 404
 ├── components/
 │   ├── Header.tsx       → Header fixe + nav + switcher de langue + menu mobile
-│   ├── Ticker.tsx       → Bandeau défilant (bas de page uniquement)
+│   ├── Ticker.tsx       → Bandeau défilant (home, collé au mur de marques)
 │   ├── PartnerLogos.tsx → Mur de logos partenaires
 │   ├── ContactForm.tsx  → Formulaire branché sur l'Edge Function Supabase
 │   ├── Estimator.tsx    → Estimateur 5 étapes (accordéon, 7 types d'événement)
 │   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (galerie)
 │   └── WorkCarousel.tsx → Rail horizontal épinglé (about)
 │   ├── Reveal.tsx       → Apparition au scroll (INTERDIT sur la home, par convention)
-│   ├── Footer.tsx       → Ticker + wordmark serif + réseaux + mentions
+│   ├── Footer.tsx       → 2 lignes garciamateo : wordmark + mentions « / »
 │   └── ScrollToTop.tsx
+├── hooks/
+│   └── usePageMeta.ts   → Titre d'onglet + meta description par page (i18n)
 ├── config/
 │   └── partners.ts      → ⚠️ Liste PLACEHOLDER des marques partenaires (à remplacer)
 ├── contexts/

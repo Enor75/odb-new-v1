@@ -60,10 +60,37 @@
 
   html {
     scroll-behavior: smooth;
+    /* Scrollbar fine (E2) — piste transparente, pouce crème/20 */
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--foreground) / 0.2) transparent;
+  }
+
+  /* Scrollbar WebKit (E2) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--foreground) / 0.35);
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Focus clavier — outline orange net (F6 · D1 : l'orange est un signal) */
+  :focus-visible {
+    outline: 1px solid hsl(var(--primary));
+    outline-offset: 3px;
   }
 
   ::selection {
@@ -126,6 +153,10 @@ body::before {
 /* Respect des préférences d'accessibilité */
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
+    animation: none !important;
+  }
+
+  .animate-scroll-cue {
     animation: none !important;
   }
 

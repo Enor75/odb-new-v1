@@ -5,7 +5,7 @@ interface TickerProps {
 
 /**
  * Bandeau défilant infini — signature garciamateo.
- * Utilisé UNIQUEMENT en bas de page, au-dessus du footer.
+ * Utilisé UNIQUEMENT sur la home, collé au mur de marques partenaires.
  * Le contenu est dupliqué en deux moitiés identiques pour une
  * boucle parfaite (translateX -50%).
  */
@@ -15,7 +15,7 @@ const Ticker = ({ items, className = '' }: TickerProps) => {
 
   return (
     <div
-      className={`overflow-hidden border-y border-foreground/10 py-4 md:py-5 ${className}`}
+      className={`overflow-hidden border-y border-foreground/15 py-4 md:py-5 ${className}`}
       aria-hidden="true"
     >
       <div className="flex w-max animate-marquee">
@@ -27,7 +27,7 @@ const Ticker = ({ items, className = '' }: TickerProps) => {
                 className="flex items-center whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/60 md:text-xs"
               >
                 <span className="px-6 md:px-10">{item}</span>
-                <span className="text-primary/70">/</span>
+                <span className="text-foreground/40">/</span>
               </span>
             ))}
           </div>

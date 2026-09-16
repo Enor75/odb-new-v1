@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import stackImage from '@/assets/stack-1.jpeg';
 import detailImage from '@/assets/detail-2.jpeg';
@@ -12,6 +13,7 @@ const kickerClass = 'mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text
 
 const Philosophy = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.philosophyTitle, t.meta.philosophyDesc);
 
   return (
     <main className="min-h-screen">
@@ -41,7 +43,7 @@ const Philosophy = () => {
       <section className="px-6 pb-16 md:px-10 md:pb-24">
         <div className="mx-auto max-w-[1200px]">
           <Reveal>
-            <p className={`${kickerClass} border-t border-foreground/10 pt-16 md:pt-24`}>
+            <p className={`${kickerClass} border-t border-foreground/15 pt-16 md:pt-24`}>
               {t.philosophyPage.pillarsKicker}
             </p>
           </Reveal>
@@ -101,7 +103,7 @@ const Philosophy = () => {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="border-t border-foreground/10 px-6 py-16 text-center md:px-10 md:py-24">
+      <section className="border-t border-foreground/15 px-6 py-16 text-center md:px-10 md:py-24">
         <Reveal>
           <Link
             to="/contact"

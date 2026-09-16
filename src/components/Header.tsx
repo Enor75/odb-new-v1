@@ -62,7 +62,7 @@ const Header = () => {
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `font-mono text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 ${
-      isActive ? 'text-foreground underline underline-offset-[10px]' : 'text-foreground/50 hover:text-foreground'
+      isActive ? 'text-foreground underline underline-offset-[6px]' : 'text-foreground/50 hover:text-foreground'
     }`;
 
   const langButtonClass = (isActive: boolean) =>
@@ -88,7 +88,7 @@ const Header = () => {
           hidden ? '-translate-y-full' : 'translate-y-0'
         } ${
           scrolled && !hidden
-            ? 'border-b border-foreground/10 bg-background/85 backdrop-blur-md'
+            ? 'border-b border-foreground/15 bg-background/85 backdrop-blur-md'
             : ''
         }`}
       >

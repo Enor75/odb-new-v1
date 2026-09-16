@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import ContactForm from '@/components/ContactForm';
 import Estimator from '@/components/Estimator';
 import type { EstimateSummary } from '@/components/Estimator';
@@ -19,13 +20,14 @@ import Reveal from '@/components/Reveal';
  */
 const Contact = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.contactTitle, t.meta.contactDesc);
   const [estimate, setEstimate] = useState<EstimateSummary | null>(null);
   const [estimatorOpen, setEstimatorOpen] = useState(false);
 
   const infoLabelClass =
     'font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/40';
   const infoLinkClass =
-    'underline decoration-foreground/20 underline-offset-8 transition-colors duration-300 hover:text-primary hover:decoration-primary/50';
+    'underline decoration-foreground/20 underline-offset-6 transition-colors duration-300 hover:text-primary hover:decoration-primary/50';
 
   return (
     <main className="min-h-screen px-6 pb-20 pt-24 md:px-10 md:pt-28 md:pb-28">

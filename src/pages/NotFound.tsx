@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 
 const NotFound = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.notFoundTitle);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">

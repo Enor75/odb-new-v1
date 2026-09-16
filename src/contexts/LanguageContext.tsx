@@ -34,7 +34,6 @@ export interface Translations {
   };
   hero: {
     caption: string;
-    scroll: string;
   };
   ticker: string[];
   home: {
@@ -158,6 +157,21 @@ export interface Translations {
     rights: string;
     madeIn: string;
   };
+  meta: {
+    indexTitle: string;
+    indexDesc: string;
+    galleryTitle: string;
+    galleryDesc: string;
+    customTitle: string;
+    customDesc: string;
+    philosophyTitle: string;
+    philosophyDesc: string;
+    aboutTitle: string;
+    aboutDesc: string;
+    contactTitle: string;
+    contactDesc: string;
+    notFoundTitle: string;
+  };
   notFound: {
     code: string;
     text: string;
@@ -170,7 +184,6 @@ const translations: Record<Language, Translations> = {
     nav: { home: 'Home', gallery: 'Gallery', custom: 'Custom', philosophy: 'Philosophy', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
     hero: {
       caption: 'High-End Sound System — Born in France, based in Milan',
-      scroll: 'Scroll',
     },
     ticker: [
       'Orange Décibel',
@@ -401,6 +414,21 @@ const translations: Record<Language, Translations> = {
       rights: 'All rights reserved',
       madeIn: 'Designed in France, operating in Milan',
     },
+    meta: {
+      indexTitle: 'Orange Décibel — High-End Sound System',
+      indexDesc: 'Orange Décibel is a High-End Sound System born in France. Hi-Fi precision and professional power for musical and cultural events, based in Milan.',
+      galleryTitle: 'Gallery — Orange Décibel',
+      galleryDesc: 'Festivals, DJ sets and live performances by the Orange Décibel sound system.',
+      customTitle: 'Custom — Orange Décibel',
+      customDesc: 'Custom sound stages and tailor-made systems for brands and venues.',
+      philosophyTitle: 'Philosophy — Orange Décibel',
+      philosophyDesc: 'Hi-Fi precision and professional power — the Orange Décibel approach.',
+      aboutTitle: 'About — Orange Décibel',
+      aboutDesc: 'Orange Décibel, a sound system collective based in Paris and Milan.',
+      contactTitle: 'Contact — Orange Décibel',
+      contactDesc: 'Estimate your event and get in touch — Orange Décibel, Paris and Milan.',
+      notFoundTitle: 'Page not found — Orange Décibel',
+    },
     notFound: { code: '404', text: 'Page not found', back: 'Back to home' },
   },
 
@@ -408,7 +436,6 @@ const translations: Record<Language, Translations> = {
     nav: { home: 'Accueil', gallery: 'Galerie', custom: 'Sur mesure', philosophy: 'Philosophie', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
     hero: {
       caption: 'Système Son Haut de Gamme — Né en France, basé à Milan',
-      scroll: 'Défiler',
     },
     ticker: [
       'Orange Décibel',
@@ -634,6 +661,21 @@ const translations: Record<Language, Translations> = {
       rights: 'Tous droits réservés',
       madeIn: 'Conçu en France, opérationnel à Milan',
     },
+    meta: {
+      indexTitle: 'Orange Décibel — Sound System haut de gamme',
+      indexDesc: 'Orange Décibel est un sound system haut de gamme né en France. Précision Hi-Fi et puissance professionnelle pour les événements musicaux et culturels, basé à Milan.',
+      galleryTitle: 'Galerie — Orange Décibel',
+      galleryDesc: 'Festivals, sets DJ et performances live du sound system Orange Décibel.',
+      customTitle: 'Sur mesure — Orange Décibel',
+      customDesc: 'Scènes sonores et systèmes conçus sur mesure pour marques et lieux.',
+      philosophyTitle: 'Philosophie — Orange Décibel',
+      philosophyDesc: 'Précision Hi-Fi et puissance professionnelle — l’approche Orange Décibel.',
+      aboutTitle: 'À propos — Orange Décibel',
+      aboutDesc: 'Orange Décibel, un collectif sound system basé à Paris et à Milan.',
+      contactTitle: 'Contact — Orange Décibel',
+      contactDesc: 'Estimez votre événement et écrivez-nous — Orange Décibel, Paris et Milan.',
+      notFoundTitle: 'Page introuvable — Orange Décibel',
+    },
     notFound: { code: '404', text: 'Page introuvable', back: "Retour à l'accueil" },
   },
 
@@ -641,7 +683,6 @@ const translations: Record<Language, Translations> = {
     nav: { home: 'Home', gallery: 'Galleria', custom: 'Su misura', philosophy: 'Filosofia', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
     hero: {
       caption: 'High-End Sound System — Nato in Francia, base a Milano',
-      scroll: 'Scorri',
     },
     ticker: [
       'Orange Décibel',
@@ -866,6 +907,21 @@ const translations: Record<Language, Translations> = {
     footer: {
       rights: 'Tutti i diritti riservati',
       madeIn: 'Progettato in Francia, operativo a Milano',
+    },
+    meta: {
+      indexTitle: 'Orange Décibel — Sound system di alta gamma',
+      indexDesc: 'Orange Décibel è un sound system di alta gamma nato in Francia. Precisione Hi-Fi e potenza professionale per eventi musicali e culturali, con base a Milano.',
+      galleryTitle: 'Galleria — Orange Décibel',
+      galleryDesc: 'Festival, DJ set e performance live del sound system Orange Décibel.',
+      customTitle: 'Su misura — Orange Décibel',
+      customDesc: 'Palchi sonori e sistemi su misura per brand e luoghi.',
+      philosophyTitle: 'Filosofia — Orange Décibel',
+      philosophyDesc: 'Precisione Hi-Fi e potenza professionale — l’approccio Orange Décibel.',
+      aboutTitle: 'Chi siamo — Orange Décibel',
+      aboutDesc: 'Orange Décibel, un collettivo sound system con base a Parigi e Milano.',
+      contactTitle: 'Contatti — Orange Décibel',
+      contactDesc: 'Stima il tuo evento e scrivici — Orange Décibel, Parigi e Milano.',
+      notFoundTitle: 'Pagina non trovata — Orange Décibel',
     },
     notFound: { code: '404', text: 'Pagina non trovata', back: 'Torna alla home' },
   },

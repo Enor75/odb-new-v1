@@ -1,5 +1,5 @@
-import { Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import WorkCarousel from '@/components/WorkCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
@@ -43,6 +43,7 @@ const workItems = [
 
 const About = () => {
   const { t } = useLanguage();
+  usePageMeta(t.meta.aboutTitle, t.meta.aboutDesc);
   const ap = t.aboutPage;
 
   return (
@@ -59,9 +60,17 @@ const About = () => {
           {/* Premier tiers gauche : photo de Sébastien */}
           <Reveal className="md:col-span-4" delay={100}>
             <div className="film-grain relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden bg-secondary/40">
-              <div className="absolute inset-4 border border-dashed border-foreground/25" />
               <div className="text-center">
-                <ImageIcon className="mx-auto h-8 w-8 text-foreground/30" strokeWidth={1} />
+                <svg
+                  className="mx-auto h-8 w-8 text-foreground/25"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  aria-hidden="true"
+                >
+                  <path d="M12 4v16M4 12h16" />
+                </svg>
                 <p className="mt-4 px-6 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
                   {ap.photoLabel}
                 </p>
@@ -75,7 +84,7 @@ const About = () => {
               <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-5xl">
                 {ap.title}
               </h1>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
+              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
                 {ap.role}
               </p>
             </Reveal>
