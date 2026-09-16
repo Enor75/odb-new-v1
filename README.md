@@ -43,7 +43,7 @@ l'éditeur et la preview Lovable.
 - **Animations** : AUCUNE animation au scroll sur la home (par convention) ;
   apparitions au scroll sur galerie / philosophie / contact via `Reveal`.
   Hovers sophistiqués partout (zoom lents, flèches qui glissent, accents orange).
-- **Galerie** : grille épurée 2 colonnes alignées (ratio 4/5, images
+- **Galerie** : grille épurée 3 colonnes alignées (ratio 4/5, ~357px, images
   panoramiques 21/9 en rupture) + **carrousel de polaroids épinglé** au
   milieu de page (350vh, éventail façon Monolith) + **lightbox plein écran**
   (flèches, clavier, Échap, compteur).

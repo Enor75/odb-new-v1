@@ -53,7 +53,7 @@ const photos: Photo[] = [
 /** Point de coupe de la grille : le carrousel s'insère après cette photo */
 const SPLIT_AT = 9;
 
-const gridClass = (photo: Photo) => (photo.wide ? 'md:col-span-2' : '');
+const gridClass = (photo: Photo) => (photo.wide ? 'md:col-span-3' : '');
 const aspectClass = (photo: Photo) =>
   photo.wide ? 'aspect-[4/3] md:aspect-[21/9]' : 'aspect-[4/5]';
 
@@ -90,7 +90,7 @@ const Gallery = () => {
   }, [active, close, prev, next]);
 
   const renderGrid = (from: number, to: number) => (
-    <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-x-6 md:gap-y-12">
       {photos.slice(from, to).map((photo, i) => (
         <Reveal key={photo.src + i} className={gridClass(photo)}>
           <figure className="group cursor-zoom-in" onClick={() => setActive(from + i)}>
