@@ -21,6 +21,8 @@ export interface EstimateSummary {
 interface EstimatorProps {
   /** Appelé quand l'utilisateur valide l'estimation et continue vers le formulaire */
   onComplete: (summary: EstimateSummary) => void;
+  /** Appelé au clic sur « Demander un devis précis » — le parent replie l'estimateur */
+  onRequestQuote?: () => void;
 }
 
 const STEP_KEYS = ['type', 'duration', 'guests', 'location', 'options'] as const;
@@ -32,7 +34,7 @@ const TOTAL_STEPS = STEP_KEYS.length;
  * puis affichage de la fourchette estimée avec détail du calcul.
  * Le modèle de prix (PLACEHOLDER) vit dans src/config/pricing.ts.
  */
-const Estimator = ({ onComplete }: EstimatorProps) => {
+const Estimator = ({ onComplete, onRequestQuote }: EstimatorProps) => {
   const { t } = useLanguage();
   const est = t.contactPage.estimator;
 
@@ -79,6 +81,7 @@ const Estimator = ({ onComplete }: EstimatorProps) => {
       range: `${formatPrice(result.min)} – ${formatPrice(result.max)}`,
       detail: parts.join(' · '),
     });
+    onRequestQuote?.();
     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 

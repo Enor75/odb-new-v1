@@ -22,12 +22,14 @@ export interface PricedItem {
   price?: number;
 }
 
-/** Types d'événement — prix de base en € */
+/** Types d'événement — prix de base en € (PLACEHOLDERS beta, 7 types) */
 export const EVENT_TYPES: PricedItem[] = [
-  { id: 'dj', base: 800 },
-  { id: 'live', base: 1200 },
-  { id: 'band', base: 1500 },
+  { id: 'festival', base: 1500 },
+  { id: 'djlive', base: 900 },
+  { id: 'corporate', base: 1200 },
+  { id: 'liveact', base: 1500 },
   { id: 'acoustic', base: 900 },
+  { id: 'listening', base: 800 },
   { id: 'other', base: 1000 },
 ];
 

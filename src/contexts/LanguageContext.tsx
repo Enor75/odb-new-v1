@@ -100,7 +100,9 @@ export interface Translations {
     kicker: string;
     title: string;
     subtitle: string;
-    emailLabel: string;
+    estimatorToggle: string;
+    emailFranceLabel: string;
+    emailItaliaLabel: string;
     socialLabel: string;
     socialItalia: string;
     socialFrance: string;
@@ -108,9 +110,7 @@ export interface Translations {
     baseLabel: string;
     baseValue: string;
     estimator: {
-      kicker: string;
       title: string;
-      subtitle: string;
       disclaimer: string;
       steps: {
         type: string;
@@ -300,19 +300,19 @@ const translations: Record<Language, Translations> = {
 
     contactPage: {
       kicker: 'Contact',
-      title: "Let's talk about your event.",
+      title: 'Contact',
       subtitle: 'For collaborations, events and inquiries.',
-      emailLabel: 'Email',
+      estimatorToggle: 'Estimate my event',
+      emailFranceLabel: 'Email — France',
+      emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Follow us',
       socialItalia: 'Instagram — Italia',
       socialFrance: 'Instagram — France',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Based in',
-      baseValue: 'Milan, Italy — Designed in France',
+      baseValue: 'Based in Paris & Milan — Designed in France',
       estimator: {
-        kicker: 'Estimate',
-        title: 'Calculate the price of your event.',
-        subtitle: 'A few questions to get an instant ballpark. The exact quote is always confirmed personally.',
+        title: 'Tell us about your event.',
         disclaimer: 'Indicative estimate only — the final quote depends on your exact needs.',
         steps: {
           type: 'Event type',
@@ -330,10 +330,12 @@ const translations: Record<Language, Translations> = {
         },
         labels: {
           typeLabels: {
-            dj: 'DJ set',
-            live: 'Live electronic',
-            band: 'Band',
-            acoustic: 'Acoustic',
+            festival: 'Festival',
+            djlive: 'DJ set / live event',
+            corporate: 'Corporate / brand',
+            liveact: 'Live stage',
+            acoustic: 'Acoustic / band',
+            listening: 'Listening',
             other: 'Other / custom',
           },
           durationLabels: {
@@ -366,7 +368,7 @@ const translations: Record<Language, Translations> = {
         resultTitle: 'Estimated range',
         resultNote:
           'The estimate includes the system, transport and selected options. The final quote is confirmed after a quick conversation.',
-        continueToForm: 'Continue to the form',
+        continueToForm: 'Request a precise quote',
         recalculate: 'Recalculate',
         estimateWord: 'Estimate',
       },
@@ -531,19 +533,19 @@ const translations: Record<Language, Translations> = {
 
     contactPage: {
       kicker: 'Contact',
-      title: 'Parlons de votre événement.',
+      title: 'Contact',
       subtitle: 'Pour collaborations, événements et informations.',
-      emailLabel: 'Email',
+      estimatorToggle: 'Estimer mon événement',
+      emailFranceLabel: 'Email — France',
+      emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Suivez-nous',
       socialItalia: 'Instagram — Italia',
       socialFrance: 'Instagram — France',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Basé à',
-      baseValue: 'Milan, Italie — Conçu en France',
+      baseValue: 'Basé à Paris et à Milan — Conçu en France',
       estimator: {
-        kicker: 'Estimation',
-        title: 'Calculez le prix de votre événement.',
-        subtitle: "Quelques questions pour obtenir une fourchette immédiate. Le devis exact est toujours confirmé personnellement.",
+        title: 'Parlez-nous de votre événement.',
         disclaimer: 'Estimation indicative — le devis final dépend de vos besoins exacts.',
         steps: {
           type: "Type d'événement",
@@ -561,10 +563,12 @@ const translations: Record<Language, Translations> = {
         },
         labels: {
           typeLabels: {
-            dj: 'DJ set',
-            live: 'Live électronique',
-            band: 'Groupe',
-            acoustic: 'Acoustique',
+            festival: 'Festival',
+            djlive: 'Événement DJ set / live',
+            corporate: 'Corporate / marque',
+            liveact: 'Scène live',
+            acoustic: 'Acoustique / groupe',
+            listening: 'Listening',
             other: 'Autre / sur mesure',
           },
           durationLabels: {
@@ -597,7 +601,7 @@ const translations: Record<Language, Translations> = {
         resultTitle: 'Fourchette estimée',
         resultNote:
           "L'estimation comprend le système, le transport et les options sélectionnées. Le devis final est confirmé après un rapide échange.",
-        continueToForm: 'Continuer vers le formulaire',
+        continueToForm: 'Demander un devis précis',
         recalculate: 'Recalculer',
         estimateWord: 'Estimation',
       },
@@ -762,19 +766,19 @@ const translations: Record<Language, Translations> = {
 
     contactPage: {
       kicker: 'Contatti',
-      title: 'Parliamo del tuo evento.',
+      title: 'Contatti',
       subtitle: 'Per collaborazioni, eventi e informazioni.',
-      emailLabel: 'Email',
+      estimatorToggle: 'Stima il tuo evento',
+      emailFranceLabel: 'Email — France',
+      emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Seguici',
       socialItalia: 'Instagram — Italia',
       socialFrance: 'Instagram — France',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Base a',
-      baseValue: 'Milano, Italia — Progettato in Francia',
+      baseValue: 'Basato a Parigi e a Milano — Progettato in Francia',
       estimator: {
-        kicker: 'Preventivo',
-        title: 'Calcola il prezzo del tuo evento.',
-        subtitle: 'Poche domande per ottenere subito una forbice di prezzo. Il preventivo esatto è sempre confermato di persona.',
+        title: 'Parlaci del tuo evento.',
         disclaimer: 'Stima indicativa — il preventivo finale dipende dalle tue esigenze esatte.',
         steps: {
           type: 'Tipo di evento',
@@ -792,10 +796,12 @@ const translations: Record<Language, Translations> = {
         },
         labels: {
           typeLabels: {
-            dj: 'DJ set',
-            live: 'Live elettronico',
-            band: 'Band',
-            acoustic: 'Acustico',
+            festival: 'Festival',
+            djlive: 'Evento DJ set / live',
+            corporate: 'Corporate / brand',
+            liveact: 'Palco live',
+            acoustic: 'Acustico / band',
+            listening: 'Listening',
             other: 'Altro / su misura',
           },
           durationLabels: {
@@ -828,7 +834,7 @@ const translations: Record<Language, Translations> = {
         resultTitle: 'Forbice stimata',
         resultNote:
           'La stima include il sistema, il trasporto e le opzioni selezionate. Il preventivo finale viene confermato dopo una breve chiamata.',
-        continueToForm: 'Continua al modulo',
+        continueToForm: 'Richiedi un preventivo preciso',
         recalculate: 'Ricalcola',
         estimateWord: 'Stima',
       },
