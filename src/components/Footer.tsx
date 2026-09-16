@@ -10,8 +10,8 @@ const Footer = () => {
       {/* Ticker — signature en fin de page */}
       <Ticker items={t.ticker} />
 
-      <div className="px-6 py-16 md:px-10 md:py-20">
-        <div className="mx-auto flex max-w-[1400px] flex-col gap-12">
+      <div className="px-6 py-10 md:px-10 md:py-12">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-12">
           <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
             <p className="font-serif text-3xl font-light leading-none tracking-tight md:text-4xl">
               Orange Décibel

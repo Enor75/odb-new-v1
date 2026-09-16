@@ -28,8 +28,8 @@ const Contact = () => {
     'underline decoration-foreground/20 underline-offset-8 transition-colors duration-300 hover:text-primary hover:decoration-primary/50';
 
   return (
-    <main className="min-h-screen px-6 pb-32 pt-28 md:px-10 md:pt-36 md:pb-48">
-      <div className="mx-auto max-w-[1400px]">
+    <main className="min-h-screen px-6 pb-20 pt-24 md:px-10 md:pt-28 md:pb-28">
+      <div className="mx-auto max-w-[1200px]">
         {/* ── En-tête : simplement Contact ─────────────────────── */}
         <Reveal>
           <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
@@ -72,7 +72,7 @@ const Contact = () => {
         )}
 
         {/* ── Coordonnées + formulaire ──────────────────────────── */}
-        <div className="mt-16 grid gap-20 md:mt-24 md:grid-cols-12 md:gap-10">
+        <div className="mt-10 grid gap-16 md:mt-14 md:grid-cols-12 md:gap-10">
           <Reveal className="md:col-span-5">
             <aside className="flex flex-col gap-12 md:pr-8 lg:pr-16">
               <div>

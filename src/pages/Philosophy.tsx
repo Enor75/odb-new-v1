@@ -16,8 +16,8 @@ const Philosophy = () => {
   return (
     <main className="min-h-screen">
       {/* ── En-tête + manifeste ──────────────────────────────────── */}
-      <section className="px-6 pb-24 pt-28 md:px-10 md:pb-40 md:pt-36">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="px-6 pb-16 pt-24 md:px-10 md:pb-24 md:pt-28">
+        <div className="mx-auto max-w-[1200px]">
           <Reveal>
             <p className={kickerClass}>{t.philosophyPage.kicker}</p>
             <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
@@ -38,15 +38,15 @@ const Philosophy = () => {
       </section>
 
       {/* ── Les trois piliers ────────────────────────────────────── */}
-      <section className="px-6 pb-24 md:px-10 md:pb-40">
-        <div className="mx-auto max-w-[1400px]">
+      <section className="px-6 pb-16 md:px-10 md:pb-24">
+        <div className="mx-auto max-w-[1200px]">
           <Reveal>
             <p className={`${kickerClass} border-t border-foreground/10 pt-16 md:pt-24`}>
               {t.philosophyPage.pillarsKicker}
             </p>
           </Reveal>
 
-          <div className="flex flex-col gap-24 md:gap-40">
+          <div className="flex flex-col gap-16 md:gap-24">
             {t.philosophyPage.pillars.map((pillar, i) => (
               <Reveal key={pillar.title}>
                 <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
@@ -101,7 +101,7 @@ const Philosophy = () => {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="border-t border-foreground/10 px-6 py-28 text-center md:px-10 md:py-44">
+      <section className="border-t border-foreground/10 px-6 py-16 text-center md:px-10 md:py-24">
         <Reveal>
           <Link
             to="/contact"

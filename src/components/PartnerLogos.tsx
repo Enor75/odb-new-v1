@@ -40,7 +40,7 @@ const logoFiles: Record<string, string> = {
  * Les logos sont des PNG transparents déjà recolorisés en crème.
  */
 const PartnerLogos = () => (
-  <div className="grid grid-cols-2 items-center gap-x-6 gap-y-12 sm:grid-cols-3 md:grid-cols-4 md:gap-y-16 lg:grid-cols-6">
+  <div className="grid grid-cols-2 items-center gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4 md:gap-y-12 lg:grid-cols-6">
     {partners.map((partner) => (
       <div
         key={partner.name}

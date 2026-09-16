@@ -23,20 +23,33 @@ l'éditeur et la preview Lovable.
   typo display.
 - **Hero** : image nue plein écran + micro-légende + indicateur de scroll.
   Photo actuelle : `modular-1.jpeg` (en attente d'une photo plus claire/lumineuse).
+- **Rythme & espacement** (pack « modéré », façon garciamateo) : sections home
+  `py-16/24/28` (au lieu de 24/36/44), marges internes resserrées
+  (`mt-6`/`mb-8-10`), entrées de page `pt-24/28`, footer `py-10/12`,
+  mur de logos `gap-y-10/12` — la home tient en ~4 écrans. Conteneur
+  global **`max-w-[1200px]`** ( magazine serré). Mesuré : aucune traversée
+  de vide supérieure à un demi-écran.
 - **Home** : hero → déclaration serif → **4 activités en grille collée façon
   Friendly Pressure** (images carrées serrées, filets 1px ; au survol : cercle
   overlay crème, swap d'image sur les blocs 2 et 4, fiche polaroid crème qui
   se déplie sous l'image — 96px, 250ms) → aperçu galerie →
   **mur de marques en bas** → footer.
-- **Page /custom** : placeholder en attente de la vraie page Custom Systems
-  (accessible via le 4e bloc de la home).
+- **Page /custom** : intro magazine (3 colonnes façon Stone Acoustic
+  « Concepteurs ») → 3 blocs Matériaux/Design/Système son (fiche polaroid
+  au survol, sans cercle) → carnet de caractéristiques (specs aux lignes
+  épaisses + 2 encarts images en attente).
 - **Ticker** : un seul, en bas de page au-dessus du footer (toutes les pages),
   séparateurs orange discrets.
 - **Animations** : AUCUNE animation au scroll sur la home (par convention) ;
   apparitions au scroll sur galerie / philosophie / contact via `Reveal`.
   Hovers sophistiqués partout (zoom lents, flèches qui glissent, accents orange).
-- **Galerie** : grille éditoriale décalée 12 colonnes + **lightbox plein écran**
-  (flèches, clavier, Échap, compteur, légendes détaillées).
+- **Galerie** : grille épurée 2 colonnes alignées (ratio 4/5, images
+  panoramiques 21/9 en rupture) + **carrousel de polaroids épinglé** au
+  milieu de page (350vh, éventail façon Monolith) + **lightbox plein écran**
+  (flèches, clavier, Échap, compteur).
+- **Page /about** : portrait + bio de Sébastien, puis carrousel horizontal
+  « Selected Work » épinglé (scroll vertical → rail d'images, façon
+  Editorial Portfolio).
 - **Langues** : EN par défaut / FR / IT (mémorisé en localStorage).
 
 ## Structure
@@ -45,15 +58,20 @@ l'éditeur et la preview Lovable.
 src/
 ├── pages/
 │   ├── Index.tsx        → Home (hero, déclaration, activités, aperçu galerie, marques)
-│   ├── Gallery.tsx      → Galerie éditoriale + lightbox avec légendes
+│   ├── Gallery.tsx      → Grille 2 col. alignée + carrousel polaroids + lightbox
+│   ├── Custom.tsx       → Sur mesure : magazine + 3 blocs + caractéristiques
 │   ├── Philosophy.tsx   → Manifeste + 3 piliers (Handcrafted / Precision / Modularity)
-│   ├── Contact.tsx      → Contact (v1 — refonte spécifique à venir)
+│   ├── About.tsx        → Bio Sébastien + carrousel « Selected Work »
+│   ├── Contact.tsx      → Formulaire d'abord + estimateur dépliable
 │   └── NotFound.tsx     → 404
 ├── components/
 │   ├── Header.tsx       → Header fixe + nav + switcher de langue + menu mobile
 │   ├── Ticker.tsx       → Bandeau défilant (bas de page uniquement)
 │   ├── PartnerLogos.tsx → Mur de logos partenaires
 │   ├── ContactForm.tsx  → Formulaire branché sur l'Edge Function Supabase
+│   ├── Estimator.tsx    → Estimateur 5 étapes (accordéon, 7 types d'événement)
+│   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (galerie)
+│   └── WorkCarousel.tsx → Rail horizontal épinglé (about)
 │   ├── Reveal.tsx       → Apparition au scroll (INTERDIT sur la home, par convention)
 │   ├── Footer.tsx       → Ticker + wordmark serif + réseaux + mentions
 │   └── ScrollToTop.tsx
@@ -99,12 +117,19 @@ VITE_SUPABASE_PUBLISHABLE_KEY=...
 4. **Photos** : nouvelles photos à ajouter dans `src/assets/` (hero actuel :
    `modular-1.jpeg`, la plus claire du set avec `hero-main`).
 
-## Page contact — calculateur + formulaire avancé
+## Page contact — formulaire d'abord, estimateur dépliable
 
-- **Estimateur multi-étapes** (`src/components/Estimator.tsx`) : type d'événement →
-  durée → audience → lieu → options → fourchette estimée (±20 %) avec détail du
-  calcul. Modèle de prix dans `src/config/pricing.ts`. L'estimation est transmise
-  au formulaire et incluse dans l'email.
+- **Titre « Contact »** + lien « Estimer mon événement » (accordéon) ; une fois
+  ouvert : « Tell us about your event. » puis directement les 5 étapes.
+- **Estimateur multi-étapes** (`src/components/Estimator.tsx`) : 7 types
+  d'événement (Festival, DJ set/live, Corporate, Scène live, Acoustique/groupe,
+  Listening, Autre) → durée → audience → lieu → options → fourchette (±20 %).
+  Placeholders beta dans `src/config/pricing.ts`. Le bouton final
+  « Demander un devis précis » replie l'accordéon et injecte l'estimation dans
+  le formulaire (incluse dans l'email).
+- **Coordonnées** : Email — France (orangedecibel@gmail.com) et Email — Italia
+  (orangedecibelita@gmail.com), réseaux, « Based in Paris & Milan — Designed
+  in France ».
 - **Formulaire avancé** (`src/components/ContactForm.tsx`) : nom, email, téléphone,
   date d'événement, lieu, audience, type, budget + message.
 - **Edge Function** (`supabase/functions/send-contact-email/index.ts`) : mise à

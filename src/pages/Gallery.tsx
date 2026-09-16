@@ -115,7 +115,7 @@ const Gallery = () => {
   return (
     <main className="min-h-screen">
       {/* ── Partie haute : en-tête + première moitié de la grille ── */}
-      <div className="mx-auto max-w-[1400px] px-6 pt-28 md:px-10 md:pt-36">
+      <div className="mx-auto max-w-[1200px] px-6 pt-24 md:px-10 md:pt-28">
         <Reveal>
           <p className="mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             {t.galleryPage.kicker}
@@ -128,14 +128,14 @@ const Gallery = () => {
           </p>
         </Reveal>
 
-        <div className="mt-20 md:mt-32">{renderGrid(0, SPLIT_AT)}</div>
+        <div className="mt-12 md:mt-16">{renderGrid(0, SPLIT_AT)}</div>
       </div>
 
       {/* ── Milieu de page : carrousel de polaroids façon Monolith ── */}
       <PolaroidCarousel />
 
       {/* ── Partie basse : seconde moitié de la grille ── */}
-      <div className="mx-auto max-w-[1400px] px-6 pb-32 pt-24 md:px-10 md:pb-48 md:pt-36">
+      <div className="mx-auto max-w-[1200px] px-6 pb-20 pt-16 md:px-10 md:pb-28 md:pt-24">
         {renderGrid(SPLIT_AT, photos.length)}
       </div>
 
