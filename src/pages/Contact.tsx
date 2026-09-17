@@ -31,7 +31,7 @@ const Contact = () => {
 
   return (
     <main className="min-h-screen px-6 pb-20 pt-24 md:px-10 md:pt-28 md:pb-28">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-none">
         {/* ── En-tête : simplement Contact ─────────────────────── */}
         <Reveal>
           <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">

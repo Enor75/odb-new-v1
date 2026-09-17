@@ -54,7 +54,7 @@ const Index = () => {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/60 to-transparent" />
 
         <div className="absolute inset-x-0 bottom-6 px-6 md:bottom-10 md:px-10">
-          <div className="mx-auto flex max-w-[1200px] items-end justify-between text-foreground">
+          <div className="mx-auto flex max-w-none items-end justify-between text-foreground">
             <p className="animate-fade-in text-[11px] uppercase tracking-[0.25em] opacity-90 md:text-xs">
               {t.hero.caption}
             </p>
@@ -70,7 +70,7 @@ const Index = () => {
 
       {/* ── Déclaration serif ────────────────────────────────────── */}
       <section className="px-6 py-16 md:px-10 md:py-24 lg:py-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-none">
           <p className={kickerClass}>{t.home.statementKicker}</p>
           <h1 className="max-w-4xl font-serif text-3xl font-light leading-[1.15] tracking-tight md:text-5xl">
             {t.home.statementTitle}
@@ -90,7 +90,7 @@ const Index = () => {
 
       {/* ── Activités — grille collée façon Friendly Pressure ────── */}
       <section className="pb-16 md:pb-24 lg:pb-28">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div className="mx-auto max-w-none px-6 md:px-10">
           <p className={`${kickerClass} mb-8 md:mb-10`}>{t.home.activitiesKicker}</p>
 
           <div className="grid grid-cols-2 border-b border-foreground md:grid-cols-4">
@@ -168,7 +168,7 @@ const Index = () => {
 
       {/* ── Aperçu galerie ───────────────────────────────────────── */}
       <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-none">
           <p className={kickerClass}>{t.home.galleryKicker}</p>
           <h2 className="mb-8 max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight md:mb-10 md:text-4xl">
             {t.home.galleryTitle}
@@ -198,7 +198,7 @@ const Index = () => {
 
       {/* ── Les trois piliers (ex-page philosophie, fusion 17/09) ── */}
       <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-none">
           <p className={`${kickerClass} border-t border-foreground/15 pt-16 md:pt-24`}>
             {t.philosophyPage.pillarsKicker}
           </p>
@@ -251,7 +251,7 @@ const Index = () => {
 
       {/* ── Mur de marques partenaires — bas de la home ──────────── */}
       <section className="border-t border-foreground/15 px-6 pt-16 md:px-10 md:pt-20">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-none">
           <p className={`${kickerClass} text-center`}>{t.home.partnersKicker}</p>
           <h2 className="mx-auto mb-12 max-w-2xl text-center font-serif text-2xl font-light tracking-tight md:mb-16 md:text-3xl">
             {t.home.partnersTitle}

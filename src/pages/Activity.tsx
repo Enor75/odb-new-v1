@@ -164,7 +164,7 @@ const Activity = () => {
   return (
     <main className="min-h-screen">
       {/* ── En-tête + manifeste très court ────────────────────────── */}
-      <section className="mx-auto max-w-[1200px] px-6 pt-24 md:px-10 md:pt-28">
+      <section className="mx-auto max-w-none px-6 pt-24 md:px-10 md:pt-28">
         <Reveal>
           <p className={`mb-8 ${kickerClass}`}>{t.activityPage.kicker}</p>
           <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
@@ -177,7 +177,7 @@ const Activity = () => {
       </section>
 
       {/* ── Quatre sections thématiques ───────────────────────────── */}
-      <section className="mx-auto max-w-[1200px] px-6 pb-16 pt-16 md:px-10 md:pb-24 md:pt-24 lg:pt-28">
+      <section className="mx-auto max-w-none px-6 pb-16 pt-16 md:px-10 md:pb-24 md:pt-24 lg:pt-28">
         <div className="flex flex-col gap-16 md:gap-24">
           {sections.map((section, i) => {
             const photos = sectionPhotos[section.id] ?? [];
@@ -243,7 +243,7 @@ const Activity = () => {
 
       {/* ── Manifeste complet (ex-philosophie, en l'état) ─────────── */}
       <section className="border-t border-foreground/15 px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto max-w-none">
           <Reveal>
             <p className={kickerClass}>{t.philosophyPage.kicker}</p>
             <div className="mt-8 max-w-3xl space-y-8">

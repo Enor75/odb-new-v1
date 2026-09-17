@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <footer className="px-6 py-10 md:px-10 md:py-12">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-none">
         <p className="font-serif text-3xl font-light leading-none tracking-tight md:text-4xl">
           Orange Décibel
         </p>

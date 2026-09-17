@@ -27,9 +27,9 @@ l'éditeur et la preview Lovable.
 - **Rythme & espacement** (pack « modéré », façon garciamateo) : sections home
   `py-16/24/28` (au lieu de 24/36/44), marges internes resserrées
   (`mt-6`/`mb-8-10`), entrées de page `pt-24/28`, footer `py-10/12`,
-  mur de logos `gap-y-10/12` — la home tient en ~4 écrans. Conteneur
-  global **`max-w-[1200px]`** ( magazine serré). Mesuré : aucune traversée
-  de vide supérieure à un demi-écran.
+  Conteneur
+  global **pleine largeur** (pas de plafond max-w — padding de respiration
+  `px-6`/`md:px-10` seulement, façon garciamateo mesuré bord à bord).
 - **Home** : hero → déclaration serif → **4 activités en grille collée façon
   Friendly Pressure** (images carrées serrées, filets 1px ; au survol : cercle
   overlay crème, swap d'image sur les blocs 2 et 4, fiche polaroid crème qui

@@ -45,7 +45,7 @@ const Custom = () => {
   return (
     <main className="min-h-screen">
       {/* ── En-tête ─────────────────────────────────────────────── */}
-      <div className="mx-auto max-w-[1200px] px-6 pt-24 md:px-10 md:pt-28">
+      <div className="mx-auto max-w-none px-6 pt-24 md:px-10 md:pt-28">
         <Reveal>
           <p className="mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             {cp.kicker}
@@ -60,7 +60,7 @@ const Custom = () => {
       </div>
 
       {/* ── Article magazine (pattern « Concepteurs ») ──────────── */}
-      <section className="mx-auto mt-12 max-w-[1200px] px-6 md:mt-16 md:px-10">
+      <section className="mx-auto mt-12 max-w-none px-6 md:mt-16 md:px-10">
         <Reveal>{sectionTitle(cp.magTitleA, cp.magTitleB)}</Reveal>
         <div className="my-4 h-px w-full bg-foreground/15 md:my-6" />
         <div className="grid gap-12 md:grid-cols-3 md:gap-8">
@@ -86,7 +86,7 @@ const Custom = () => {
       </section>
 
       {/* ── 3 blocs : fiche polaroid au survol (FP sans cercle) ─── */}
-      <section className="mx-auto mt-14 max-w-[1200px] px-6 pb-16 md:mt-20 md:px-10 md:pb-24">
+      <section className="mx-auto mt-14 max-w-none px-6 pb-16 md:mt-20 md:px-10 md:pb-24">
         <Reveal>{sectionTitle(cp.blocksTitleA, cp.blocksTitleB)}</Reveal>
         <div className="my-4 h-px w-full bg-foreground/15 md:my-6" />
         <div className="grid gap-4 md:grid-cols-3">
@@ -137,7 +137,7 @@ const Custom = () => {
 
       {/* ── Caractéristiques : carnet de conception ── */}
       <section className="bg-background">
-        <div className="mx-auto max-w-[1200px] px-6 py-12 md:px-10 md:py-20">
+        <div className="mx-auto max-w-none px-6 py-12 md:px-10 md:py-20">
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             {/* Gauche : descriptif + specs aux lignes épaisses */}
             <div className="md:col-span-7">
@@ -220,7 +220,7 @@ const Custom = () => {
       </section>
 
       {/* ── CTA contact ─────────────────────────────────────────── */}
-      <section className="mx-auto max-w-[1200px] px-6 py-14 md:px-10 md:py-20">
+      <section className="mx-auto max-w-none px-6 py-14 md:px-10 md:py-20">
         <Reveal>
           <Link
             to="/contact"
