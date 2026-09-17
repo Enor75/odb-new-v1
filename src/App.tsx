@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackgroundPhoto from "@/components/BackgroundPhoto";
+import TypoTester from "@/components/TypoTester";
 import Index from "./pages/Index";
 import Activity from "./pages/Activity";
 import About from "./pages/About";
@@ -25,6 +26,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <BackgroundPhoto />
+          <TypoTester />
           <ScrollToTop />
           <Header />
           <Routes>

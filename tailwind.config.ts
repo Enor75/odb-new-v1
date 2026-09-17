@@ -14,10 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Archivo", "Helvetica Neue", "Arial", "sans-serif"],
-        serif: ["Fraunces", "Georgia", "serif"],
-        display: ["Fraunces", "Georgia", "serif"],
-        mono: ["'Source Code Pro'", "ui-monospace", "SFMono-Regular", "monospace"],
+        sans: ["var(--odb-sans)"],
+        serif: ["var(--odb-serif)"],
+        display: ["var(--odb-serif)"],
+        mono: ["var(--odb-mono)"],
       },
       colors: {
         border: "hsl(var(--border))",

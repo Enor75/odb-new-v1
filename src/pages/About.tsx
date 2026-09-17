@@ -52,12 +52,6 @@ const About = () => {
     <main className="min-h-screen">
       {/* ── Portrait à gauche / texte à droite ─────────────────── */}
       <section className="mx-auto max-w-none px-6 pb-8 pt-24 md:px-10 md:pb-10 md:pt-28">
-        <Reveal>
-          <p className="mb-8 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
-            {ap.kicker}
-          </p>
-        </Reveal>
-
         <div className="grid items-start gap-10 md:grid-cols-12 md:gap-8">
           {/* Premier tiers gauche : photo de Sébastien */}
           <Reveal className="md:col-span-4" delay={100}>
@@ -73,6 +67,9 @@ const About = () => {
           {/* Droite : texte — plus de titre, juste le kicker « About » en gras */}
           <div className="md:col-span-7 md:col-start-6">
             <Reveal delay={150}>
+              <p className="mb-8 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
+                {ap.kicker}
+              </p>
               <div className="flex max-w-2xl flex-col gap-6">
                 {ap.paragraphs.map((paragraph) => (
                   <p

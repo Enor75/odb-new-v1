@@ -1,21 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
- * FOND PHOTO — phase de test (17/09).
+ * FOND (PHOTO OU COULEUR) — phase de test (17/09).
  *
  * La couleur brun (`--background`) reste la base (surfaces, header, menu) ;
- * ce composant ajoute une PHOTO plein écran fixe derrière tout le contenu,
- * recouverte d'un voile brun réglable — le grain global (body::before,
- * 0.09) reste appliqué par-dessus, inchangé.
+ * ce composant ajoute un fond plein écran fixe derrière le contenu :
+ * photo (11 candidats) ou couleur unie (5 propositions client), recouvert
+ * d'un voile brun réglable. Le grain global (body::before) reste appliqué
+ * par-dessus — son OPACITÉ est désormais réglable aussi (défaut 0.09).
  *
- * ⚙️ OUTIL DE TEST TEMPORAIRE : le sélecteur flottant (bas droite) permet
- * de cycler les 11 candidats et d'ajuster le voile. Le choix est mémorisé
- * en localStorage (`odb-bg`, `odb-bg-veil`). Index 0 = brun actuel (aucune
- * photo). À RETIRER au moment du choix final (garder uniquement le
- * candidat retenu en dur).
+ * ⚙️ OUTIL DE TEST TEMPORAIRE : sélecteur flottant (bas droite, au-dessus
+ * du sélecteur typo) — 00 = brun actuel, 01–11 = photos, 12–16 = couleurs
+ * (#F6ECDD, #FBF3E7, #EBD9C2, #2C2420, #B8704A). Voile 30–95 % (défaut
+ * 78), grain 0–0.24 (défaut 0.09). Choix mémorisés en localStorage
+ * (`odb-bg`, `odb-bg-veil`, `odb-grain`). À RETIRER au choix final.
  */
 
-const CANDIDATES = [
+interface Candidate {
+  n: number;
+  label: string;
+  color?: string;
+}
+
+const CANDIDATES: Candidate[] = [
   { n: 1, label: 'jonathan-borba' },
   { n: 2, label: 'wood007' },
   { n: 3, label: '8u4dmc3' },
@@ -27,14 +34,23 @@ const CANDIDATES = [
   { n: 9, label: 'muchatseble' },
   { n: 10, label: 'telechargement' },
   { n: 11, label: 'walnut-burl' },
+  { n: 12, label: '#F6ECDD', color: '#F6ECDD' },
+  { n: 13, label: '#FBF3E7', color: '#FBF3E7' },
+  { n: 14, label: '#EBD9C2', color: '#EBD9C2' },
+  { n: 15, label: '#2C2420', color: '#2C2420' },
+  { n: 16, label: '#B8704A', color: '#B8704A' },
 ];
 
-const VEIL_MIN = 0.54;
-const VEIL_MAX = 0.9;
-const VEIL_STEP = 0.06;
+const VEIL_MIN = 0.3;
+const VEIL_MAX = 0.95;
+const VEIL_STEP = 0.05;
+const GRAIN_MIN = 0;
+const GRAIN_MAX = 0.24;
+const GRAIN_STEP = 0.03;
 /** Brun du thème : hsl(25 16% 17%) ≈ rgb(50, 44, 36) */
 const VEIL_RGB = '50, 44, 36';
 
+const round2 = (v: number) => Math.round(v * 100) / 100;
 const readNum = (key: string, fallback: number): number => {
   try {
     const v = parseFloat(localStorage.getItem(key) ?? '');
@@ -47,33 +63,55 @@ const readNum = (key: string, fallback: number): number => {
 const BackgroundPhoto = () => {
   const [choice, setChoice] = useState(() => readNum('odb-bg', 0));
   const [veil, setVeil] = useState(() => readNum('odb-bg-veil', 0.78));
+  const [grain, setGrain] = useState(() => readNum('odb-grain', 0.09));
+
+  const total = CANDIDATES.length + 1; // 00 brun + 16 candidats
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--odb-grain', String(grain));
+  }, [grain]);
 
   const pick = (dir: number) => {
-    const total = CANDIDATES.length + 1; // 00 brun + 11 candidats
-    const next = (choice + dir + total) % total;
-    setChoice(next);
-    try { localStorage.setItem('odb-bg', String(next)); } catch { /* iframe */ }
+    setChoice((c) => (c + dir + total) % total);
+    try { localStorage.setItem('odb-bg', String((choice + dir + total) % total)); } catch { /* iframe */ }
   };
-  const adjustVeil = (delta: number) => {
-    const next = Math.min(VEIL_MAX, Math.max(VEIL_MIN, Math.round((veil + delta) * 100) / 100));
-    setVeil(next);
-    try { localStorage.setItem('odb-bg-veil', String(next)); } catch { /* iframe */ }
+  const adjust = (
+    setter: (v: number) => void,
+    key: string,
+    value: number,
+    delta: number,
+    min: number,
+    max: number
+  ) => {
+    const next = round2(Math.min(max, Math.max(min, value + delta)));
+    setter(next);
+    try { localStorage.setItem(key, String(next)); } catch { /* iframe */ }
   };
 
   const candidate = CANDIDATES.find((c) => c.n === choice);
-  const bgUrl = candidate
+  const bgUrl = candidate && !candidate.color
     ? `${import.meta.env.BASE_URL}bg/bg-${String(candidate.n).padStart(2, '0')}.jpg`
     : null;
 
+  const btn =
+    'border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground';
+
   return (
     <>
-      {/* Couche photo + voile — derrière tout le contenu */}
-      {bgUrl && (
+      {/* Couche fond (photo ou couleur) + voile — derrière tout le contenu */}
+      {(bgUrl || candidate?.color) && (
         <div className="fixed inset-0 -z-10" aria-hidden="true">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${bgUrl})` }}
-          />
+          {bgUrl ? (
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${bgUrl})` }}
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{ backgroundColor: candidate!.color }}
+            />
+          )}
           <div
             className="absolute inset-0"
             style={{ backgroundColor: `rgba(${VEIL_RGB}, ${veil})` }}
@@ -82,46 +120,38 @@ const BackgroundPhoto = () => {
       )}
 
       {/* Sélecteur de test — à retirer au choix final */}
-      <div className="fixed bottom-4 right-4 z-[90] border border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
+      <div className="fixed bottom-[72px] right-4 z-[90] border border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
         <div className="flex items-center gap-2">
           <span className="text-foreground/40">fond</span>
-          <button
-            onClick={() => pick(-1)}
-            aria-label="Fond précédent"
-            className="border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground"
-          >
-            ‹
-          </button>
-          <span className="min-w-[108px] text-center text-foreground">
+          <button onClick={() => pick(-1)} aria-label="Fond précédent" className={btn}>‹</button>
+          <span className="min-w-[118px] text-center text-foreground">
             {candidate ? `${String(choice).padStart(2, '0')}/${CANDIDATES.length} ${candidate.label}` : '00 brun actuel'}
           </span>
-          <button
-            onClick={() => pick(1)}
-            aria-label="Fond suivant"
-            className="border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground"
-          >
-            ›
-          </button>
+          <button onClick={() => pick(1)} aria-label="Fond suivant" className={btn}>›</button>
         </div>
         <div className="mt-1.5 flex items-center gap-2">
           <span className="text-foreground/40">voile</span>
           <button
-            onClick={() => adjustVeil(-VEIL_STEP)}
-            aria-label="Voile moins opaque"
-            className="border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground"
-          >
-            −
-          </button>
-          <span className="min-w-[108px] text-center text-foreground">
-            {Math.round(veil * 100)}%
-          </span>
+            onClick={() => adjust(setVeil, 'odb-bg-veil', veil, -VEIL_STEP, VEIL_MIN, VEIL_MAX)}
+            aria-label="Voile moins opaque" className={btn}
+          >−</button>
+          <span className="min-w-[118px] text-center text-foreground">{Math.round(veil * 100)}%</span>
           <button
-            onClick={() => adjustVeil(VEIL_STEP)}
-            aria-label="Voile plus opaque"
-            className="border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground"
-          >
-            +
-          </button>
+            onClick={() => adjust(setVeil, 'odb-bg-veil', veil, VEIL_STEP, VEIL_MIN, VEIL_MAX)}
+            aria-label="Voile plus opaque" className={btn}
+          >+</button>
+        </div>
+        <div className="mt-1.5 flex items-center gap-2">
+          <span className="text-foreground/40">grain</span>
+          <button
+            onClick={() => adjust(setGrain, 'odb-grain', grain, -GRAIN_STEP, GRAIN_MIN, GRAIN_MAX)}
+            aria-label="Grain moins intense" className={btn}
+          >−</button>
+          <span className="min-w-[118px] text-center text-foreground">{grain.toFixed(2)}</span>
+          <button
+            onClick={() => adjust(setGrain, 'odb-grain', grain, GRAIN_STEP, GRAIN_MIN, GRAIN_MAX)}
+            aria-label="Grain plus intense" className={btn}
+          >+</button>
         </div>
       </div>
     </>
