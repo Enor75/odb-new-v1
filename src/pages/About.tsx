@@ -51,7 +51,7 @@ const About = () => {
   return (
     <main className="min-h-screen">
       {/* ── Portrait à gauche / texte à droite ─────────────────── */}
-      <section className="mx-auto max-w-none px-6 pb-16 pt-24 md:px-10 md:pb-20 md:pt-28">
+      <section className="mx-auto max-w-none px-6 pb-8 pt-24 md:px-10 md:pb-10 md:pt-28">
         <Reveal>
           <p className="mb-8 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
             {ap.kicker}

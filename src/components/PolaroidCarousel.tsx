@@ -1,19 +1,38 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import polaroidPhoto1 from '@/assets/photo-1.jpg';
-import polaroidPhoto2 from '@/assets/photo-14.jpg';
-import polaroidPhoto3 from '@/assets/photo-28.jpg';
-import polaroidPhoto4 from '@/assets/photo-42.jpg';
+import polaroidPhoto2 from '@/assets/photo-2.jpg';
+import polaroidPhoto5 from '@/assets/photo-5.jpg';
+import polaroidPhoto6 from '@/assets/photo-6.jpg';
+import polaroidPhoto8 from '@/assets/photo-8.jpg';
+import polaroidPhoto15 from '@/assets/photo-15.jpg';
+import polaroidPhoto34 from '@/assets/photo-34.jpg';
+import polaroidPhoto38 from '@/assets/photo-38.jpg';
+import polaroidPhoto39 from '@/assets/photo-39.jpg';
+import polaroidPhoto40 from '@/assets/photo-40.jpg';
+import polaroidPhoto42 from '@/assets/photo-42.jpg';
+import polaroidPhoto44 from '@/assets/photo-44.jpg';
+import polaroidPhoto45 from '@/assets/photo-45.jpg';
 
 /**
  * ── Carrousel de polaroids façon Monolith ──────────────────────────────
- * Section sticky de 350vh : au scroll, chaque polaroid monte du bas de
- * l'écran puis s'empale en éventail (rotations alternées) pendant que le
- * suivant arrive. Géométrie extraite du template Monolith (About), adaptée
- * à la charte Orange Decibel : cartes crème, filets fins, Fraunces.
+ * Section sticky : au scroll, chaque polaroid monte du bas de l'écran et
+ * s'empale en éventail. Géométrie adaptée à la charte Orange Decibel :
+ * cartes crème, filets fins, ombre longue et douce.
  *
- * ⚠️ EMPLACEMENTS VIDES — les photos et légendes seront choisies par le
- * client plus tard. Renseigner `src` et éventuellement name/subtitle.
+ * UX (retour client 17/09) :
+ * - la carte 0 est déjà en place à l'arrivée sur la section ;
+ * - pas de cadre filet autour de la section, pas de titre — juste le
+ *   kicker « Moments » ;
+ * - cartes grandes : ~2/3 de la hauteur d'écran ;
+ * - OPACITÉ CONTINUE : le sommet de la pile reste toujours à 1 (la
+ *   dernière carte ne devient jamais transparente) ; chaque carte posée
+ *   s'estompe progressivement (paliers doux 1 → 0.55 → 0.35 → 0.22) au
+ *   rythme exact de la montée de la suivante ; l'arrivée se fait quasi
+ *   opaque (léger fondu 0.6 → 1 sur le premier quart de montée, hors
+ *   champ) — modèle « première polaroid », plus de sauts brusques.
+ *
+ * ⚠️ Sélection provisoire (13 photos assets) — le client affinera.
  */
 
 interface CarouselPhoto {
@@ -27,7 +46,7 @@ interface CarouselPhoto {
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 
-/** Progression du scroll au sein de la section haute (0 → 1) */
+/** Progression du scroll au sein de la section (0 → 1) */
 function useSectionProgress(ref: React.RefObject<HTMLElement | null>) {
   const [progress, setProgress] = useState(0);
 
@@ -56,8 +75,8 @@ const PolaroidCard = ({
   showCaption: boolean;
 }) => (
   <div
-    className={`relative w-[280px] bg-foreground p-3 shadow-[0_24px_60px_rgba(0,0,0,0.5)] md:w-[340px] ${
-      showCaption ? 'pb-16' : 'pb-3'
+    className={`relative w-full bg-foreground p-3 shadow-[0_24px_60px_rgba(0,0,0,0.5)] ${
+      showCaption ? 'pb-[13%]' : 'pb-3'
     }`}
   >
     <div className="relative z-[4] aspect-square overflow-hidden bg-background">
@@ -68,7 +87,7 @@ const PolaroidCard = ({
           className="h-full w-full object-cover"
         />
       ) : (
-        /* Emplacement vide — croix fine centrée (F7) */
+        /* Emplacement vide — croix fine centrée */
         <div className="relative flex h-full w-full items-center justify-center bg-secondary/40">
           <svg
             className="h-8 w-8 text-foreground/25"
@@ -85,19 +104,28 @@ const PolaroidCard = ({
     </div>
     {showCaption && photo.name && photo.subtitle && (
       <div className="absolute bottom-3 left-3 right-3 border-t border-background/25 pt-2">
-        <h3 className="font-serif text-lg md:text-xl text-background">{photo.name}</h3>
+        <h3 className="font-serif text-xl text-background md:text-2xl">{photo.name}</h3>
         <p className="text-sm text-background/60">{photo.subtitle}</p>
       </div>
     )}
   </div>
 );
 
-/** Photos assets (fusion 17/09) — remplaçables par la sélection client */
+/** Sélection provisoire (13 photos) — en attente du choix définitif du client */
 const carouselPhotos: CarouselPhoto[] = [
   { src: polaroidPhoto1 },
   { src: polaroidPhoto2 },
-  { src: polaroidPhoto3 },
-  { src: polaroidPhoto4 },
+  { src: polaroidPhoto5 },
+  { src: polaroidPhoto6 },
+  { src: polaroidPhoto8 },
+  { src: polaroidPhoto15 },
+  { src: polaroidPhoto34 },
+  { src: polaroidPhoto38 },
+  { src: polaroidPhoto39 },
+  { src: polaroidPhoto40 },
+  { src: polaroidPhoto42 },
+  { src: polaroidPhoto44 },
+  { src: polaroidPhoto45 },
 ];
 
 const PolaroidCarousel = () => {
@@ -108,53 +136,45 @@ const PolaroidCarousel = () => {
   /** Durée d'une fenêtre de montée (la carte 0 n'en consomme pas) */
   const w = 1 / (n - 1);
 
-  /** Position/rotation/opacité d'une carte selon la progression du scroll.
-   * UX (17/09) : la carte 0 est DÉJÀ EN PLACE quand la section arrive dans
-   * le viewport — plus d'attente pendant qu'elle remonte du bas. Les cartes
-   * suivantes montent l'une après l'autre dès que l'écran s'épingle, la
-   * dernière terminant droite et pleine intensité en haut de la pile. */
+  /** Chaîne douce entre 4 paliers selon la couverture cumulée (0→3+) */
+  const chain = (v0: number, v1: number, v2: number, v3: number, cover: number) =>
+    cover <= 0
+      ? v0
+      : cover <= 1
+        ? lerp(v0, v1, cover)
+        : cover <= 2
+          ? lerp(v1, v2, cover - 1)
+          : lerp(v2, v3, clamp(cover - 2, 0, 1));
+
+  /** Position/rotation/opacité d'une carte selon la progression du scroll */
   const getCardStyle = (index: number): React.CSSProperties => {
     const start = index === 0 ? 0 : (index - 1) * w;
-    const end = index === 0 ? 0 : index * w;
-    const localT = clamp((progress - start) / w, 0, 1);
+    /* Carte 0 : posée d'office (localT = 1) — ni montée ni fondu d'arrivée */
+    const localT = index === 0 ? 1 : clamp((progress - start) / w, 0, 1);
     const isActive = progress >= start;
-    const cardsPassed = Math.max(
-      0,
-      Math.floor((progress - end) / w) + (progress >= end ? 1 : 0)
-    );
-    const isCurrent = progress >= start && progress < end;
 
-    /* Monte du bas de l'écran (70vh) vers sa position de repos */
-    let ty: number;
-    if (!isActive) ty = 70;
-    else if (isCurrent) ty = lerp(70, 0, localT);
-    else ty = 0;
-
-    /* Devient opaque en arrivant, se fonce quand les suivantes passent dessus */
-    let opacity: number;
-    if (!isActive) opacity = 0.3;
-    else if (isCurrent) opacity = lerp(0.3, 1, localT);
-    else if (cardsPassed === 0) opacity = 1;
-    else if (cardsPassed === 1) opacity = lerp(1, 0.45, localT);
-    else opacity = 0.2;
-
-    /* Rotation en éventail une fois dépassée, direction alternée */
-    let rotate = 0;
-    if (isActive && !isCurrent && cardsPassed >= 1) {
-      const dir = index % 2 === 0 ? -1 : 1;
-      rotate =
-        cardsPassed === 1 ? lerp(0, dir * 6, localT) : dir * (cardsPassed === 2 ? 8 : 10);
+    /* Couverture cumulée : chaque carte au-dessus entièrement posée compte
+       1, celle en cours de montée compte sa fraction → tout est continu. */
+    let cover = 0;
+    for (let j = index + 1; j < n; j++) {
+      const jStart = j === 0 ? 0 : (j - 1) * w;
+      cover += clamp((progress - jStart) / w, 0, 1);
     }
 
-    /* Petit décalage de dispersion pour l'effet d'empilement —
-       progressif pour la carte 0 (déjà en place au repos) */
-    let tx = 0;
-    let tyExtra = 0;
-    if (isActive && !isCurrent && cardsPassed >= 1 && index < n - 1) {
-      const disp = index === 0 ? localT : 1;
-      tx = (index % 2 === 0 ? -1 : 1) * (cardsPassed === 1 ? 10 : 15) * disp;
-      tyExtra = (cardsPassed === 1 ? 10 : 15) * disp;
-    }
+    /* Montée depuis 70vh dessous — à opacité constante (modèle « première
+       polaroid » : la carte arrive comme une photo qu'on pose, sans fondu) */
+    const ty = !isActive ? 70 : lerp(70, 0, localT);
+
+    /* Opacité : 1 à l'arrivée et tant que la carte est au sommet ;
+       en dessous, estompage progressif à chaque nouvelle carte posée
+       (paliers doux 1 → 0.55 → 0.35 → 0.22, aucun saut). */
+    const opacity = !isActive ? 0 : chain(1, 0.55, 0.35, 0.22, cover);
+
+    /* Rotation en éventail + dispersion — mêmes courbes continues */
+    const dir = index % 2 === 0 ? -1 : 1;
+    const rotate = dir * chain(0, 6, 8, 10, cover);
+    const tx = dir * chain(0, 10, 14, 16, cover);
+    const tyExtra = chain(0, 10, 14, 16, cover);
 
     const zIndex = isActive ? 10 + index : 1;
 
@@ -172,30 +192,17 @@ const PolaroidCarousel = () => {
       ref={sectionRef}
       aria-label={t.carousel.kicker}
       className="relative"
-      style={{ height: `${n * 87.5}vh` }}
+      style={{ height: `${n * 70}vh` }}
     >
-      {/* Filets du cadre — desktop uniquement */}
-      <div className="pointer-events-none absolute inset-0 hidden md:block">
-        <div className="absolute top-4 left-4 right-4 h-px bg-foreground/15" />
-        <div className="absolute bottom-4 left-4 right-4 h-px bg-foreground/15" />
-        <div className="absolute top-4 bottom-4 left-4 w-px bg-foreground/15" />
-        <div className="absolute top-4 bottom-4 right-4 w-px bg-foreground/15" />
-      </div>
-
-      {/* Écran sticky : titre + pile de polaroids */}
+      {/* Écran sticky : kicker + pile de polaroids (pas de cadre, pas de titre) */}
       <div className="sticky top-0 flex h-screen flex-col items-center overflow-hidden">
-        <div className="mb-8 px-6 pt-20 text-center md:mb-12 md:pt-24">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            {t.carousel.kicker}
-          </p>
-          <h2 className="mx-auto max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {t.carousel.titleA}
-            <span className="text-muted-foreground">{t.carousel.titleB}</span>
-          </h2>
-        </div>
+        <p className="px-6 pt-16 text-center font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-20">
+          {t.carousel.kicker}
+        </p>
 
         <div className="flex w-full flex-1 items-center justify-center">
-          <div className="relative h-[360px] w-[280px] md:h-[440px] md:w-[340px]">
+          {/* Cartes ~2/3 de la hauteur d'écran (couverte par le plafond 85vw) */}
+          <div className="relative aspect-[1/1.18] w-[min(calc(66vh-76px),85vw)]">
             {carouselPhotos.map((photo, i) => (
               <div
                 key={i}

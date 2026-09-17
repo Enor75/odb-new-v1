@@ -65,8 +65,6 @@ export interface Translations {
   };
   carousel: {
     kicker: string;
-    titleA: string;
-    titleB: string;
   };
   activityPage: {
     kicker: string;
@@ -259,8 +257,6 @@ const translations: Record<Language, Translations> = {
     },
     carousel: {
       kicker: 'Moments',
-      titleA: 'The system in the field',
-      titleB: '— one moment at a time.',
     },
     activityPage: {
       kicker: 'What we do',
@@ -534,8 +530,6 @@ const translations: Record<Language, Translations> = {
     },
     carousel: {
       kicker: 'Instants',
-      titleA: 'Le système en situation',
-      titleB: '— un instant à la fois.',
     },
     activityPage: {
       kicker: 'Ce que nous faisons',
@@ -809,8 +803,6 @@ const translations: Record<Language, Translations> = {
     },
     carousel: {
       kicker: 'Istanti',
-      titleA: 'Il sistema in azione',
-      titleB: '— un istante alla volta.',
     },
     activityPage: {
       kicker: 'Cosa facciamo',
