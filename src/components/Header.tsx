@@ -155,8 +155,9 @@ const Header = () => {
             ))}
           </nav>
 
+          {/* Sélecteur de langue — en bas à GAUCHE (les liens restent à droite) */}
           <div
-            className="mt-auto flex justify-end gap-6 px-6 pb-10 animate-in fade-in duration-500"
+            className="mt-auto flex justify-start gap-6 px-6 pb-10 animate-in fade-in duration-500"
             style={{ animationDelay: '400ms' }}
           >
             {LANGUAGES.map((lang) => (
