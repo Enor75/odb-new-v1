@@ -164,7 +164,7 @@ const PolaroidCarousel = () => {
     <section
       ref={sectionRef}
       aria-label={t.carousel.kicker}
-      className="relative bg-background"
+      className="relative"
       style={{ height: `${n * 87.5}vh` }}
     >
       {/* Filets du cadre — desktop uniquement */}

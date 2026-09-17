@@ -2,6 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import PolaroidCarousel from '@/components/PolaroidCarousel';
+import sebastien from '@/assets/sebastien.jpg';
 import WorkCarousel from '@/components/WorkCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
 import gallery2 from '@/assets/gallery-2.jpeg';
@@ -60,22 +61,12 @@ const About = () => {
         <div className="grid items-start gap-10 md:grid-cols-12 md:gap-8">
           {/* Premier tiers gauche : photo de Sébastien */}
           <Reveal className="md:col-span-4" delay={100}>
-            <div className="film-grain relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden bg-secondary/40">
-              <div className="text-center">
-                <svg
-                  className="mx-auto h-8 w-8 text-foreground/25"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  aria-hidden="true"
-                >
-                  <path d="M12 4v16M4 12h16" />
-                </svg>
-                <p className="mt-4 px-6 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-                  {ap.photoLabel}
-                </p>
-              </div>
+            <div className="film-grain relative aspect-[4/5] w-full overflow-hidden">
+              <img
+                src={sebastien}
+                alt="Sébastien Coutelas"
+                className="h-full w-full object-cover"
+              />
             </div>
           </Reveal>
 

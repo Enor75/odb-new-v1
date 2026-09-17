@@ -88,6 +88,7 @@ src/
 │   ├── ContactForm.tsx  → Formulaire branché sur l'Edge Function Supabase
 │   ├── Estimator.tsx    → Estimateur 5 étapes (accordéon, 7 types d'événement)
 │   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (about)
+│   ├── BackgroundPhoto.tsx → Fond photo TEST (11 candidats + voile, sélecteur temporaire à retirer au choix)
 │   └── WorkCarousel.tsx → Rail horizontal épinglé (about)
 │   ├── Reveal.tsx       → Apparition au scroll (INTERDIT sur la home, par convention)
 │   ├── Footer.tsx       → 2 lignes garciamateo : wordmark + mentions « / »
