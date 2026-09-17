@@ -98,8 +98,6 @@ export interface Translations {
   };
   aboutPage: {
     kicker: string;
-    title: string;
-    role: string;
     paragraphs: string[];
     workLabel: string;
     scrollHint: string;
@@ -339,8 +337,6 @@ const translations: Record<Language, Translations> = {
     },
     aboutPage: {
       kicker: 'About',
-      title: 'Sébastien Coutelas',
-      role: 'Founder — Orange Decibel',
       paragraphs: [
         'Founder of Orange Decibel in 2023, Sébastien Coutelas drives a High-End Sound System project born in France and now also deployed in Milan.',
         'His concept rests on the alliance between the acoustic precision of Hi-Fi and the power and impact of professional sound reinforcement. Through Orange Decibel, he offers a complete service for the organisation and equipment of musical and cultural events.',
@@ -616,8 +612,6 @@ const translations: Record<Language, Translations> = {
     },
     aboutPage: {
       kicker: 'À propos',
-      title: 'Sébastien Coutelas',
-      role: 'Fondateur — Orange Decibel',
       paragraphs: [
         'Fondateur d’Orange Decibel en 2023, Sébastien Coutelas pilote un projet de Sound System High-End né en France et aujourd’hui déployé aussi à Milan.',
         'Son concept repose sur l’alliance entre la précision acoustique de la Hi-Fi et la puissance d’impact de la sonorisation professionnelle. À travers Orange Decibel, il propose une prestation globale pour l’organisation et l’équipement d’événements musicaux et culturels.',
@@ -893,8 +887,6 @@ const translations: Record<Language, Translations> = {
     },
     aboutPage: {
       kicker: 'Chi siamo',
-      title: 'Sébastien Coutelas',
-      role: 'Fondatore — Orange Decibel',
       paragraphs: [
         'Fondatore di Orange Decibel nel 2023, Sébastien Coutelas guida un progetto di Sound System High-End nato in Francia e oggi attivo anche a Milano.',
         'Il suo concept si basa sull’unione tra la precisione acustica dell’Hi-Fi e la potenza d’impatto della sonorizzazione professionale. Attraverso Orange Decibel, offre un servizio completo per l’organizzazione e l’equipaggiamento di eventi musicali e culturali.',

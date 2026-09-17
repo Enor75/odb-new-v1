@@ -105,17 +105,22 @@ const PolaroidCarousel = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const progress = useSectionProgress(sectionRef);
   const n = carouselPhotos.length;
-  const step = 1 / n;
+  /** Durée d'une fenêtre de montée (la carte 0 n'en consomme pas) */
+  const w = 1 / (n - 1);
 
-  /** Position/rotation/opacité d'une carte selon la progression du scroll */
+  /** Position/rotation/opacité d'une carte selon la progression du scroll.
+   * UX (17/09) : la carte 0 est DÉJÀ EN PLACE quand la section arrive dans
+   * le viewport — plus d'attente pendant qu'elle remonte du bas. Les cartes
+   * suivantes montent l'une après l'autre dès que l'écran s'épingle, la
+   * dernière terminant droite et pleine intensité en haut de la pile. */
   const getCardStyle = (index: number): React.CSSProperties => {
-    const start = index * step;
-    const end = (index + 1) * step;
-    const localT = clamp((progress - start) / step, 0, 1);
+    const start = index === 0 ? 0 : (index - 1) * w;
+    const end = index === 0 ? 0 : index * w;
+    const localT = clamp((progress - start) / w, 0, 1);
     const isActive = progress >= start;
     const cardsPassed = Math.max(
       0,
-      Math.floor((progress - end) / step) + (progress >= end ? 1 : 0)
+      Math.floor((progress - end) / w) + (progress >= end ? 1 : 0)
     );
     const isCurrent = progress >= start && progress < end;
 
@@ -141,12 +146,14 @@ const PolaroidCarousel = () => {
         cardsPassed === 1 ? lerp(0, dir * 6, localT) : dir * (cardsPassed === 2 ? 8 : 10);
     }
 
-    /* Petit décalage de dispersion pour l'effet d'empilement */
+    /* Petit décalage de dispersion pour l'effet d'empilement —
+       progressif pour la carte 0 (déjà en place au repos) */
     let tx = 0;
     let tyExtra = 0;
     if (isActive && !isCurrent && cardsPassed >= 1 && index < n - 1) {
-      tx = (index % 2 === 0 ? -1 : 1) * (cardsPassed === 1 ? 10 : 15);
-      tyExtra = cardsPassed === 1 ? 10 : 15;
+      const disp = index === 0 ? localT : 1;
+      tx = (index % 2 === 0 ? -1 : 1) * (cardsPassed === 1 ? 10 : 15) * disp;
+      tyExtra = (cardsPassed === 1 ? 10 : 15) * disp;
     }
 
     const zIndex = isActive ? 10 + index : 1;

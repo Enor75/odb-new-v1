@@ -53,7 +53,7 @@ const About = () => {
       {/* ── Portrait à gauche / texte à droite ─────────────────── */}
       <section className="mx-auto max-w-none px-6 pb-16 pt-24 md:px-10 md:pb-20 md:pt-28">
         <Reveal>
-          <p className="mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="mb-8 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
             {ap.kicker}
           </p>
         </Reveal>
@@ -70,18 +70,10 @@ const About = () => {
             </div>
           </Reveal>
 
-          {/* Droite : nom, rôle, texte */}
+          {/* Droite : texte — plus de titre, juste le kicker « About » en gras */}
           <div className="md:col-span-7 md:col-start-6">
             <Reveal delay={150}>
-              <h1 className="font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-5xl">
-                {ap.title}
-              </h1>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                {ap.role}
-              </p>
-            </Reveal>
-            <Reveal delay={250}>
-              <div className="mt-10 flex max-w-2xl flex-col gap-6">
+              <div className="flex max-w-2xl flex-col gap-6">
                 {ap.paragraphs.map((paragraph) => (
                   <p
                     key={paragraph.slice(0, 24)}
