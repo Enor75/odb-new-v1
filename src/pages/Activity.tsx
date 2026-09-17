@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
+import ContactCta from '@/components/ContactCta';
 
 /**
  * PAGE ACTIVITY — fusion ex-Gallery + ex-Philosophy (17/09).
@@ -260,17 +260,8 @@ const Activity = () => {
         </div>
       </section>
 
-      {/* ── CTA unique — bouton filet orange ──────────────────────── */}
-      <section className="border-t border-foreground/15 px-6 py-16 text-center md:px-10 md:py-24">
-        <Reveal>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center border border-primary bg-transparent px-10 py-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground transition-colors duration-300 hover:bg-primary hover:text-primary-foreground"
-          >
-            {t.activityPage.ctaButton}
-          </Link>
-        </Reveal>
-      </section>
+      {/* ── CTA — bouton « Contact us » partagé ─────────────────── */}
+      <ContactCta />
 
       {/* ── Lightbox plein écran, filtrée sur la section ──────────── */}
       {open && openPhotos && (

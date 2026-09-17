@@ -2,6 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import PolaroidCarousel from '@/components/PolaroidCarousel';
+import ContactCta from '@/components/ContactCta';
 import sebastien from '@/assets/sebastien.jpg';
 import WorkCarousel from '@/components/WorkCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
@@ -43,6 +44,9 @@ const workItems = [
   gallery4,
 ];
 
+/** Selected Work désactivé provisoirement (17/09) — basculer à true pour réactiver */
+const showSelectedWork = false;
+
 const About = () => {
   const { t } = useLanguage();
   usePageMeta(t.meta.aboutTitle, t.meta.aboutDesc);
@@ -52,7 +56,7 @@ const About = () => {
     <main className="min-h-screen">
       {/* ── Portrait à gauche / texte à droite ─────────────────── */}
       <section className="mx-auto max-w-none px-6 pb-8 pt-24 md:px-10 md:pb-10 md:pt-28">
-        <div className="grid items-start gap-10 md:grid-cols-12 md:gap-8">
+        <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
           {/* Premier tiers gauche : photo de Sébastien */}
           <Reveal className="md:col-span-4" delay={100}>
             <div className="film-grain relative aspect-[4/5] w-full overflow-hidden">
@@ -88,8 +92,13 @@ const About = () => {
       {/* ── Carrousel de polaroids (ex-galerie, fusion 17/09) ──── */}
       <PolaroidCarousel />
 
-      {/* ── Carrousel « Selected Work » — pleine largeur ───────── */}
-      <WorkCarousel items={workItems.map((src) => ({ src }))} />
+      {/* ── Carrousel « Selected Work » — DÉSACTIVÉ provisoirement (17/09).
+          Réactiver : passer showSelectedWork à true (les images provisoires
+          restent en place dans workItems ci-dessus). */}
+      {showSelectedWork && <WorkCarousel items={workItems.map((src) => ({ src }))} />}
+
+      {/* ── CTA — bouton « Contact us » partagé ─────────────────── */}
+      <ContactCta />
     </main>
   );
 };

@@ -91,8 +91,6 @@ export interface Translations {
     specHeaderB: string;
     specs: { label: string; value: string }[];
     img1Label: string;
-    img2Label: string;
-    cta: string;
   };
   aboutPage: {
     kicker: string;
@@ -328,8 +326,6 @@ const translations: Record<Language, Translations> = {
         { label: 'Finish', value: '—' },
       ],
       img1Label: 'Speaker front',
-      img2Label: 'Speaker back — raw driver',
-      cta: 'Contact us',
     },
     aboutPage: {
       kicker: 'About',
@@ -444,7 +440,7 @@ const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: 'All rights reserved',
-      madeIn: 'Designed in France, operating in Milan',
+      madeIn: 'Designed in France, based in Paris & Milan',
     },
     meta: {
       indexTitle: 'Orange Decibel — High-End Sound System',
@@ -601,8 +597,6 @@ const translations: Record<Language, Translations> = {
         { label: 'Finition', value: '—' },
       ],
       img1Label: 'Front d’enceinte',
-      img2Label: 'Back d’enceinte — speaker nu',
-      cta: 'Nous contacter',
     },
     aboutPage: {
       kicker: 'À propos',
@@ -717,7 +711,7 @@ const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: 'Tous droits réservés',
-      madeIn: 'Conçu en France, opérationnel à Milan',
+      madeIn: 'Conçu en France, basé à Paris et à Milan',
     },
     meta: {
       indexTitle: 'Orange Decibel — Sound System haut de gamme',
@@ -874,8 +868,6 @@ const translations: Record<Language, Translations> = {
         { label: 'Finitura', value: '—' },
       ],
       img1Label: 'Fronte cassa',
-      img2Label: 'Retro cassa — driver nudo',
-      cta: 'Contattaci',
     },
     aboutPage: {
       kicker: 'Chi siamo',
@@ -990,7 +982,7 @@ const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: 'Tutti i diritti riservati',
-      madeIn: 'Progettato in Francia, operativo a Milano',
+      madeIn: 'Progettato in Francia, con base a Parigi e Milano',
     },
     meta: {
       indexTitle: 'Orange Decibel — Sound system di alta gamma',

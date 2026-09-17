@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ContactCta from '@/components/ContactCta';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import designDrawing1 from '@/assets/design-drawing-1.png';
@@ -176,41 +175,49 @@ const Custom = () => {
               </Reveal>
             </div>
 
-            {/* Droite : 2 encarts images (vides, textes temporaires) */}
+            {/* Droite : 1 seul encart photo (17/09) — photo au repos +
+                photo alternative en fondu au survol. Emplacements vides
+                (croix fine) en attendant les fichiers : renseigner
+                specPhotos.rest / specPhotos.hover + remplacer les croix
+                par <img> quand ils arriveront. */}
             <div className="md:col-span-5">
               <Reveal delay={150}>
-                <div className="relative flex min-h-[30vh] w-full items-center justify-center overflow-hidden bg-foreground/[0.06] md:min-h-[450px]">
-                  <div className="text-center">
-                    <svg
-                      className="mx-auto h-8 w-8 text-foreground/25"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 4v16M4 12h16" />
-                    </svg>
-                    <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-                      {cp.img1Label}
-                    </p>
+                <div className="group relative min-h-[40vh] w-full overflow-hidden bg-foreground/[0.06] md:min-h-[560px]">
+                  {/* Photo au repos */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <svg
+                        className="mx-auto h-8 w-8 text-foreground/25"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 4v16M4 12h16" />
+                      </svg>
+                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
+                        {cp.img1Label}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="relative mt-4 hidden min-h-[450px] w-full items-center justify-center overflow-hidden bg-foreground/[0.06] md:flex">
-                  <div className="text-center">
-                    <svg
-                      className="mx-auto h-8 w-8 text-foreground/25"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 4v16M4 12h16" />
-                    </svg>
-                    <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-                      {cp.img2Label}
-                    </p>
+                  {/* Photo de survol — fondu par-dessus */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                    <div className="text-center">
+                      <svg
+                        className="mx-auto h-8 w-8 text-foreground/25"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 4v16M4 12h16" />
+                      </svg>
+                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
+                        {cp.img1Label}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </Reveal>
@@ -219,21 +226,8 @@ const Custom = () => {
         </div>
       </section>
 
-      {/* ── CTA contact ─────────────────────────────────────────── */}
-      <section className="mx-auto max-w-none px-6 py-14 md:px-10 md:py-20">
-        <Reveal>
-          <Link
-            to="/contact"
-            className="group inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/70 transition-colors duration-300 hover:text-primary"
-          >
-            {cp.cta}
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-              strokeWidth={1.5}
-            />
-          </Link>
-        </Reveal>
-      </section>
+      {/* ── CTA — bouton « Contact us » partagé ─────────────────── */}
+      <ContactCta />
     </main>
   );
 };

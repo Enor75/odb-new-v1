@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import PartnerLogos from '@/components/PartnerLogos';
 import Ticker from '@/components/Ticker';
+import ContactCta from '@/components/ContactCta';
 import heroImage from '@/assets/modular-1.jpeg';
 import architectureImage from '@/assets/architecture-1.jpeg';
 import context1Image from '@/assets/context-1.jpeg';
@@ -250,7 +251,7 @@ const Index = () => {
       </section>
 
       {/* ── Mur de marques partenaires — bas de la home ──────────── */}
-      <section className="border-t border-foreground/15 px-6 pt-16 md:px-10 md:pt-20">
+      <section className="border-t border-foreground/15 px-6 pb-20 pt-16 md:px-10 md:pb-24 md:pt-20">
         <div className="mx-auto max-w-none">
           <p className={`${kickerClass} text-center`}>{t.home.partnersKicker}</p>
           <h2 className="mx-auto mb-12 max-w-2xl text-center font-serif text-2xl font-light tracking-tight md:mb-16 md:text-3xl">
@@ -262,6 +263,9 @@ const Index = () => {
 
       {/* Ticker — collé au mur de marques (S9) */}
       <Ticker items={t.ticker} />
+
+      {/* ── CTA — bouton « Contact us » partagé ─────────────────── */}
+      <ContactCta />
     </main>
   );
 };

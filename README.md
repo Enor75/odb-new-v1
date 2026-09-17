@@ -90,6 +90,7 @@ src/
 │   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (about)
 │   ├── BackgroundPhoto.tsx → Fond TEST (11 photos + 5 couleurs, voile + grain réglables — à retirer au choix)
 │   ├── TypoTester.tsx    → Test typo 6 modes (vars CSS --odb-serif/sans/mono — à retirer au choix)
+│   ├── ContactCta.tsx    → Bouton « Contact us » de fin de page (partagé : home, activity, about, custom)
 │   └── WorkCarousel.tsx → Rail horizontal épinglé (about)
 │   ├── Reveal.tsx       → Apparition au scroll (INTERDIT sur la home, par convention)
 │   ├── Footer.tsx       → 2 lignes garciamateo : wordmark + mentions « / »
