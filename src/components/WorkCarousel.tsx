@@ -141,7 +141,7 @@ const WorkCarousel = ({ items }: { items: { src: string }[] }) => {
                   }}
                 >
                   <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/50">
-                    © Orange Décibel — {String(i + 1).padStart(2, '0')}
+                    © Orange Decibel — {String(i + 1).padStart(2, '0')}
                   </span>
                 </div>
               </div>

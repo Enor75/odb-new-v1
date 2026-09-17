@@ -10,7 +10,7 @@ import polaroidPhoto4 from '@/assets/photo-42.jpg';
  * Section sticky de 350vh : au scroll, chaque polaroid monte du bas de
  * l'écran puis s'empale en éventail (rotations alternées) pendant que le
  * suivant arrive. Géométrie extraite du template Monolith (About), adaptée
- * à la charte Orange Décibel : cartes crème, filets fins, Fraunces.
+ * à la charte Orange Decibel : cartes crème, filets fins, Fraunces.
  *
  * ⚠️ EMPLACEMENTS VIDES — les photos et légendes seront choisies par le
  * client plus tard. Renseigner `src` et éventuellement name/subtitle.

@@ -93,7 +93,7 @@ const Header = () => {
       >
         <div className="flex h-16 items-center justify-between px-6 md:h-20 md:px-10">
           <Link to="/" className="text-sm font-semibold uppercase tracking-[0.25em]">
-            Orange Décibel
+            Orange Decibel
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">

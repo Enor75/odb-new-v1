@@ -46,7 +46,7 @@ const Index = () => {
       <section className="relative h-[100svh]">
         <img
           src={heroImage}
-          alt="Orange Décibel Sound System"
+          alt="Orange Decibel Sound System"
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Voiles pour la lisibilité du header et de la légende */}

@@ -85,7 +85,7 @@ Deno.serve(async (req) => {
         'Authorization': `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'Orange Décibel <onboarding@resend.dev>',
+        from: 'Orange Decibel <onboarding@resend.dev>',
         to: ['orangedecibelita@gmail.com'],
         reply_to: email,
         subject: `Nuovo contatto da ${name}${estimateRange ? ` — ${estimateRange}` : ''}`,

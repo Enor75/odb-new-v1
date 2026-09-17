@@ -2,7 +2,7 @@
 // MODÈLE DE PRIX — ESTIMATEUR DE PROJET
 //
 // ⚠️ VALEURS PLACEHOLDER (€) à ajuster selon les vrais tarifs
-// Orange Décibel. Les ids doivent correspondre aux labels traduits
+// Orange Decibel. Les ids doivent correspondre aux labels traduits
 // dans LanguageContext.tsx (estimator.*Labels).
 //
 // Structure du calcul :

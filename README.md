@@ -1,4 +1,4 @@
-# Orange Décibel — Nouveau site (stack Lovable)
+# Orange Decibel — Nouveau site (stack Lovable)
 
 Refonte du site [orangedecibel.com](https://www.orangedecibel.com/) :
 **éditorial sombre** — identité de l'ancien site (bois sombre, crème, orange #E36A2E)
@@ -131,7 +131,7 @@ VITE_SUPABASE_PUBLISHABLE_KEY=...
    via `imgClass` dans `src/config/partners.ts`.
 2. **Tarifs du calculateur** : ⚠️ les valeurs de `src/config/pricing.ts` sont des
    PLACEHOLDERS en € (bases par type d'événement, multiplicateurs durée/audience,
-   transports, options). À ajuster aux vrais tarifs Orange Décibel.
+   transports, options). À ajuster aux vrais tarifs Orange Decibel.
 3. **Photos Activity** : 20 emplacements vides (5 par section, voir
    `sectionPhotos` dans `src/pages/Activity.tsx`) — noms de fichiers à
    fournir par le client. Les 51 photos HD sont dans `src/assets/photo-*.jpg`.
@@ -174,7 +174,7 @@ VITE_SUPABASE_PUBLISHABLE_KEY=...
    cd odb-lovable
    # supprimer tout sauf .git, copier le contenu de site-odb-new ici
    git add -A
-   git commit -m "Nouveau site Orange Décibel — refonte éditoriale sombre"
+   git commit -m "Nouveau site Orange Decibel — refonte éditoriale sombre"
    git push origin main
    ```
 

@@ -19,11 +19,11 @@ const Footer = () => {
     <footer className="px-6 py-10 md:px-10 md:py-12">
       <div className="mx-auto max-w-none">
         <p className="font-serif text-3xl font-light leading-none tracking-tight md:text-4xl">
-          Orange Décibel
+          Orange Decibel
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-foreground/15 pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/50">
-          <span>© {year} Orange Décibel</span>
+          <span>© {year} Orange Decibel</span>
           {separator}
           <a
             href="https://www.instagram.com/orangedecibel.italia/"
