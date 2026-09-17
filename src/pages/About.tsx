@@ -1,6 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
+import PolaroidCarousel from '@/components/PolaroidCarousel';
 import WorkCarousel from '@/components/WorkCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
 import gallery2 from '@/assets/gallery-2.jpeg';
@@ -103,6 +104,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* ── Carrousel de polaroids (ex-galerie, fusion 17/09) ──── */}
+      <PolaroidCarousel />
 
       {/* ── Carrousel « Selected Work » — pleine largeur ───────── */}
       <WorkCarousel items={workItems.map((src) => ({ src }))} />

@@ -9,6 +9,9 @@ import architectureImage from '@/assets/architecture-1.jpeg';
 import context1Image from '@/assets/context-1.jpeg';
 import context2Image from '@/assets/context-2.jpeg';
 import heroMainImage from '@/assets/hero-main.jpeg';
+import stackImage from '@/assets/stack-1.jpeg';
+import detailImage from '@/assets/detail-2.jpeg';
+import gallery5Image from '@/assets/gallery-5.jpeg';
 import galleryCatImage from '@/assets/gallery-cat.jpeg';
 import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
 import galleryTeal from '@/assets/gallery-teal.jpeg';
@@ -18,7 +21,9 @@ import galleryCello from '@/assets/gallery-cello.jpg';
 const activityImages = [architectureImage, context1Image, context2Image, heroMainImage];
 /** Image alternative au survol (blocs 2 et 4) — façon Friendly Pressure */
 const activitySwapImages: (string | null)[] = [null, galleryCatImage, null, designDrawing2Image];
-const activityLinks = ['/gallery', '/gallery', '/philosophy', '/custom'];
+const activityLinks = ['/activity', '/activity', '/activity', '/custom'];
+/** Piliers ex-philosophie — images alternées (fusion 17/09) */
+const pillarImages = [stackImage, detailImage, gallery5Image];
 /** Filets entre cellules — grille collée serrée (1px, comme FP) */
 const cellBorders = ['border-t', 'border-t border-l', 'border-t md:border-l', 'border-t border-l'];
 
@@ -73,7 +78,7 @@ const Index = () => {
           <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground md:text-lg">
             {t.home.statementText}
           </p>
-          <Link to="/philosophy" className={`${arrowLinkClass} mt-6`}>
+          <Link to="/activity" className={`${arrowLinkClass} mt-6`}>
             {t.home.statementLink}
             <ArrowRight
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -171,7 +176,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
             {[galleryTeal, galleryBass, galleryCello].map((src, i) => (
-              <Link key={i} to="/gallery" className="group block overflow-hidden">
+              <Link key={i} to="/activity" className="group block overflow-hidden">
                 <img
                   src={src}
                   alt=""
@@ -181,13 +186,66 @@ const Index = () => {
             ))}
           </div>
 
-          <Link to="/gallery" className={`${arrowLinkClass} mt-10`}>
+          <Link to="/activity" className={`${arrowLinkClass} mt-10`}>
             {t.home.galleryLink}
             <ArrowRight
               className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
               strokeWidth={1.5}
             />
           </Link>
+        </div>
+      </section>
+
+      {/* ── Les trois piliers (ex-page philosophie, fusion 17/09) ── */}
+      <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
+        <div className="mx-auto max-w-[1200px]">
+          <p className={`${kickerClass} border-t border-foreground/15 pt-16 md:pt-24`}>
+            {t.philosophyPage.pillarsKicker}
+          </p>
+
+          <div className="flex flex-col gap-16 md:gap-24">
+            {t.philosophyPage.pillars.map((pillar, i) => (
+              <div key={pillar.title} className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
+                {i % 2 === 0 ? (
+                  <>
+                    <div className="film-grain group overflow-hidden md:col-span-7">
+                      <img
+                        src={pillarImages[i]}
+                        alt={pillar.title}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    </div>
+                    <div className="md:col-span-4 md:col-start-9">
+                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+                        {pillar.title}
+                      </h2>
+                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                        {pillar.text}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="md:col-span-4 md:col-start-2 md:order-first">
+                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+                        {pillar.title}
+                      </h2>
+                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                        {pillar.text}
+                      </p>
+                    </div>
+                    <div className="film-grain group overflow-hidden md:col-span-7 md:col-start-6 md:order-last">
+                      <img
+                        src={pillarImages[i]}
+                        alt={pillar.title}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

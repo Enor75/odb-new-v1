@@ -13,6 +13,14 @@ export interface Pillar {
   text: string;
 }
 
+export interface ActivitySectionData {
+  id: string;
+  kicker: string;
+  title: string;
+  text: string;
+  cases: string[];
+}
+
 export interface EstimatorLabels {
   typeLabels: Record<string, string>;
   durationLabels: Record<string, string>;
@@ -24,9 +32,8 @@ export interface EstimatorLabels {
 export interface Translations {
   nav: {
     home: string;
-    gallery: string;
+    activity: string;
     custom: string;
-    philosophy: string;
     about: string;
     contact: string;
     menu: string;
@@ -55,16 +62,19 @@ export interface Translations {
     paragraphs: string[];
     pillarsKicker: string;
     pillars: Pillar[];
-    ctaTitle: string;
-    ctaLink: string;
   };
-  galleryPage: {
+  carousel: {
+    kicker: string;
+    titleA: string;
+    titleB: string;
+  };
+  activityPage: {
     kicker: string;
     title: string;
-    subtitle: string;
-    carouselKicker: string;
-    carouselTitleA: string;
-    carouselTitleB: string;
+    introShort: string;
+    sections: ActivitySectionData[];
+    ctaButton: string;
+    slotLabel: string;
   };
   customPage: {
     kicker: string;
@@ -160,12 +170,10 @@ export interface Translations {
   meta: {
     indexTitle: string;
     indexDesc: string;
-    galleryTitle: string;
-    galleryDesc: string;
+    activityTitle: string;
+    activityDesc: string;
     customTitle: string;
     customDesc: string;
-    philosophyTitle: string;
-    philosophyDesc: string;
     aboutTitle: string;
     aboutDesc: string;
     contactTitle: string;
@@ -181,7 +189,7 @@ export interface Translations {
 
 const translations: Record<Language, Translations> = {
   en: {
-    nav: { home: 'Home', gallery: 'Gallery', custom: 'Custom', philosophy: 'Philosophy', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
+    nav: { home: 'Home', activity: 'Activity', custom: 'Custom', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
     hero: {
       caption: 'High-End Sound System — Born in France, based in Milan',
     },
@@ -225,7 +233,7 @@ const translations: Record<Language, Translations> = {
       partnersTitle: 'They trust us',
       galleryKicker: 'Gallery',
       galleryTitle: 'Materials, shapes and volumes of our system',
-      galleryLink: 'View the gallery',
+      galleryLink: 'Explore',
     },
     philosophyPage: {
       kicker: 'Philosophy',
@@ -250,16 +258,48 @@ const translations: Record<Language, Translations> = {
           text: "We offer a modular system that can be configured according to each event's specific requirements.",
         },
       ],
-      ctaTitle: "Let's talk about your event.",
-      ctaLink: 'Contact us',
     },
-    galleryPage: {
-      kicker: 'Gallery',
-      title: 'Materials, shapes and volumes of our system',
-      subtitle: 'A selection of systems, contexts and details.',
-      carouselKicker: 'Moments',
-      carouselTitleA: 'The system in the field',
-      carouselTitleB: '— one moment at a time.',
+    carousel: {
+      kicker: 'Moments',
+      titleA: 'The system in the field',
+      titleB: '— one moment at a time.',
+    },
+    activityPage: {
+      kicker: 'What we do',
+      title: 'Brands, festivals, nights and listening sessions.',
+      introShort: 'Orange Décibel is a High-End Sound System born in France — Hi-Fi precision and professional power, for brands, festivals, nights and listening sessions.',
+      sections: [
+        {
+          id: 'brands',
+          kicker: 'Brand events',
+          title: 'Brands & labels.',
+          text: 'Launch nights, collaborations, exhibitions and DJ sets — we design the sound of brand events, in France and in Italy. From the Nike × Rassvet « Dawn Space » collaborative launch in Paris to video productions for Netflix — the trailer of « Nouvelle École » — the same care for every format.',
+          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer'],
+        },
+        {
+          id: 'festivals',
+          kicker: 'Festivals',
+          title: 'Festivals & live stages.',
+          text: "Complete systems for festivals and live stages — power and clarity at every scale. The Fête de la Musique with Superbock × Halfpipe at the Cirque d'hiver, Paris.",
+          cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
+        },
+        {
+          id: 'nights',
+          kicker: 'Night sound',
+          title: 'Sound for nights & parties.',
+          text: 'Club nights, warehouse parties, late sessions — sound for nights that go long. Warehouse nights with Loophole in Paris, the Fête de la Musique with Urban Outfitters × Foundation FM × M0NDIAL.',
+          cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
+        },
+        {
+          id: 'listening',
+          kicker: 'Listening',
+          title: 'Listening sessions.',
+          text: 'Shared listening, live experimental sound, performances and films — quiet attention, precise reproduction. The inaugural edition of Salomon Listening Grounds: international artists from the experimental sound scene, for a night of live sound, performances, films and shared listening.',
+          cases: ['Salomon — Listening Grounds, inaugural edition'],
+        },
+      ],
+      ctaButton: 'Contact us',
+      slotLabel: 'Photo to come',
     },
     customPage: {
       kicker: 'Custom',
@@ -417,12 +457,10 @@ const translations: Record<Language, Translations> = {
     meta: {
       indexTitle: 'Orange Décibel — High-End Sound System',
       indexDesc: 'Orange Décibel is a High-End Sound System born in France. Hi-Fi precision and professional power for musical and cultural events, based in Milan.',
-      galleryTitle: 'Gallery — Orange Décibel',
-      galleryDesc: 'Festivals, DJ sets and live performances by the Orange Décibel sound system.',
+      activityTitle: 'Activity — Orange Décibel',
+      activityDesc: 'Brand events, festivals, nights and listening sessions by the Orange Décibel sound system.',
       customTitle: 'Custom — Orange Décibel',
       customDesc: 'Custom sound stages and tailor-made systems for brands and venues.',
-      philosophyTitle: 'Philosophy — Orange Décibel',
-      philosophyDesc: 'Hi-Fi precision and professional power — the Orange Décibel approach.',
       aboutTitle: 'About — Orange Décibel',
       aboutDesc: 'Orange Décibel, a sound system collective based in Paris and Milan.',
       contactTitle: 'Contact — Orange Décibel',
@@ -433,7 +471,7 @@ const translations: Record<Language, Translations> = {
   },
 
   fr: {
-    nav: { home: 'Accueil', gallery: 'Galerie', custom: 'Sur mesure', philosophy: 'Philosophie', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
+    nav: { home: 'Accueil', activity: 'Activités', custom: 'Sur mesure', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
     hero: {
       caption: 'Système Son Haut de Gamme — Né en France, basé à Milan',
     },
@@ -472,7 +510,7 @@ const translations: Record<Language, Translations> = {
       partnersTitle: 'Ils nous font confiance',
       galleryKicker: 'Galerie',
       galleryTitle: 'Matériaux, formes et volumes de notre système',
-      galleryLink: 'Voir la galerie',
+      galleryLink: 'Explorer',
     },
     philosophyPage: {
       kicker: 'Philosophie',
@@ -497,16 +535,48 @@ const translations: Record<Language, Translations> = {
           text: 'Nous offrons un système modulaire qui peut être configuré selon les besoins spécifiques de chaque événement.',
         },
       ],
-      ctaTitle: 'Parlons de votre événement.',
-      ctaLink: 'Nous contacter',
     },
-    galleryPage: {
-      kicker: 'Galerie',
-      title: 'Matériaux, formes et volumes de notre système',
-      subtitle: 'Une sélection de systèmes, de contextes et de détails.',
-      carouselKicker: 'Instants',
-      carouselTitleA: 'Le système en situation',
-      carouselTitleB: '— un instant à la fois.',
+    carousel: {
+      kicker: 'Instants',
+      titleA: 'Le système en situation',
+      titleB: '— un instant à la fois.',
+    },
+    activityPage: {
+      kicker: 'Ce que nous faisons',
+      title: 'Marques, festivals, soirées et listening.',
+      introShort: "Orange Décibel est un sound system haut de gamme né en France — précision Hi-Fi et puissance professionnelle, pour les marques, les festivals, les soirées et les listening.",
+      sections: [
+        {
+          id: 'brands',
+          kicker: 'Événements de marques',
+          title: 'Marques & labels.',
+          text: "Soirées de lancement, collaborations, expositions et DJ sets — nous concevons le son des événements de marques, en France et en Italie. Du lancement collaboratif Nike × Rassvet « Dawn Space » à Paris aux productions vidéo pour Netflix — la bande-annonce de « Nouvelle École » — le même soin pour chaque format.",
+          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce'],
+        },
+        {
+          id: 'festivals',
+          kicker: 'Festivals',
+          title: 'Festivals & scènes live.',
+          text: "Des systèmes complets pour les festivals et les scènes live — puissance et clarté à toutes les échelles. La Fête de la Musique avec Superbock × Halfpipe au Cirque d'hiver, Paris.",
+          cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
+        },
+        {
+          id: 'nights',
+          kicker: 'Sonorisation de soirée',
+          title: 'Le son des soirées.',
+          text: "Nuits de club, warehouse parties, sessions tardives — le son des soirées qui durent. Soirées warehouse avec Loophole à Paris, la Fête de la Musique avec Urban Outfitters × Foundation FM × M0NDIAL.",
+          cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
+        },
+        {
+          id: 'listening',
+          kicker: 'Listening',
+          title: "Sessions d'écoute.",
+          text: "Écoute partagée, son live expérimental, performances et films — attention tranquille, reproduction précise. L'édition inaugurale de Salomon Listening Grounds : des artistes internationaux de la scène sonore expérimentale, pour une soirée de son live, de performances, de films et d'écoute partagée.",
+          cases: ['Salomon — Listening Grounds, édition inaugurale'],
+        },
+      ],
+      ctaButton: 'Contactez-nous',
+      slotLabel: 'Photo à venir',
     },
     customPage: {
       kicker: 'Sur mesure',
@@ -664,12 +734,10 @@ const translations: Record<Language, Translations> = {
     meta: {
       indexTitle: 'Orange Décibel — Sound System haut de gamme',
       indexDesc: 'Orange Décibel est un sound system haut de gamme né en France. Précision Hi-Fi et puissance professionnelle pour les événements musicaux et culturels, basé à Milan.',
-      galleryTitle: 'Galerie — Orange Décibel',
-      galleryDesc: 'Festivals, sets DJ et performances live du sound system Orange Décibel.',
+      activityTitle: 'Activités — Orange Décibel',
+      activityDesc: 'Événements de marques, festivals, soirées et listening par le sound system Orange Décibel.',
       customTitle: 'Sur mesure — Orange Décibel',
       customDesc: 'Scènes sonores et systèmes conçus sur mesure pour marques et lieux.',
-      philosophyTitle: 'Philosophie — Orange Décibel',
-      philosophyDesc: 'Précision Hi-Fi et puissance professionnelle — l’approche Orange Décibel.',
       aboutTitle: 'À propos — Orange Décibel',
       aboutDesc: 'Orange Décibel, un collectif sound system basé à Paris et à Milan.',
       contactTitle: 'Contact — Orange Décibel',
@@ -680,7 +748,7 @@ const translations: Record<Language, Translations> = {
   },
 
   it: {
-    nav: { home: 'Home', gallery: 'Galleria', custom: 'Su misura', philosophy: 'Filosofia', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
+    nav: { home: 'Home', activity: 'Attività', custom: 'Su misura', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
     hero: {
       caption: 'High-End Sound System — Nato in Francia, base a Milano',
     },
@@ -719,7 +787,7 @@ const translations: Record<Language, Translations> = {
       partnersTitle: 'Si fidano di noi',
       galleryKicker: 'Galleria',
       galleryTitle: 'Materiali, forme e volumi del nostro sistema',
-      galleryLink: 'Vedi la galleria',
+      galleryLink: 'Esplora',
     },
     philosophyPage: {
       kicker: 'Filosofia',
@@ -744,16 +812,48 @@ const translations: Record<Language, Translations> = {
           text: 'Offriamo un sistema modulabile che permette di configurare gli speaker in base alle esigenze di ogni evento.',
         },
       ],
-      ctaTitle: 'Parliamo del tuo evento.',
-      ctaLink: 'Contattaci',
     },
-    galleryPage: {
-      kicker: 'Galleria',
-      title: 'Materiali, forme e volumi del nostro sistema',
-      subtitle: 'Una selezione di sistemi, contesti e dettagli.',
-      carouselKicker: 'Istanti',
-      carouselTitleA: 'Il sistema in azione',
-      carouselTitleB: '— un istante alla volta.',
+    carousel: {
+      kicker: 'Istanti',
+      titleA: 'Il sistema in azione',
+      titleB: '— un istante alla volta.',
+    },
+    activityPage: {
+      kicker: 'Cosa facciamo',
+      title: 'Marchi, festival, serate e listening.',
+      introShort: "Orange Décibel è un sound system di alta gamma nato in Francia — precisione Hi-Fi e potenza professionale, per marchi, festival, serate e listening.",
+      sections: [
+        {
+          id: 'brands',
+          kicker: 'Eventi per marchi',
+          title: 'Marchi & label.',
+          text: "Serate di lancio, collaborazioni, esposizioni e DJ set — progettiamo il suono degli eventi dei marchi, in Francia e in Italia. Dal lancio collaborativo Nike × Rassvet « Dawn Space » a Parigi alle produzioni video per Netflix — il trailer di « Nouvelle École » — la stessa cura per ogni formato.",
+          cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer'],
+        },
+        {
+          id: 'festivals',
+          kicker: 'Festival',
+          title: 'Palchi live & festival.',
+          text: "Sistemi completi per festival e palchi live — potenza e chiarezza a ogni scala. La Fête de la Musique con Superbock × Halfpipe al Cirque d'hiver, Parigi.",
+          cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Parigi"],
+        },
+        {
+          id: 'nights',
+          kicker: 'Sonorizzazione serate',
+          title: 'Il suono delle serate.',
+          text: "Notti di club, warehouse party, sessioni fino a tardi — il suono delle serate che durano. Serate warehouse con Loophole a Parigi, la Fête de la Musique con Urban Outfitters × Foundation FM × M0NDIAL.",
+          cases: ['Soirée Loophole — Warehouse, Parigi', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
+        },
+        {
+          id: 'listening',
+          kicker: 'Listening',
+          title: "Sessioni d'ascolto.",
+          text: "Ascolto condiviso, suono live sperimentale, performance e film — attenzione quieta, riproduzione precisa. L'edizione inaugurale di Salomon Listening Grounds: artisti internazionali della scena sonora sperimentale, per una serata di live, performance, film e ascolto condiviso.",
+          cases: ['Salomon — Listening Grounds, edizione inaugurale'],
+        },
+      ],
+      ctaButton: 'Contattaci',
+      slotLabel: 'Foto in arrivo',
     },
     customPage: {
       kicker: 'Su misura',
@@ -911,12 +1011,10 @@ const translations: Record<Language, Translations> = {
     meta: {
       indexTitle: 'Orange Décibel — Sound system di alta gamma',
       indexDesc: 'Orange Décibel è un sound system di alta gamma nato in Francia. Precisione Hi-Fi e potenza professionale per eventi musicali e culturali, con base a Milano.',
-      galleryTitle: 'Galleria — Orange Décibel',
-      galleryDesc: 'Festival, DJ set e performance live del sound system Orange Décibel.',
+      activityTitle: 'Attività — Orange Décibel',
+      activityDesc: 'Eventi per marchi, festival, serate e listening del sound system Orange Décibel.',
       customTitle: 'Su misura — Orange Décibel',
       customDesc: 'Palchi sonori e sistemi su misura per brand e luoghi.',
-      philosophyTitle: 'Filosofia — Orange Décibel',
-      philosophyDesc: 'Precisione Hi-Fi e potenza professionale — l’approccio Orange Décibel.',
       aboutTitle: 'Chi siamo — Orange Décibel',
       aboutDesc: 'Orange Décibel, un collettivo sound system con base a Parigi e Milano.',
       contactTitle: 'Contatti — Orange Décibel',

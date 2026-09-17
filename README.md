@@ -34,7 +34,9 @@ l'éditeur et la preview Lovable.
   Friendly Pressure** (images carrées serrées, filets 1px ; au survol : cercle
   overlay crème, swap d'image sur les blocs 2 et 4, fiche polaroid crème qui
   se déplie sous l'image — 96px, 180ms) → aperçu galerie →
-  **mur de marques en bas (titre centré)** + ticker collé → footer.
+  **3 piliers (ex-philosophie : Handcrafted / Precision / Modularity,
+  images alternées)** → **mur de marques en bas (titre centré)** +
+  ticker collé → footer.
 - **Page /custom** : intro magazine (3 colonnes façon Stone Acoustic
   « Concepteurs ») → 3 blocs Matériaux/Design/Système son (fiche polaroid
   au survol, sans cercle) → carnet de caractéristiques (specs aux lignes
@@ -44,13 +46,19 @@ l'éditeur et la preview Lovable.
 - **Animations** : AUCUNE animation au scroll sur la home (par convention) ;
   apparitions au scroll sur galerie / philosophie / contact via `Reveal`.
   Hovers sophistiqués partout (zoom lents, flèches qui glissent, accents orange).
-- **Galerie** : grille épurée 3 colonnes alignées (ratio 4/5, ~357px, images
-  panoramiques 21/9 en rupture) + **carrousel de polaroids épinglé** au
-  milieu de page (350vh, éventail façon Monolith) + **lightbox plein écran**
-  (flèches, clavier, Échap, compteur).
-- **Page /about** : portrait + bio de Sébastien, puis carrousel horizontal
-  « Selected Work » épinglé (scroll vertical → rail d'images, façon
-  Editorial Portfolio).
+- **Page /activity** (fusion ex-Gallery + ex-Philosophy) : intro manifeste
+  courte → **4 sections thématiques** (Marques / Festivals / Soirées /
+  Listening — textes basés sur le deck client : Nike × Rassvet, Netflix,
+  Superbock × Halfpipe, Urban Outfitters, Loophole, Salomon) avec module
+  photo **3 emplacements qui cyclent au survol** + **lightbox filtrée par
+  section (5 emplacements)**, flèches/clavier/compteur → manifeste complet →
+  CTA unique bouton filet orange. Emplacements photos vides (croix fine) en
+  attente des noms de fichiers client (`sectionPhotos` dans Activity.tsx).
+  `/gallery` et `/philosophy` **redirigent** vers `/activity`.
+- **Page /about** : portrait + bio de Sébastien → **carrousel de polaroids
+  épinglé** (350vh, éventail façon Monolith — 4 photos assets, sélection
+  provisoire) → carrousel horizontal « Selected Work » épinglé (scroll
+  vertical → rail d'images, façon Editorial Portfolio).
 - **Langues** : EN par défaut / FR / IT (mémorisé en localStorage).
 - **Passe design 17/09** (grill-me, cadre conservateur) : numéros retirés des
   kickers ; **orange réservé à l'interactif** (liens, hovers, CTA, focus —
@@ -67,11 +75,10 @@ l'éditeur et la preview Lovable.
 ```
 src/
 ├── pages/
-│   ├── Index.tsx        → Home (hero, déclaration, activités, aperçu galerie, marques)
-│   ├── Gallery.tsx      → Grille 2 col. alignée + carrousel polaroids + lightbox
+│   ├── Index.tsx        → Home (hero, déclaration, activités, aperçu, 3 piliers, marques + ticker)
+│   ├── Activity.tsx     → Activity : 4 sections thématiques + lightbox par section + manifeste + CTA
 │   ├── Custom.tsx       → Sur mesure : magazine + 3 blocs + caractéristiques
-│   ├── Philosophy.tsx   → Manifeste + 3 piliers (Handcrafted / Precision / Modularity)
-│   ├── About.tsx        → Bio Sébastien + carrousel « Selected Work »
+│   ├── About.tsx        → Bio Sébastien + polaroids + carrousel « Selected Work »
 │   ├── Contact.tsx      → Formulaire d'abord + estimateur dépliable
 │   └── NotFound.tsx     → 404
 ├── components/
@@ -80,7 +87,7 @@ src/
 │   ├── PartnerLogos.tsx → Mur de logos partenaires
 │   ├── ContactForm.tsx  → Formulaire branché sur l'Edge Function Supabase
 │   ├── Estimator.tsx    → Estimateur 5 étapes (accordéon, 7 types d'événement)
-│   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (galerie)
+│   ├── PolaroidCarousel.tsx → Carrousel polaroids épinglé (about)
 │   └── WorkCarousel.tsx → Rail horizontal épinglé (about)
 │   ├── Reveal.tsx       → Apparition au scroll (INTERDIT sur la home, par convention)
 │   ├── Footer.tsx       → 2 lignes garciamateo : wordmark + mentions « / »
@@ -124,8 +131,9 @@ VITE_SUPABASE_PUBLISHABLE_KEY=...
 2. **Tarifs du calculateur** : ⚠️ les valeurs de `src/config/pricing.ts` sont des
    PLACEHOLDERS en € (bases par type d'événement, multiplicateurs durée/audience,
    transports, options). À ajuster aux vrais tarifs Orange Décibel.
-3. **Légendes galerie** : placeholders EN dans `src/pages/Gallery.tsx`
-   (tableau `photos`) — à remplacer par les vraies descriptions.
+3. **Photos Activity** : 20 emplacements vides (5 par section, voir
+   `sectionPhotos` dans `src/pages/Activity.tsx`) — noms de fichiers à
+   fournir par le client. Les 51 photos HD sont dans `src/assets/photo-*.jpg`.
 4. **Photos** : nouvelles photos à ajouter dans `src/assets/` (hero actuel :
    `modular-1.jpeg`, la plus claire du set avec `hero-main`).
 

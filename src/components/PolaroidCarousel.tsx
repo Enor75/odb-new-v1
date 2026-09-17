@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import polaroidPhoto1 from '@/assets/photo-1.jpg';
+import polaroidPhoto2 from '@/assets/photo-14.jpg';
+import polaroidPhoto3 from '@/assets/photo-28.jpg';
+import polaroidPhoto4 from '@/assets/photo-42.jpg';
 
 /**
  * ── Carrousel de polaroids façon Monolith ──────────────────────────────
@@ -88,12 +92,12 @@ const PolaroidCard = ({
   </div>
 );
 
-/** Un slot vide par défaut ; le dernier garde le bandeau polaroid vide */
+/** Photos assets (fusion 17/09) — remplaçables par la sélection client */
 const carouselPhotos: CarouselPhoto[] = [
-  { src: null },
-  { src: null },
-  { src: null },
-  { src: null, name: undefined, subtitle: undefined },
+  { src: polaroidPhoto1 },
+  { src: polaroidPhoto2 },
+  { src: polaroidPhoto3 },
+  { src: polaroidPhoto4 },
 ];
 
 const PolaroidCarousel = () => {
@@ -159,7 +163,7 @@ const PolaroidCarousel = () => {
   return (
     <section
       ref={sectionRef}
-      aria-label={t.galleryPage.carouselKicker}
+      aria-label={t.carousel.kicker}
       className="relative bg-background"
       style={{ height: `${n * 87.5}vh` }}
     >
@@ -175,11 +179,11 @@ const PolaroidCarousel = () => {
       <div className="sticky top-0 flex h-screen flex-col items-center overflow-hidden">
         <div className="mb-8 px-6 pt-20 text-center md:mb-12 md:pt-24">
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            {t.galleryPage.carouselKicker}
+            {t.carousel.kicker}
           </p>
           <h2 className="mx-auto max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight text-foreground sm:text-3xl md:text-4xl">
-            {t.galleryPage.carouselTitleA}
-            <span className="text-muted-foreground">{t.galleryPage.carouselTitleB}</span>
+            {t.carousel.titleA}
+            <span className="text-muted-foreground">{t.carousel.titleB}</span>
           </h2>
         </div>
 

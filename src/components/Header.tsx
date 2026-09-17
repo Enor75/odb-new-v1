@@ -72,9 +72,8 @@ const Header = () => {
 
   const menuItems = [
     { to: '/', label: t.nav.home },
-    { to: '/gallery', label: t.nav.gallery },
+    { to: '/activity', label: t.nav.activity },
     { to: '/custom', label: t.nav.custom },
-    { to: '/philosophy', label: t.nav.philosophy },
     { to: '/about', label: t.nav.about },
     { to: '/contact', label: t.nav.contact },
   ];
