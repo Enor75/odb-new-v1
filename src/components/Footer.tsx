@@ -16,7 +16,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="px-6 py-10 md:px-10 md:py-12">
+    <footer className="px-6 pb-10 pt-6 md:px-10 md:pb-12 md:pt-8">
       <div className="mx-auto max-w-none">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-foreground/15 pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/50">
           <span>© {year} Orange Decibel</span>

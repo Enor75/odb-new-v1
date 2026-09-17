@@ -185,12 +185,12 @@ const translations: Record<Language, Translations> = {
   en: {
     nav: { home: 'Home', activity: 'Activity', custom: 'Custom', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
     hero: {
-      caption: 'High-End Sound System — Born in France, based in Milan',
+      caption: 'High-End Sound System — Designed in France, based in Paris & Milan',
     },
     ticker: [
       'Orange Decibel',
       'High-End Sound System',
-      'Born in France — Based in Milan',
+      'Designed in France — Based in Paris & Milan',
       'Electronic Music — DJ Sets & Live Sets',
       'Bands & Acoustic Performances',
     ],
@@ -234,7 +234,7 @@ const translations: Record<Language, Translations> = {
       title: 'Sound Architecture',
       paragraphs: [
         'Orange Decibel is a High-End Sound System born in France from the idea of combining Hi-Fi precision and clarity with the power and impact of professional sound.',
-        'A project developed in France, now operating in Italy based in Milan. We offer a complete service for musical and cultural events.',
+        'A project developed in France, now based in Paris & Milan. We offer a complete service for musical and cultural events.',
         'We specialize in electronic music — DJ sets and live sets — but we also work successfully with bands and acoustic performances.',
       ],
       pillarsKicker: 'The system',
@@ -330,7 +330,7 @@ const translations: Record<Language, Translations> = {
     aboutPage: {
       kicker: 'About',
       paragraphs: [
-        'Founder of Orange Decibel in 2023, Sébastien Coutelas drives a High-End Sound System project born in France and now also deployed in Milan.',
+        'Founder of Orange Decibel in 2023, Sébastien Coutelas drives a High-End Sound System project born in France and now based in Paris & Milan.',
         'His concept rests on the alliance between the acoustic precision of Hi-Fi and the power and impact of professional sound reinforcement. Through Orange Decibel, he offers a complete service for the organisation and equipment of musical and cultural events.',
         'Specialised in electronic music (DJ sets and live sets), Sébastien also adapts his system for the sound reinforcement of bands and acoustic performances.',
       ],
@@ -444,7 +444,7 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       indexTitle: 'Orange Decibel — High-End Sound System',
-      indexDesc: 'Orange Decibel is a High-End Sound System born in France. Hi-Fi precision and professional power for musical and cultural events, based in Milan.',
+      indexDesc: 'Orange Decibel is a High-End Sound System born in France. Hi-Fi precision and professional power for musical and cultural events, based in Paris & Milan.',
       activityTitle: 'Activity — Orange Decibel',
       activityDesc: 'Brand events, festivals, nights and listening sessions by the Orange Decibel sound system.',
       customTitle: 'Custom — Orange Decibel',
@@ -461,12 +461,12 @@ const translations: Record<Language, Translations> = {
   fr: {
     nav: { home: 'Accueil', activity: 'Activités', custom: 'Sur mesure', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
     hero: {
-      caption: 'Système Son Haut de Gamme — Né en France, basé à Milan',
+      caption: 'Système Son Haut de Gamme — Conçu en France, basé à Paris et à Milan',
     },
     ticker: [
       'Orange Decibel',
       'Système Son Haut de Gamme',
-      'Né en France — Basé à Milan',
+      'Conçu en France — Basé à Paris et à Milan',
       'Musique Électronique — DJ Sets & Live Sets',
       'Groupes & Performances Acoustiques',
     ],
@@ -505,7 +505,7 @@ const translations: Record<Language, Translations> = {
       title: 'Architecture du Son',
       paragraphs: [
         "Orange Decibel est un système son Haut de Gamme né en France de l'idée de combiner la précision et la clarté Hi-Fi avec la puissance et l'impact du son professionnel.",
-        'Un projet développé en France, désormais opérationnel en Italie, basé à Milan. Nous offrons un service complet pour les événements musicaux et culturels.',
+        'Un projet développé en France, désormais basé à Paris et à Milan. Nous offrons un service complet pour les événements musicaux et culturels.',
         'Nous sommes spécialisés dans la musique électronique — DJ sets et live sets — mais nous travaillons également avec succès avec des groupes et des performances acoustiques.',
       ],
       pillarsKicker: 'Le système',
@@ -601,7 +601,7 @@ const translations: Record<Language, Translations> = {
     aboutPage: {
       kicker: 'À propos',
       paragraphs: [
-        'Fondateur d’Orange Decibel en 2023, Sébastien Coutelas pilote un projet de Sound System High-End né en France et aujourd’hui déployé aussi à Milan.',
+        'Fondateur d’Orange Decibel en 2023, Sébastien Coutelas pilote un projet de Sound System High-End né en France et aujourd’hui basé à Paris et à Milan.',
         'Son concept repose sur l’alliance entre la précision acoustique de la Hi-Fi et la puissance d’impact de la sonorisation professionnelle. À travers Orange Decibel, il propose une prestation globale pour l’organisation et l’équipement d’événements musicaux et culturels.',
         'Spécialisé dans les musiques électroniques (DJ sets et live sets), Sébastien adapte également son système pour la sonorisation de groupes et de prestations acoustiques.',
       ],
@@ -715,7 +715,7 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       indexTitle: 'Orange Decibel — Sound System haut de gamme',
-      indexDesc: 'Orange Decibel est un sound system haut de gamme né en France. Précision Hi-Fi et puissance professionnelle pour les événements musicaux et culturels, basé à Milan.',
+      indexDesc: 'Orange Decibel est un sound system haut de gamme né en France. Précision Hi-Fi et puissance professionnelle pour les événements musicaux et culturels, basé à Paris et à Milan.',
       activityTitle: 'Activités — Orange Decibel',
       activityDesc: 'Événements de marques, festivals, soirées et listening par le sound system Orange Decibel.',
       customTitle: 'Sur mesure — Orange Decibel',
@@ -732,12 +732,12 @@ const translations: Record<Language, Translations> = {
   it: {
     nav: { home: 'Home', activity: 'Attività', custom: 'Su misura', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
     hero: {
-      caption: 'High-End Sound System — Nato in Francia, base a Milano',
+      caption: 'High-End Sound System — Progettato in Francia, con base a Parigi e Milano',
     },
     ticker: [
       'Orange Decibel',
       'High-End Sound System',
-      'Nato in Francia — Base a Milano',
+      'Progettato in Francia — Con base a Parigi e Milano',
       'Musica Elettronica — DJ Set e Live Set',
       'Band e Performance Acustiche',
     ],
@@ -776,7 +776,7 @@ const translations: Record<Language, Translations> = {
       title: 'Architettura del Suono',
       paragraphs: [
         "Orange Decibel è un High-End Sound System nato in Francia dall'idea di unire la precisione e la chiarezza dell'Hi-Fi con la potenza e l'impatto del suono professionale.",
-        'Un progetto sviluppato in Francia, oggi operativo in Italia con base a Milano. Offriamo un servizio completo per eventi musicali e culturali.',
+        'Un progetto sviluppato in Francia, oggi con base a Parigi e Milano. Offriamo un servizio completo per eventi musicali e culturali.',
         'Siamo specializzati in musica elettronica — DJ set e live set — ma lavoriamo con successo anche con band e performance acustiche.',
       ],
       pillarsKicker: 'Il sistema',
@@ -872,7 +872,7 @@ const translations: Record<Language, Translations> = {
     aboutPage: {
       kicker: 'Chi siamo',
       paragraphs: [
-        'Fondatore di Orange Decibel nel 2023, Sébastien Coutelas guida un progetto di Sound System High-End nato in Francia e oggi attivo anche a Milano.',
+        'Fondatore di Orange Decibel nel 2023, Sébastien Coutelas guida un progetto di Sound System High-End nato in Francia e oggi con base a Parigi e Milano.',
         'Il suo concept si basa sull’unione tra la precisione acustica dell’Hi-Fi e la potenza d’impatto della sonorizzazione professionale. Attraverso Orange Decibel, offre un servizio completo per l’organizzazione e l’equipaggiamento di eventi musicali e culturali.',
         'Specializzato in musiche elettroniche (DJ set e live set), Sébastien adatta il proprio sistema anche alla sonorizzazione di band e performance acustiche.',
       ],
@@ -986,7 +986,7 @@ const translations: Record<Language, Translations> = {
     },
     meta: {
       indexTitle: 'Orange Decibel — Sound system di alta gamma',
-      indexDesc: 'Orange Decibel è un sound system di alta gamma nato in Francia. Precisione Hi-Fi e potenza professionale per eventi musicali e culturali, con base a Milano.',
+      indexDesc: 'Orange Decibel è un sound system di alta gamma nato in Francia. Precisione Hi-Fi e potenza professionale per eventi musicali e culturali, con base a Parigi e Milano.',
       activityTitle: 'Attività — Orange Decibel',
       activityDesc: 'Eventi per marchi, festival, serate e listening del sound system Orange Decibel.',
       customTitle: 'Su misura — Orange Decibel',
