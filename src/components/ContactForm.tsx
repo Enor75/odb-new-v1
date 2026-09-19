@@ -252,7 +252,7 @@ const ContactForm = ({ estimate }: ContactFormProps) => {
         />
       </div>
 
-      <div>
+      <div className="flex justify-center">
         <button
           type="submit"
           disabled={isSubmitting}

@@ -242,7 +242,7 @@ const Activity = () => {
       </section>
 
       {/* ── Manifeste complet (ex-philosophie, en l'état) ─────────── */}
-      <section className="border-t border-foreground/15 px-6 py-16 md:px-10 md:py-24">
+      <section className="border-t border-foreground/15 px-6 pt-16 md:px-10 md:pt-24">
         <div className="mx-auto max-w-none">
           <Reveal>
             <p className={kickerClass}>{t.philosophyPage.kicker}</p>

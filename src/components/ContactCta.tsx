@@ -4,15 +4,16 @@ import Reveal from '@/components/Reveal';
 
 /**
  * Bouton « Contact us » — CTA de fin de page, identique sur tout le site
- * (17/09) : filet orange, remplissage au survol, centré. Positionné juste
- * au-dessus du footer (référence = footer) : pas de filet propre ni de
- * padding bas — le footer apporte l'air nécessaire (pt-6/8).
+ * (19/09) : filet orange, remplissage au survol, centré. Positionné à
+ * mi-chemin entre la fin du dernier bloc et le footer : pt-12/16 au-dessus,
+ * footer pt-12/16 au-dessous (symétrie ~48/64px de chaque côté). Pas de
+ * filet propre — les derniers blocs (activity/custom) n'ont plus de pb.
  */
 const ContactCta = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="px-6 pt-16 text-center md:px-10 md:pt-24">
+    <section className="px-6 pt-12 text-center md:px-10 md:pt-16">
       <Reveal>
         <Link
           to="/contact"

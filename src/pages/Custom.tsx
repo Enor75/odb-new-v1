@@ -136,7 +136,7 @@ const Custom = () => {
 
       {/* ── Caractéristiques : carnet de conception ── */}
       <section className="bg-background">
-        <div className="mx-auto max-w-none px-6 py-12 md:px-10 md:py-20">
+        <div className="mx-auto max-w-none px-6 pt-12 pb-0 md:px-10 md:pt-20">
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             {/* Gauche : descriptif + specs aux lignes épaisses */}
             <div className="md:col-span-7">

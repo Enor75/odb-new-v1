@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
  *
  * La couleur brun (`--background`) reste la base (surfaces, header, menu) ;
  * ce composant ajoute un fond plein écran fixe derrière le contenu :
- * photo (11 candidats) ou couleur unie (5 propositions client), recouvert
+ * photo (11 candidats) ou couleur unie (palette orange client), recouverte
  * d'un voile brun réglable. Le grain global (body::before) reste appliqué
  * par-dessus — son OPACITÉ est désormais réglable aussi (défaut 0.09).
  *
  * ⚙️ OUTIL DE TEST TEMPORAIRE : sélecteur flottant (bas droite, au-dessus
- * du sélecteur typo) — 00 = brun actuel, 01–11 = photos, 12–16 = couleurs
- * (#F6ECDD, #FBF3E7, #EBD9C2, #2C2420, #B8704A). Voile 30–95 % (défaut
+ * du sélecteur typo) — 00 = brun actuel, 01–11 = photos, 12–17 = palette
+ * orange (#F1B278, #EEA562, #EC994B, #EA8C35, #E87F1F, #B8704A). Voile 30–95 % (défaut
  * 78), grain 0–0.24 (défaut 0.09). Choix mémorisés en localStorage
  * (`odb-bg`, `odb-bg-veil`, `odb-grain`). À RETIRER au choix final.
  */
@@ -34,11 +34,12 @@ const CANDIDATES: Candidate[] = [
   { n: 9, label: 'muchatseble' },
   { n: 10, label: 'telechargement' },
   { n: 11, label: 'walnut-burl' },
-  { n: 12, label: '#F6ECDD', color: '#F6ECDD' },
-  { n: 13, label: '#FBF3E7', color: '#FBF3E7' },
-  { n: 14, label: '#EBD9C2', color: '#EBD9C2' },
-  { n: 15, label: '#2C2420', color: '#2C2420' },
-  { n: 16, label: '#B8704A', color: '#B8704A' },
+  { n: 12, label: '#F1B278', color: '#F1B278' },
+  { n: 13, label: '#EEA562', color: '#EEA562' },
+  { n: 14, label: '#EC994B', color: '#EC994B' },
+  { n: 15, label: '#EA8C35', color: '#EA8C35' },
+  { n: 16, label: '#E87F1F', color: '#E87F1F' },
+  { n: 17, label: '#B8704A', color: '#B8704A' },
 ];
 
 const VEIL_MIN = 0.3;
@@ -65,7 +66,7 @@ const BackgroundPhoto = () => {
   const [veil, setVeil] = useState(() => readNum('odb-bg-veil', 0.78));
   const [grain, setGrain] = useState(() => readNum('odb-grain', 0.09));
 
-  const total = CANDIDATES.length + 1; // 00 brun + 16 candidats
+  const total = CANDIDATES.length + 1; // 00 brun + 17 candidats
 
   useEffect(() => {
     document.documentElement.style.setProperty('--odb-grain', String(grain));
