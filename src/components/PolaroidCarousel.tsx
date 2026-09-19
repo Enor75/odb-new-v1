@@ -27,7 +27,7 @@ import polaroidPhoto45 from '@/assets/photo-45.jpg';
  * - cartes grandes : ~2/3 de la hauteur d'écran ;
  * - OPACITÉ CONTINUE : le sommet de la pile reste toujours à 1 (la
  *   dernière carte ne devient jamais transparente) ; chaque carte posée
- *   s'estompe progressivement (paliers doux 1 → 0.55 → 0.35 → 0.22) au
+ *   s'estompe progressivement (paliers doux 1 → 0.3 → 0.1 → 0 (cartes profondes supprimées)) au
  *   rythme exact de la montée de la suivante ; l'arrivée se fait quasi
  *   opaque (léger fondu 0.6 → 1 sur le premier quart de montée, hors
  *   champ) — modèle « première polaroid », plus de sauts brusques.
@@ -167,8 +167,8 @@ const PolaroidCarousel = () => {
 
     /* Opacité : 1 à l'arrivée et tant que la carte est au sommet ;
        en dessous, estompage progressif à chaque nouvelle carte posée
-       (paliers doux 1 → 0.55 → 0.35 → 0.22, aucun saut). */
-    const opacity = !isActive ? 0 : chain(1, 0.55, 0.35, 0.22, cover);
+       (paliers doux 1 → 0.3 → 0.1 → 0 (cartes profondes supprimées), aucun saut). */
+    const opacity = !isActive ? 0 : chain(1, 0.3, 0.1, 0, cover);
 
     /* Rotation en éventail + dispersion — mêmes courbes continues */
     const dir = index % 2 === 0 ? -1 : 1;

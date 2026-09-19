@@ -180,9 +180,12 @@ const Custom = () => {
                 (croix fine) en attendant les fichiers : renseigner
                 specPhotos.rest / specPhotos.hover + remplacer les croix
                 par <img> quand ils arriveront. */}
-            <div className="md:col-span-5">
-              <Reveal delay={150}>
-                <div className="group relative min-h-[40vh] w-full overflow-hidden bg-foreground/[0.06] md:min-h-[560px]">
+            <div className="md:col-span-5 md:flex">
+              <Reveal delay={150} className="flex w-full flex-col">
+                {/* L'encart s'étire sur la hauteur de la rangée de grille :
+                    son bas s'aligne sur la dernière ligne du carnet de
+                    spécifications (sous « Finish »). */}
+                <div className="group relative min-h-[40vh] w-full flex-1 overflow-hidden bg-foreground/[0.06] md:min-h-0">
                   {/* Photo au repos */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
