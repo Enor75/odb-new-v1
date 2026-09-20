@@ -45,9 +45,8 @@ export interface Translations {
   ticker: string[];
   home: {
     statementKicker: string;
-    statementTitle: string;
-    statementText: string;
-    statementLink: string;
+    /** Bio Philosophy (20/09) — 3 paragraphes, sans titre, centrée. */
+    statementParagraphs: string[];
     activitiesKicker: string;
     activities: Activity[];
     partnersKicker: string;
@@ -199,10 +198,11 @@ const translations: Record<Language, Translations> = {
     ],
     home: {
       statementKicker: 'Philosophy',
-      statementTitle: "It's about how the space feels.",
-      statementText:
-        'Orange Decibel is a High-End Sound System born in France from the idea of combining Hi-Fi precision and clarity with the power and impact of professional sound.',
-      statementLink: 'Our philosophy',
+      statementParagraphs: [
+        'Orange Decibel makes it possible to hear, feel, and connect through immersive, high-end sound.',
+        'Born in France from the idea of combining Hi-Fi precision and clarity with the power and impact of professional sound, Orange Decibel is a High-End Sound System now based in Paris & Milan, offering a complete service for musical and cultural events.',
+        'We work as an autonomous, demanding and reactive partner: seamless, invisible setup on-site, real adaptation to every venue and creative direction, and a level of human proximity and understanding that turns a technical service into a genuine collaboration. Our vibrant orange speakers have become a signature visual marker for brands looking to stand out through sound.',
+      ],
       activitiesKicker: 'What we do',
       activities: [
         {
@@ -476,10 +476,11 @@ const translations: Record<Language, Translations> = {
     ],
     home: {
       statementKicker: 'Philosophie',
-      statementTitle: "Ce qui compte, c'est ce que l'espace fait ressentir.",
-      statementText:
-        "Orange Decibel est un système son Haut de Gamme né en France de l'idée de combiner la précision et la clarté Hi-Fi avec la puissance et l'impact du son professionnel.",
-      statementLink: 'Notre philosophie',
+      statementParagraphs: [
+        "Orange Decibel permet d'entendre, de ressentir et de créer du lien à travers un son immersif haut de gamme.",
+        "Né en France de l'idée d'allier la précision et la clarté Hi-Fi à la puissance et à l'impact du son professionnel, Orange Decibel est un High-End Sound System aujourd'hui basé à Paris et à Milan, offrant un service complet pour les événements musicaux et culturels.",
+        "Nous travaillons comme un partenaire autonome, exigeant et réactif : installation sur site fluide et invisible, adaptation réelle à chaque lieu et à chaque direction artistique, et une proximité humaine qui transforme une prestation technique en une véritable collaboration. Nos enceintes orange vif sont devenues une signature visuelle pour les marques qui cherchent à se démarquer par le son.",
+      ],
       activitiesKicker: 'Ce que nous faisons',
       activities: [
         {
@@ -748,10 +749,11 @@ const translations: Record<Language, Translations> = {
     ],
     home: {
       statementKicker: 'Filosofia',
-      statementTitle: 'Conta come lo spazio si fa sentire.',
-      statementText:
-        "Orange Decibel è un High-End Sound System nato in Francia dall'idea di unire la precisione e la chiarezza dell'Hi-Fi con la potenza e l'impatto del suono professionale.",
-      statementLink: 'La nostra filosofia',
+      statementParagraphs: [
+        'Orange Decibel permette di ascoltare, di sentire e di entrare in connessione attraverso un suono immersivo di alta gamma.',
+        "Nato in Francia dall'idea di unire la precisione e la chiarezza Hi-Fi alla potenza e all'impatto del suono professionale, Orange Decibel è un High-End Sound System oggi con base a Parigi e Milano, che offre un servizio completo per eventi musicali e culturali.",
+        "Lavoriamo come partner autonomo, esigente e reattivo: installazione sul posto fluida e invisibile, reale adattamento a ogni spazio e a ogni direzione creativa, e una vicinanza umana che trasforma un servizio tecnico in una vera collaborazione. I nostri altoparlanti arancio vivo sono diventati un segno visivo distintivo per i brand che vogliono distinguersi attraverso il suono.",
+      ],
       activitiesKicker: 'Cosa facciamo',
       activities: [
         {

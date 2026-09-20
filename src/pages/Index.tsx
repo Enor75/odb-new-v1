@@ -17,7 +17,7 @@ const arrowLinkClass =
  * volontairement SANS animation au scroll (pas de composant Reveal ici).
  * Les hovers sophistiqués sont autorisés partout.
  *
- * Structure (20/09) : hero VIDÉO (`public/videos/compressO-OdB.mp4`,
+ * Structure (20/09) : hero VIDÉO (`public/videos/compressO-OdB-compressed.mp4`,
  * upload manuel client — poster puis fallback image automatique tant que
  * le fichier est absent) → CTA « Explore » sous la vidéo → déclaration
  * Philosophy (sans lien flèche) → Partners & Collaborators → Ticker →
@@ -46,7 +46,7 @@ const Index = () => {
             onError={() => setVideoAvailable(false)}
           >
             <source
-              src={`${import.meta.env.BASE_URL}videos/compressO-OdB.mp4`}
+              src={`${import.meta.env.BASE_URL}videos/compressO-OdB-compressed.mp4`}
               type="video/mp4"
             />
           </video>
@@ -90,16 +90,24 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Déclaration serif (Philosophy) ────────────────────────── */}
-      <section className="px-6 py-16 md:px-10 md:py-24 lg:py-28">
-        <div className="mx-auto max-w-none">
-          <p className={kickerClass}>{t.home.statementKicker}</p>
-          <h1 className="max-w-4xl font-serif text-3xl font-light leading-[1.15] tracking-tight md:text-5xl">
-            {t.home.statementTitle}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground md:text-lg">
-            {t.home.statementText}
+      {/* ── Philosophy — bio sans titre, centrée au milieu de la page
+            (20/09) : kicker seul + 3 paragraphes, bloc verticalement
+            centré dans une section haute. ────────────────────────── */}
+      <section className="flex min-h-[75svh] items-center px-6 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+            {t.home.statementKicker}
           </p>
+          <div className="space-y-6">
+            {t.home.statementParagraphs.map((paragraph, i) => (
+              <p
+                key={i}
+                className="text-base font-light leading-relaxed text-foreground/80 md:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
