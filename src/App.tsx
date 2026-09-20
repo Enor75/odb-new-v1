@@ -25,11 +25,17 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <BackgroundPhoto />
-          <TypoTester />
-          <ScrollToTop />
-          <Header />
-          <Routes>
+          {/* Wrapper positionné : en mode « défile », la couche de fond
+              (absolute inset-0, voir BackgroundPhoto) épouse exactement
+              la hauteur réelle du contenu — aucune mesure JS (l'ancienne
+              mesure au scrollHeight se figeait après resize ou navigation
+              et créait un scroll fantôme sous le footer). */}
+          <div className="relative min-h-screen">
+            <BackgroundPhoto />
+            <TypoTester />
+            <ScrollToTop />
+            <Header />
+            <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/activity" element={<Activity />} />
             <Route path="/gallery" element={<Navigate to="/activity" replace />} />
@@ -38,8 +44,9 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/custom" element={<Custom />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
+            </Routes>
+            <Footer />
+          </div>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

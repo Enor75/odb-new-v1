@@ -87,7 +87,7 @@ const Header = () => {
           hidden ? '-translate-y-full' : 'translate-y-0'
         } ${
           scrolled && !hidden
-            ? 'border-b border-foreground/15 bg-background/85 backdrop-blur-md'
+            ? 'border-b border-foreground/15 bg-background/30 backdrop-blur-md'
             : ''
         }`}
       >

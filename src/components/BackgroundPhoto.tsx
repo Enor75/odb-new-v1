@@ -9,9 +9,12 @@ import { useEffect, useState } from 'react';
  * voile brun réglable. Le grain global (body::before) reste appliqué
  * par-dessus — son OPACITÉ est désormais réglable aussi (défaut 0.09).
  *
- * MODE IMAGE (19/09) : « défile » (défaut) — le fond couvre toute la
- * hauteur du document (mesurée + ResizeObserver) et descend exactement
- * avec le scroll ; « fixe » — viewport figé (ancien comportement).
+ * MODE IMAGE (20/09) : « défile » (défaut) — couche absolute inset-0
+ * dans le wrapper positionné d'App : elle épouse exactement la hauteur
+ * du contenu (toutes pages, footer inclus) et descend avec le scroll,
+ * SANS mesure JS — l'ancienne hauteur mesurée se figeait après resize
+ * ou navigation et créait un scroll fantôme sous le footer. « fixe » —
+ * viewport figé (ancien comportement).
  * NB : en mode défile, l'asset définitif doit faire la hauteur de la
  * page la plus grande (About ≈ 11 000 px en 1080p) — les photos de test
  * 1920px sont donc très zoomées, c'est attendu.
@@ -81,28 +84,12 @@ const BackgroundPhoto = () => {
   const [veil, setVeil] = useState(() => readNum('odb-bg-veil', 0.78));
   const [grain, setGrain] = useState(() => readNum('odb-grain', 0.09));
   const [scrollMode, setScrollMode] = useState(readScroll);
-  const [docHeight, setDocHeight] = useState(0);
 
   const total = CANDIDATES.length + 1; // 00 brun + 17 candidats
 
   useEffect(() => {
     document.documentElement.style.setProperty('--odb-grain', String(grain));
   }, [grain]);
-
-  // Mode « défile » : le fond doit couvrir TOUTE la hauteur du document
-  // (elle change avec le viewport et les contenus — accordéon, etc.)
-  useEffect(() => {
-    if (!scrollMode) return;
-    const update = () => setDocHeight(document.documentElement.scrollHeight);
-    update();
-    window.addEventListener('resize', update);
-    const observer = new ResizeObserver(update);
-    observer.observe(document.body);
-    return () => {
-      window.removeEventListener('resize', update);
-      observer.disconnect();
-    };
-  }, [scrollMode]);
 
   const toggleScroll = () => {
     const next = !scrollMode;
@@ -138,17 +125,13 @@ const BackgroundPhoto = () => {
   return (
     <>
       {/* Couche fond (photo ou couleur) + voile — derrière tout le contenu.
-          Défile : absolute top 0 + hauteur du document (descend avec la page).
+          Défile : absolute inset-0 dans le wrapper positionné d'App —
+          épouse la hauteur du contenu et descend avec la page.
           Fixe : viewport figé. */}
       {(bgUrl || candidate?.color) && (
         <div
           aria-hidden="true"
-          className={scrollMode ? '-z-10' : 'fixed inset-0 -z-10'}
-          style={
-            scrollMode
-              ? { position: 'absolute', top: 0, left: 0, right: 0, height: docHeight || '100vh' }
-              : undefined
-          }
+          className={scrollMode ? 'absolute inset-0 -z-10' : 'fixed inset-0 -z-10'}
         >
           {bgUrl ? (
             <div
