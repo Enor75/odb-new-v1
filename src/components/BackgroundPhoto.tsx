@@ -15,6 +15,17 @@ import { useEffect, useState } from 'react';
  * SANS mesure JS — l'ancienne hauteur mesurée se figeait après resize
  * ou navigation et créait un scroll fantôme sous le footer. « fixe » —
  * viewport figé (ancien comportement).
+ *
+ * TEXTURES TUILABLES (20/09) : états 18–21 — bois, racine de noyer,
+ * veau marbré écaille, veau marbré racine (assets tex-*.jpg générés,
+ * tuiles 720×1440 étirées à la largeur du viewport et répétées
+ * verticalement — couvrent toute hauteur de page sans asset géant).
+ *
+ * SUPERPOSITION (20/09) : couche « couleur palette + mode de fusion »
+ * (mix-blend-mode) entre l'image et le voile brun — multiply / overlay
+ * / soft-light / color / screen / normal, intensité réglable. C'est la
+ * superposition image × couleur demandée : elle teinte la texture tout
+ * en gardant son relief.
  * NB : en mode défile, l'asset définitif doit faire la hauteur de la
  * page la plus grande (About ≈ 11 000 px en 1080p) — les photos de test
  * 1920px sont donc très zoomées, c'est attendu.
@@ -30,6 +41,8 @@ interface Candidate {
   n: number;
   label: string;
   color?: string;
+  /** Asset texture tuilable (fichier dans /bg/) */
+  tile?: string;
 }
 
 const CANDIDATES: Candidate[] = [
@@ -50,7 +63,32 @@ const CANDIDATES: Candidate[] = [
   { n: 15, label: '#EA8C35', color: '#EA8C35' },
   { n: 16, label: '#E87F1F', color: '#E87F1F' },
   { n: 17, label: '#B8704A', color: '#B8704A' },
+  { n: 18, label: 'bois', tile: 'tex-bois.jpg' },
+  { n: 19, label: 'racine', tile: 'tex-racine.jpg' },
+  { n: 20, label: 'écaille', tile: 'tex-ecaille.jpg' },
+  { n: 21, label: 'veau', tile: 'tex-veau.jpg' },
 ];
+
+/** Superposition : couleurs de la palette client (index 0 = désactivée) */
+const BLEND_COLORS: (string | null)[] = [
+  null,
+  '#F1B278',
+  '#EEA562',
+  '#EC994B',
+  '#EA8C35',
+  '#E87F1F',
+  '#B8704A',
+];
+const BLEND_MODES = ['multiply', 'overlay', 'soft-light', 'color', 'screen', 'normal'] as const;
+type BlendMode = (typeof BLEND_MODES)[number];
+const readBlendMode = (): BlendMode => {
+  try {
+    const v = localStorage.getItem('odb-blend-mode');
+    return (BLEND_MODES as readonly string[]).includes(v ?? '') ? (v as BlendMode) : 'multiply';
+  } catch {
+    return 'multiply';
+  }
+};
 
 const VEIL_MIN = 0.3;
 const VEIL_MAX = 0.95;
@@ -84,8 +122,11 @@ const BackgroundPhoto = () => {
   const [veil, setVeil] = useState(() => readNum('odb-bg-veil', 0.78));
   const [grain, setGrain] = useState(() => readNum('odb-grain', 0.09));
   const [scrollMode, setScrollMode] = useState(readScroll);
+  const [blendColorIdx, setBlendColorIdx] = useState(() => readNum('odb-blend-color', 0));
+  const [blendMode, setBlendMode] = useState<BlendMode>(readBlendMode);
+  const [blendOpacity, setBlendOpacity] = useState(() => readNum('odb-blend-opacity', 0.4));
 
-  const total = CANDIDATES.length + 1; // 00 brun + 17 candidats
+  const total = CANDIDATES.length + 1; // 00 brun + 21 candidats
 
   useEffect(() => {
     document.documentElement.style.setProperty('--odb-grain', String(grain));
@@ -115,9 +156,15 @@ const BackgroundPhoto = () => {
   };
 
   const candidate = CANDIDATES.find((c) => c.n === choice);
-  const bgUrl = candidate && !candidate.color
-    ? `${import.meta.env.BASE_URL}bg/bg-${String(candidate.n).padStart(2, '0')}.jpg`
+  const bgUrl = candidate
+    ? candidate.tile
+      ? `${import.meta.env.BASE_URL}bg/${candidate.tile}`
+      : !candidate.color
+        ? `${import.meta.env.BASE_URL}bg/bg-${String(candidate.n).padStart(2, '0')}.jpg`
+        : null
     : null;
+  const isTile = Boolean(candidate?.tile);
+  const blendColor = BLEND_COLORS[blendColorIdx] ?? null;
 
   const btn =
     'border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground';
@@ -134,14 +181,38 @@ const BackgroundPhoto = () => {
           className={scrollMode ? 'absolute inset-0 -z-10' : 'fixed inset-0 -z-10'}
         >
           {bgUrl ? (
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${bgUrl})` }}
-            />
+            isTile ? (
+              /* Texture tuilable : étirée à la largeur du viewport,
+                 répétée verticalement — couvre toute hauteur de page. */
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${bgUrl})`,
+                  backgroundRepeat: 'repeat',
+                  backgroundSize: '100% auto',
+                }}
+              />
+            ) : (
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${bgUrl})` }}
+              />
+            )
           ) : (
             <div
               className="absolute inset-0"
               style={{ backgroundColor: candidate!.color }}
+            />
+          )}
+          {/* Superposition : couleur palette fusionnée à l'image (relief conservé) */}
+          {blendColor && (
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: blendColor,
+                mixBlendMode: blendMode,
+                opacity: blendOpacity,
+              }}
             />
           )}
           <div
@@ -160,6 +231,76 @@ const BackgroundPhoto = () => {
             {candidate ? `${String(choice).padStart(2, '0')}/${CANDIDATES.length} ${candidate.label}` : '00 brun actuel'}
           </span>
           <button onClick={() => pick(1)} aria-label="Fond suivant" className={btn}>›</button>
+        </div>
+        <div className="mt-1.5 flex items-center gap-2">
+          <span className="text-foreground/40">couleur</span>
+          <button
+            onClick={() => {
+              const next = (blendColorIdx - 1 + BLEND_COLORS.length) % BLEND_COLORS.length;
+              setBlendColorIdx(next);
+              try { localStorage.setItem('odb-blend-color', String(next)); } catch { /* iframe */ }
+            }}
+            aria-label="Couleur de superposition précédente"
+            className={btn}
+          >‹</button>
+          <span className="min-w-[118px] text-center text-foreground">
+            {blendColor ?? 'aucune'}
+          </span>
+          <button
+            onClick={() => {
+              const next = (blendColorIdx + 1) % BLEND_COLORS.length;
+              setBlendColorIdx(next);
+              try { localStorage.setItem('odb-blend-color', String(next)); } catch { /* iframe */ }
+            }}
+            aria-label="Couleur de superposition suivante"
+            className={btn}
+          >›</button>
+        </div>
+        <div className="mt-1.5 flex items-center gap-2">
+          <span className="text-foreground/40">fusion</span>
+          <button
+            onClick={() => {
+              const i = BLEND_MODES.indexOf(blendMode);
+              const next = BLEND_MODES[(i - 1 + BLEND_MODES.length) % BLEND_MODES.length];
+              setBlendMode(next);
+              try { localStorage.setItem('odb-blend-mode', next); } catch { /* iframe */ }
+            }}
+            aria-label="Mode de fusion précédent"
+            className={btn}
+          >‹</button>
+          <span className="min-w-[118px] text-center text-foreground">{blendMode}</span>
+          <button
+            onClick={() => {
+              const i = BLEND_MODES.indexOf(blendMode);
+              const next = BLEND_MODES[(i + 1) % BLEND_MODES.length];
+              setBlendMode(next);
+              try { localStorage.setItem('odb-blend-mode', next); } catch { /* iframe */ }
+            }}
+            aria-label="Mode de fusion suivant"
+            className={btn}
+          >›</button>
+        </div>
+        <div className="mt-1.5 flex items-center gap-2">
+          <span className="text-foreground/40">intensité</span>
+          <button
+            onClick={() => {
+              const next = round2(Math.max(0.1, blendOpacity - 0.1));
+              setBlendOpacity(next);
+              try { localStorage.setItem('odb-blend-opacity', String(next)); } catch { /* iframe */ }
+            }}
+            aria-label="Intensité de superposition moindre"
+            className={btn}
+          >−</button>
+          <span className="min-w-[118px] text-center text-foreground">{Math.round(blendOpacity * 100)}%</span>
+          <button
+            onClick={() => {
+              const next = round2(Math.min(0.9, blendOpacity + 0.1));
+              setBlendOpacity(next);
+              try { localStorage.setItem('odb-blend-opacity', String(next)); } catch { /* iframe */ }
+            }}
+            aria-label="Intensité de superposition plus forte"
+            className={btn}
+          >+</button>
         </div>
         <div className="mt-1.5 flex items-center gap-2">
           <span className="text-foreground/40">voile</span>
