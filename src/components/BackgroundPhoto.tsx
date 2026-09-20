@@ -32,7 +32,8 @@ import { useEffect, useState } from 'react';
  *
  * ⚙️ OUTIL DE TEST TEMPORAIRE : sélecteur flottant (bas droite, au-dessus
  * du sélecteur typo) — 00 = brun actuel, 01–11 = photos, 12–17 = palette
- * orange (#F1B278, #EEA562, #EC994B, #EA8C35, #E87F1F, #B8704A). Voile 30–95 % (défaut
+ * orange (#F1B278, #EEA562, #EC994B, #EA8C35, #E87F1F, #B8704A),
+ * 18–21 = textures, 22 = Solder Orange #FF6C2F (20/09). Voile 30–95 % (défaut
  * 78), grain 0–0.24 (défaut 0.09). Choix mémorisés en localStorage
  * (`odb-bg`, `odb-bg-veil`, `odb-grain`). À RETIRER au choix final.
  */
@@ -67,6 +68,7 @@ const CANDIDATES: Candidate[] = [
   { n: 19, label: 'racine', tile: 'tex-racine.jpg' },
   { n: 20, label: 'écaille', tile: 'tex-ecaille.jpg' },
   { n: 21, label: 'veau', tile: 'tex-veau.jpg' },
+  { n: 22, label: 'Solder #FF6C2F', color: '#FF6C2F' },
 ];
 
 /** Superposition : couleurs de la palette client (index 0 = désactivée) */
@@ -78,6 +80,7 @@ const BLEND_COLORS: (string | null)[] = [
   '#EA8C35',
   '#E87F1F',
   '#B8704A',
+  '#FF6C2F',
 ];
 const BLEND_MODES = ['multiply', 'overlay', 'soft-light', 'color', 'screen', 'normal'] as const;
 type BlendMode = (typeof BLEND_MODES)[number];
@@ -126,7 +129,7 @@ const BackgroundPhoto = () => {
   const [blendMode, setBlendMode] = useState<BlendMode>(readBlendMode);
   const [blendOpacity, setBlendOpacity] = useState(() => readNum('odb-blend-opacity', 0.4));
 
-  const total = CANDIDATES.length + 1; // 00 brun + 21 candidats
+  const total = CANDIDATES.length + 1; // 00 brun + 22 candidats
 
   useEffect(() => {
     document.documentElement.style.setProperty('--odb-grain', String(grain));

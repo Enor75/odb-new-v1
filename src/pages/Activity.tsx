@@ -1,9 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import ContactCta from '@/components/ContactCta';
+import architectureImage from '@/assets/architecture-1.jpeg';
+import context1Image from '@/assets/context-1.jpeg';
+import context2Image from '@/assets/context-2.jpeg';
+import heroMainImage from '@/assets/hero-main.jpeg';
+import stackImage from '@/assets/stack-1.jpeg';
+import detailImage from '@/assets/detail-2.jpeg';
+import gallery5Image from '@/assets/gallery-5.jpeg';
+import galleryCatImage from '@/assets/gallery-cat.jpeg';
+import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
+import galleryTeal from '@/assets/gallery-teal.jpeg';
+import galleryBass from '@/assets/gallery-bass.jpg';
+import galleryCello from '@/assets/gallery-cello.jpg';
 
 /**
  * PAGE ACTIVITY — fusion ex-Gallery + ex-Philosophy (17/09).
@@ -15,7 +28,10 @@ import ContactCta from '@/components/ContactCta';
  *    lightbox filtrée sur la section (5 emplacements, flèches, clavier,
  *    compteur — mécanique de l'ancienne galerie réutilisée).
  * 3. Manifeste complet (ex-page philosophie, en l'état)
- * 4. CTA unique — bouton filet orange, remplissage au survol → /contact
+ * 4. What we do — grille collée 4 activités (déplacée de la home 20/09)
+ * 5. Aperçu galerie — 3 photos (déplacé de la home 20/09)
+ * 6. The system — trois piliers (déplacé de la home 20/09)
+ * 7. CTA unique — bouton filet orange, remplissage au survol → /contact
  *
  * ⚠️ EMPLACEMENTS PHOTOS VIDES PAR CONVENTION : les noms de fichiers
  * seront fournis par le client. Les insérer dans `sectionPhotos`
@@ -23,6 +39,19 @@ import ContactCta from '@/components/ContactCta';
  * derniers n'apparaissent que dans la lightbox). Une fois nourrie, la
  * légende lightbox utilise `cases` de la section si disponible.
  */
+
+/** Blocs déplacés de la home (20/09) — What we do / Gallery / The system */
+
+const activityImages = [architectureImage, context1Image, context2Image, heroMainImage];
+/** Image alternative au survol (blocs 2 et 4) — façon Friendly Pressure */
+const activitySwapImages: (string | null)[] = [null, galleryCatImage, null, designDrawing2Image];
+/** Sur cette page, seule la cellule Custom navigue (vers /custom) ;
+ *  les trois premières sont décoratives (l'activité EST cette page). */
+const activityLinks: (string | null)[] = [null, null, null, '/custom'];
+/** Piliers ex-philosophie — images alternées */
+const pillarImages = [stackImage, detailImage, gallery5Image];
+/** Filets entre cellules — grille collée serrée (1px, comme FP) */
+const cellBorders = ['border-t', 'border-t border-l', 'border-t md:border-l', 'border-t border-l'];
 
 /** Photos au survol (cycle) puis lightbox */
 const HOVER_SLOTS = 3;
@@ -257,6 +286,166 @@ const Activity = () => {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── What we do — grille collée (déplacée de la home, 20/09). 
+            Seule la cellule Custom navigue (vers /custom) ; les trois
+            premières sont décoratives sur cette page. ──────────────── */}
+      <section className="pb-16 pt-16 md:pb-24 md:pt-24 lg:pb-28 lg:pt-28">
+        <div className="mx-auto max-w-none px-6 md:px-10">
+          <p className={`${kickerClass} mb-8 md:mb-10`}>{t.activityPage.gridKicker}</p>
+
+          <div className="grid grid-cols-2 border-b border-foreground md:grid-cols-4">
+            {t.home.activities.map((activity, i) => {
+              const swap = activitySwapImages[i];
+              const to = activityLinks[i];
+
+              const cellContent = (
+                <>
+                  <div className="film-grain relative overflow-hidden">
+                    <img
+                      src={activityImages[i]}
+                      alt={activity.title}
+                      className={`aspect-square w-full object-cover transition-all duration-300 ${
+                        swap
+                          ? 'group-hover:opacity-0'
+                          : 'group-hover:rounded-full group-hover:brightness-[0.55]'
+                      }`}
+                    />
+
+                    {/* Voile orange — images sans swap uniquement */}
+                    {!swap && (
+                      <div className="absolute inset-0 z-[2] bg-primary/0 transition-colors duration-500 group-hover:bg-primary/10" />
+                    )}
+
+                    {/* Rond overlay façon Friendly Pressure */}
+                    <div className="absolute left-1/2 top-1/2 z-[3] aspect-square h-[calc(100%-2px)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      {swap && (
+                        <img src={swap} alt="" className="h-full w-full object-cover" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Légende statique — mobile uniquement */}
+                  <div className="mt-4 border-t border-foreground/15 pt-3 md:hidden">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50 transition-colors group-hover:text-primary">
+                      {activity.link} →
+                    </p>
+                    <h3 className="mt-2 font-serif text-xl font-light tracking-tight">
+                      {activity.title}
+                    </h3>
+                    <p className="mt-2 text-sm font-light leading-relaxed text-muted-foreground">
+                      {activity.text}
+                    </p>
+                  </div>
+
+                  {/* Fiche polaroid — desktop */}
+                  <div
+                    className="absolute left-[-1px] top-[calc(100%-1px)] z-10 hidden h-0 w-[calc(100%+2px)] overflow-hidden bg-foreground px-0 py-0 transition-[height,padding] duration-[180ms] ease-in-out group-hover:h-24 group-hover:px-3 group-hover:py-3 md:block"
+                    aria-hidden="true"
+                  >
+                    <p className="font-mono text-[10px] uppercase leading-none tracking-[0.2em] text-primary">
+                      {activity.link} →
+                    </p>
+                    <h3 className="mt-1.5 font-serif text-base font-normal leading-tight tracking-tight text-background">
+                      {activity.title}
+                    </h3>
+                    <p className="mt-1 text-[11px] font-light leading-[1.25] text-background/70">
+                      {activity.text}
+                    </p>
+                  </div>
+                </>
+              );
+
+              const cellClass = `group relative block border-foreground ${cellBorders[i]}`;
+              return to ? (
+                <Link key={activity.title} to={to} className={cellClass}>
+                  {cellContent}
+                </Link>
+              ) : (
+                <div key={activity.title} className={cellClass}>
+                  {cellContent}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Aperçu galerie (déplacé de la home, 20/09) — photos sans
+            lien : la galerie EST cette page ───────────────────────── */}
+      <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
+        <div className="mx-auto max-w-none">
+          <p className={kickerClass}>{t.home.galleryKicker}</p>
+          <h2 className="mb-8 max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight md:mb-10 md:text-4xl">
+            {t.home.galleryTitle}
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
+            {[galleryTeal, galleryBass, galleryCello].map((src, i) => (
+              <div key={i} className="overflow-hidden">
+                <img
+                  src={src}
+                  alt=""
+                  className="aspect-square w-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── The system — trois piliers (déplacé de la home, 20/09) ── */}
+      <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
+        <div className="mx-auto max-w-none">
+          <p className={`${kickerClass} border-t border-foreground/15 pt-16 md:pt-24`}>
+            {t.philosophyPage.pillarsKicker}
+          </p>
+
+          <div className="flex flex-col gap-16 md:gap-24">
+            {t.philosophyPage.pillars.map((pillar, i) => (
+              <div key={pillar.title} className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
+                {i % 2 === 0 ? (
+                  <>
+                    <div className="film-grain group overflow-hidden md:col-span-7">
+                      <img
+                        src={pillarImages[i]}
+                        alt={pillar.title}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    </div>
+                    <div className="md:col-span-4 md:col-start-9">
+                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+                        {pillar.title}
+                      </h2>
+                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                        {pillar.text}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="md:col-span-4 md:col-start-2 md:order-first">
+                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+                        {pillar.title}
+                      </h2>
+                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                        {pillar.text}
+                      </p>
+                    </div>
+                    <div className="film-grain group overflow-hidden md:col-span-7 md:col-start-6 md:order-last">
+                      <img
+                        src={pillarImages[i]}
+                        alt={pillar.title}
+                        className="aspect-[4/3] w-full object-cover"
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -15,6 +15,10 @@ import { useEffect, useState } from 'react';
  * 3 · mix actuel + IBM Plex — Fraunces (titres) + IBM Plex Mono (corps & méta)
  * 4 · mix actuel + Inter — Fraunces (titres) + Inter (corps) + SCP (méta)
  * 5 · Inter + IBM Plex — Inter (titres & corps) + IBM Plex Mono (méta)
+ * 6 · Fraunces + Switzer — Switzer ≈ Suisse Int'l (alternative libre,
+ *     Fontshare CDN) ; Suisse Int'l et STK Bureau Serif (demandées
+ *     client) sont commerciales — fichiers requis si licence
+ * 7 · Switzer partout (≈ Suisse Int'l partout)
  *
  * Choix mémorisé en localStorage (`odb-typo`). À RETIRER au choix final
  * (puis trimmer les fontes inutilisées).
@@ -22,6 +26,7 @@ import { useEffect, useState } from 'react';
 
 const F = {
   fraunces: "'Fraunces', Georgia, serif",
+  switzer: "'Switzer', 'Helvetica Neue', Arial, sans-serif",
   archivo: "'Archivo', 'Helvetica Neue', Arial, sans-serif",
   scp: "'Source Code Pro', ui-monospace, SFMono-Regular, monospace",
   inter: "'Inter', 'Helvetica Neue', Arial, sans-serif",
@@ -35,6 +40,8 @@ const MODES = [
   { label: '3 · fraunces+plex', serif: F.fraunces, sans: F.plex, mono: F.plex },
   { label: '4 · fraunces+inter', serif: F.fraunces, sans: F.inter, mono: F.scp },
   { label: '5 · inter+plex', serif: F.inter, sans: F.inter, mono: F.plex },
+  { label: '6 · fraunces+switzer', serif: F.fraunces, sans: F.switzer, mono: F.scp },
+  { label: '7 · switzer partout', serif: F.switzer, sans: F.switzer, mono: F.switzer },
 ];
 
 const TypoTester = () => {

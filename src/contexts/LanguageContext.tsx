@@ -68,6 +68,9 @@ export interface Translations {
   };
   activityPage: {
     kicker: string;
+    /** Kicker du bloc grille déplacé de la home (20/09) — évite le
+        doublon avec le kicker d'en-tête « What we do ». */
+    gridKicker: string;
     title: string;
     introShort: string;
     sections: ActivitySectionData[];
@@ -258,6 +261,7 @@ const translations: Record<Language, Translations> = {
     },
     activityPage: {
       kicker: 'What we do',
+      gridKicker: 'At a glance',
       title: 'Brands, festivals, nights and listening sessions.',
       introShort: 'Orange Decibel is a High-End Sound System born in France — Hi-Fi precision and professional power, for brands, festivals, nights and listening sessions.',
       sections: [
@@ -529,6 +533,7 @@ const translations: Record<Language, Translations> = {
     },
     activityPage: {
       kicker: 'Ce que nous faisons',
+      gridKicker: "En un coup d'œil",
       title: 'Marques, festivals, soirées et listening.',
       introShort: "Orange Decibel est un sound system haut de gamme né en France — précision Hi-Fi et puissance professionnelle, pour les marques, les festivals, les soirées et les listening.",
       sections: [
@@ -800,6 +805,7 @@ const translations: Record<Language, Translations> = {
     },
     activityPage: {
       kicker: 'Cosa facciamo',
+      gridKicker: 'In sintesi',
       title: 'Marchi, festival, serate e listening.',
       introShort: "Orange Decibel è un sound system di alta gamma nato in Francia — precisione Hi-Fi e potenza professionale, per marchi, festival, serate e listening.",
       sections: [
