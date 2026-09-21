@@ -1,11 +1,11 @@
 // ─────────────────────────────────────────────────────────────────
 // MARQUES PARTENAIRES / PARTNER BRANDS — section "They trust us"
 //
-// 15 marques avec logo (PNG transparent, recolorisé crème — voir
+// 17 marques avec logo (PNG transparent ou SVG, recolorisé crème — voir
 // src/assets/logos/) :
 //   UGG, Dr. Martens, Nike, Salomon, Super Bock, Netflix,
 //   Block Party, Halfpipe Records, Hors Sol, Loophole, Like Fire,
-//   Dissidence Production, Provoke Lab, Dock B, 6B Paris
+//   Dissidence Production, Provoke Lab, 6B Paris, SNIPES, Gaîté Lyrique
 //
 // 2 structures en wordmark typographique (logos officiels pas encore
 // récupérables en ligne) :
@@ -38,6 +38,7 @@ export const partners: Partner[] = [
   { name: 'Like Fire', logo: 'like-fire', imgClass: 'max-h-8 md:max-h-9' },
   { name: 'Dissidence Production', logo: 'dissidence' },
   { name: 'Provoke Lab', logo: 'provoke-lab', imgClass: 'max-h-8 md:max-h-9' },
-  { name: 'Dock B', logo: 'dock-b', imgClass: 'max-h-14 md:max-h-16' },
   { name: '6B Paris', logo: '6b-paris' },
+  { name: 'SNIPES', logo: 'snipes' },
+  { name: 'Gaîté Lyrique', logo: 'gaite-lyrique', imgClass: 'max-h-12 md:max-h-14' },
 ];

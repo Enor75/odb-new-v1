@@ -12,8 +12,9 @@ import loopholeLogo from '@/assets/logos/loophole.png';
 import likeFireLogo from '@/assets/logos/like-fire.png';
 import dissidenceLogo from '@/assets/logos/dissidence.png';
 import provokeLabLogo from '@/assets/logos/provoke-lab.png';
-import dockBLogo from '@/assets/logos/dock-b.png';
 import sixBParisLogo from '@/assets/logos/6b-paris.png';
+import snipesLogo from '@/assets/logos/snipes.png';
+import gaiteLyriqueLogo from '@/assets/logos/gaite-lyrique.svg';
 
 /** slug → fichier logo importé (Vite exige des imports statiques) */
 const logoFiles: Record<string, string> = {
@@ -30,8 +31,9 @@ const logoFiles: Record<string, string> = {
   'like-fire': likeFireLogo,
   dissidence: dissidenceLogo,
   'provoke-lab': provokeLabLogo,
-  'dock-b': dockBLogo,
   '6b-paris': sixBParisLogo,
+  snipes: snipesLogo,
+  'gaite-lyrique': gaiteLyriqueLogo,
 };
 
 /**

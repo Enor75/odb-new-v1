@@ -4,12 +4,13 @@ import Reveal from '@/components/Reveal';
 import PolaroidCarousel from '@/components/PolaroidCarousel';
 import ContactCta from '@/components/ContactCta';
 import sebastien from '@/assets/sebastien.jpg';
-import stackImage from '@/assets/stack-1.jpeg';
+import photo24 from '@/assets/photo-24.jpg';
 import detailImage from '@/assets/detail-2.jpeg';
 import gallery5Image from '@/assets/gallery-5.jpeg';
 
 /** Piliers « The system » (déplacés d'Activity, 20/09) */
-const pillarImages = [stackImage, detailImage, gallery5Image];
+/* Pilier « Handcrafted » : photo-24 (choix client 21/09) */
+const pillarImages = [photo24, detailImage, gallery5Image];
 import WorkCarousel from '@/components/WorkCarousel';
 import gallery1 from '@/assets/gallery-1.jpeg';
 import gallery2 from '@/assets/gallery-2.jpeg';
