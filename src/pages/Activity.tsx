@@ -223,23 +223,25 @@ const Activity = () => {
 
   return (
     <main className="min-h-svh">
-      {/* ── En-tête + manifeste très court ────────────────────────── */}
-      <section className="mx-auto max-w-none px-6 pt-24 md:px-10 md:pt-28">
+      {/* ── En-tête — PLEINE LARGEUR, typographie compacte (21/09) :
+            charte pleine largeur + typos modestes, le premier module
+            « Brand events » est visible dès l'arrivée sur la page. ── */}
+      <section className="mx-auto max-w-none px-6 pt-16 md:px-10 md:pt-20">
         <Reveal>
-          <p className={`mb-8 ${kickerClass}`}>{t.activityPage.kicker}</p>
-          <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
+          <p className={`mb-5 ${kickerClass}`}>{t.activityPage.kicker}</p>
+          <h1 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
             {t.activityPage.title}
           </h1>
-          <div className="mt-8 max-w-2xl space-y-5">
+          <div className="mt-6 space-y-4">
             {t.activityPage.introParagraphs.map((paragraph, i) => (
               <p
                 key={i}
-                className="text-base font-light leading-relaxed text-muted-foreground md:text-lg"
+                className="text-sm font-light leading-relaxed text-muted-foreground md:text-base"
               >
                 {paragraph}
               </p>
             ))}
-            <p className="pt-3 text-base font-light leading-relaxed text-foreground md:text-lg">
+            <p className="pt-2 text-sm font-light leading-relaxed text-foreground md:text-base">
               {t.activityPage.introClosing}
             </p>
           </div>
@@ -247,15 +249,16 @@ const Activity = () => {
       </section>
 
       {/* ── Quatre sections thématiques ───────────────────────────── */}
-      <section className="mx-auto max-w-none px-6 pb-16 pt-16 md:px-10 md:pb-24 md:pt-24 lg:pt-28">
+      <section className="mx-auto max-w-none px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-14">
         <div className="flex flex-col gap-16 md:gap-24">
           {sections.map((section, i) => {
             const photos = sectionPhotos[section.id] ?? [];
 
             const textBlock = (
               <div>
-                <p className={kickerClass}>{section.kicker}</p>
-                <h2 className="mt-4 font-serif text-2xl font-light tracking-tight md:text-3xl">
+                {/* Kicker de module supprimé (21/09) — le titre serif ouvre
+                    directement la section. */}
+                <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                   {section.title}
                 </h2>
                 <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
@@ -436,7 +439,7 @@ const Activity = () => {
         >
           <div className="flex items-center justify-between gap-6 px-6 py-5 text-foreground md:px-10">
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-              {sections[open.section].kicker}
+              {sections[open.section].title}
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
               {String(open.index + 1).padStart(2, '0')} / {String(openPhotos.length).padStart(2, '0')}

@@ -282,8 +282,8 @@ const translations: Record<Language, Translations> = {
         {
           id: 'brands',
           kicker: 'Brand events',
-          title: 'Brands & labels.',
-          text: "Launches, activations, exhibitions, showcases — we give brand events a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging. From the Nike × Rassvet « Dawn Space » launch in Paris to the trailer of Netflix's « Nouvelle École » — the same standard, format after format.",
+          title: 'Brand events.',
+          text: "Launches, activations, exhibitions, showcases — for brands and labels alike, we design events with a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging. From the Nike × Rassvet « Dawn Space » launch in Paris to the trailer of Netflix's « Nouvelle École » — the same standard, format after format.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {
@@ -296,7 +296,7 @@ const translations: Record<Language, Translations> = {
         {
           id: 'nights',
           kicker: 'Night sound',
-          title: 'Sound for nights & parties.',
+          title: 'Nights & parties.',
           text: "Club nights, warehouse parties, late sessions — sound for nights that go long. Bass you feel in your chest, control you keep at 3 a.m., a system that stays musical from the first record to the last. Warehouse nights with Loophole in Paris; the Fête de la Musique with Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
@@ -572,8 +572,8 @@ const translations: Record<Language, Translations> = {
         {
           id: 'brands',
           kicker: 'Événements de marques',
-          title: 'Marques & labels.',
-          text: "Lancements, activations, expositions, showcases — nous donnons aux événements de marques un son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie. Du lancement Nike × Rassvet « Dawn Space » à Paris à la bande-annonce de « Nouvelle École » pour Netflix — la même exigence, format après format.",
+          title: 'Événements de marque.',
+          text: "Lancements, activations, expositions, showcases — pour des marques comme des labels, nous concevons des événements au son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie. Du lancement Nike × Rassvet « Dawn Space » à Paris à la bande-annonce de « Nouvelle École » pour Netflix — la même exigence, format après format.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce', 'SNIPES × Air Max'],
         },
         {
@@ -586,7 +586,7 @@ const translations: Record<Language, Translations> = {
         {
           id: 'nights',
           kicker: 'Sonorisation de soirée',
-          title: 'Le son des soirées.',
+          title: 'Nuits & fêtes.',
           text: "Soirées en club, warehouse parties, sessions tardives — le son des nuits qui durent. Des basses qu'on sent dans la poitrine, un contrôle qu'on garde à 3 h du matin, un système qui reste musical du premier au dernier disque. Les nuits warehouse avec Loophole à Paris ; la Fête de la Musique avec Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
@@ -862,8 +862,8 @@ const translations: Record<Language, Translations> = {
         {
           id: 'brands',
           kicker: 'Eventi per marchi',
-          title: 'Marchi & label.',
-          text: "Lanci, attivazioni, mostre, showcase — diamo agli eventi dei brand un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia. Dal lancio Nike × Rassvet « Dawn Space » a Parigi al trailer di « Nouvelle École » per Netflix — lo stesso standard, formato dopo formato.",
+          title: 'Eventi per marchi.',
+          text: "Lanci, attivazioni, mostre, showcase — per marchi e label, diamo agli eventi un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia. Dal lancio Nike × Rassvet « Dawn Space » a Parigi al trailer di « Nouvelle École » per Netflix — lo stesso standard, formato dopo formato.",
           cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {
@@ -876,7 +876,7 @@ const translations: Record<Language, Translations> = {
         {
           id: 'nights',
           kicker: 'Sonorizzazione serate',
-          title: 'Il suono delle serate.',
+          title: 'Notti & feste.',
           text: "Notti in club, warehouse party, late session — il suono delle notti che durano. Bassi che si sentono nel petto, controllo che si mantiene alle tre del mattino, un sistema che resta musicale dal primo all'ultimo disco. Le notti warehouse con Loophole a Parigi; la Fête de la Musique con Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Parigi', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
