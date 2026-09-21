@@ -77,6 +77,12 @@ export interface Translations {
     slotLabel: string;
   };
   customPage: {
+    /** Chemin de création — process en 5 étapes (module Custom, 20/09) */
+    process: {
+      kicker: string;
+      title: string;
+      steps: { title: string; text: string }[];
+    };
     kicker: string;
     title: string;
     subtitle: string;
@@ -298,6 +304,17 @@ const translations: Record<Language, Translations> = {
       slotLabel: 'Photo to come',
     },
     customPage: {
+      process: {
+        kicker: 'The process',
+        title: 'From your idea to your system.',
+        steps: [
+          { title: 'Brief & direction', text: 'We start with your event, your venue and the feeling you want to create.' },
+          { title: 'Design & engineering', text: 'The system is drawn for your space — power, coverage, aesthetics.' },
+          { title: 'Handcrafted build', text: 'Each cabinet is assembled and finished by hand, in our workshop.' },
+          { title: 'Calibration & testing', text: 'Measured, tuned and auditioned until the sound is right.' },
+          { title: 'Delivery & setup', text: 'Installed on site, seamlessly and invisibly, ready for your event.' },
+        ],
+      },
       kicker: 'Custom',
       title: 'Custom Systems',
       subtitle: 'Every Orange Decibel speaker starts from a blank page: sketches, technical drawings, prototypes — until the system matches your space and your listening.',
@@ -571,6 +588,17 @@ const translations: Record<Language, Translations> = {
       slotLabel: 'Photo à venir',
     },
     customPage: {
+      process: {
+        kicker: 'Le process',
+        title: 'De votre idée à votre système.',
+        steps: [
+          { title: 'Brief & direction', text: "Nous partons de votre événement, de votre lieu et de l'émotion recherchée." },
+          { title: 'Conception & ingénierie', text: 'Le système est dessiné pour votre espace — puissance, couverture, esthétique.' },
+          { title: 'Fabrication artisanale', text: 'Chaque caisse est assemblée et finie à la main dans notre atelier.' },
+          { title: 'Calibration & tests', text: "Mesuré, réglé et écouté jusqu'à ce que le son soit juste." },
+          { title: 'Livraison & installation', text: 'Installé sur place, en douceur et en toute discrétion, prêt pour votre événement.' },
+        ],
+      },
       kicker: 'Sur mesure',
       title: 'Systèmes Sur Mesure',
       subtitle: 'Chaque enceinte Orange Decibel naît d’une feuille blanche : croquis, dessins techniques, prototypes — jusqu’au système qui correspond à votre espace et à votre écoute.',
@@ -844,6 +872,17 @@ const translations: Record<Language, Translations> = {
       slotLabel: 'Foto in arrivo',
     },
     customPage: {
+      process: {
+        kicker: 'Il processo',
+        title: 'Dalla tua idea al tuo sistema.',
+        steps: [
+          { title: 'Brief e direzione', text: "Partiamo dal tuo evento, dal luogo e dall'emozione che vuoi creare." },
+          { title: 'Progettazione e ingegneria', text: 'Il sistema è disegnato per il tuo spazio — potenza, copertura, estetica.' },
+          { title: 'Costruzione artigianale', text: 'Ogni cassa è assemblata e rifinita a mano nel nostro laboratorio.' },
+          { title: 'Calibrazione e test', text: 'Misurato, regolato e ascoltato finché il suono è giusto.' },
+          { title: 'Consegna e installazione', text: 'Installato sul posto, con fluidità e discrezione, pronto per il tuo evento.' },
+        ],
+      },
       kicker: 'Su misura',
       title: 'Sistemi Su Misura',
       subtitle: 'Ogni cassa Orange Decibel nasce da una pagina bianca: schizzi, disegni tecnici, prototipi — fino al sistema che risponde al tuo spazio e al tuo ascolto.',

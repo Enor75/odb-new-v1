@@ -7,7 +7,7 @@ const NotFound = () => {
   usePageMeta(t.meta.notFoundTitle);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <main className="flex min-h-svh flex-col items-center justify-center px-6 text-center">
       <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
         {t.notFound.code}
       </p>

@@ -66,7 +66,7 @@ const TypoTester = () => {
   const cycle = (dir: number) => setMode((m) => (m + dir + MODES.length) % MODES.length);
 
   return (
-    <div className="fixed bottom-4 right-4 z-[90] flex items-center gap-2 border border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
+    <div className="fixed right-4 top-32 z-[90] flex items-center gap-2 border lg:bottom-4 lg:top-auto border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
       <span className="text-foreground/40">typo</span>
       <button
         onClick={() => cycle(-1)}

@@ -42,7 +42,7 @@ const Custom = () => {
   );
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-svh">
       {/* ── En-tête ─────────────────────────────────────────────── */}
       <div className="mx-auto max-w-none px-6 pt-24 md:px-10 md:pt-28">
         <Reveal>
@@ -72,7 +72,7 @@ const Custom = () => {
                 <img
                   src={miniImages[i]}
                   alt={col.title}
-                  className="h-[40vh] w-full object-cover"
+                  className="h-[40svh] w-full object-cover"
                   loading="lazy"
                 />
               </div>
@@ -96,7 +96,7 @@ const Custom = () => {
                   <img
                     src={blockImages[i]}
                     alt={block.title}
-                    className="h-[35vh] w-full object-cover"
+                    className="h-[35svh] w-full object-cover"
                     loading="lazy"
                   />
                 </div>
@@ -128,6 +128,36 @@ const Custom = () => {
                     {block.desc}
                   </p>
                 </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Le chemin de création — process en 5 étapes (20/09) :
+            le client se projette dans la construction de ses enceintes. */}
+      <section className="mx-auto mt-16 max-w-none px-6 md:mt-24 md:px-10">
+        <Reveal>
+          <p className="mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+            {cp.process.kicker}
+          </p>
+          <h2 className="max-w-2xl font-serif text-2xl font-light tracking-tight md:text-4xl">
+            {cp.process.title}
+          </h2>
+        </Reveal>
+        <div className="mt-10 border-b border-foreground/15 md:mt-14">
+          {cp.process.steps.map((step, i) => (
+            <Reveal key={step.title} delay={i * 60}>
+              <div className="grid gap-3 border-t border-foreground/15 py-8 md:grid-cols-12 md:gap-8 md:py-10">
+                <p className="font-mono text-[11px] tracking-[0.25em] text-primary md:col-span-1">
+                  {String(i + 1).padStart(2, '0')}
+                </p>
+                <h3 className="font-serif text-xl font-light tracking-tight md:col-span-4 md:text-2xl">
+                  {step.title}
+                </h3>
+                <p className="text-sm font-light leading-relaxed text-muted-foreground md:col-span-6 md:col-start-7">
+                  {step.text}
+                </p>
               </div>
             </Reveal>
           ))}
@@ -185,7 +215,7 @@ const Custom = () => {
                 {/* L'encart s'étire sur la hauteur de la rangée de grille :
                     son bas s'aligne sur la dernière ligne du carnet de
                     spécifications (sous « Finish »). */}
-                <div className="group relative min-h-[40vh] w-full flex-1 overflow-hidden bg-foreground/[0.06] md:min-h-0">
+                <div className="group relative min-h-[40svh] w-full flex-1 overflow-hidden bg-foreground/[0.06] md:min-h-0">
                   {/* Photo au repos */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">

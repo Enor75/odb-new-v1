@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
+import AnucHeader from "@/components/AnucHeader";
+import HeaderTester from "@/components/HeaderTester";
+import { useHeaderSettings } from "@/hooks/useHeaderSettings";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import BackgroundPhoto from "@/components/BackgroundPhoto";
@@ -18,7 +21,10 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  const [headerSettings] = useHeaderSettings();
+
+  return (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <TooltipProvider>
@@ -30,11 +36,16 @@ const App = () => (
               la hauteur réelle du contenu — aucune mesure JS (l'ancienne
               mesure au scrollHeight se figeait après resize ou navigation
               et créait un scroll fantôme sous le footer). */}
-          <div className="relative min-h-screen">
+          <div className="relative min-h-svh">
             <BackgroundPhoto />
             <TypoTester />
             <ScrollToTop />
-            <Header />
+            <HeaderTester />
+            {headerSettings.variant === 'anuc' ? (
+              <AnucHeader settings={headerSettings} />
+            ) : (
+              <Header />
+            )}
             <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/activity" element={<Activity />} />
@@ -51,6 +62,7 @@ const App = () => (
       </TooltipProvider>
     </LanguageProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;

@@ -80,7 +80,7 @@ const WorkCarousel = ({ items }: { items: { src: string }[] }) => {
       style={{ height: `${sectionHeight}px` }}
     >
       {/* Écran épinglé */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden bg-background">
+      <div className="sticky top-0 h-svh w-full overflow-hidden bg-background">
         {/* Label vertical — desktop */}
         <div className="absolute left-8 top-1/2 z-10 hidden -translate-y-1/2 lg:block md:left-12">
           <div className="-rotate-90 origin-center whitespace-nowrap">

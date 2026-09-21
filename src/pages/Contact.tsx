@@ -27,7 +27,7 @@ const Contact = () => {
     'font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/40';
 
   return (
-    <main className="min-h-screen px-6 pb-20 pt-24 md:px-10 md:pt-28 md:pb-28">
+    <main className="min-h-svh px-6 pb-20 pt-24 md:px-10 md:pt-28 md:pb-28">
       <div className="mx-auto max-w-none">
         {/* ── En-tête centré : Contact + sous-titre + estimateur ── */}
         <Reveal className="flex flex-col items-center text-center">

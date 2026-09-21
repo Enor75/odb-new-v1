@@ -9,9 +9,6 @@ import architectureImage from '@/assets/architecture-1.jpeg';
 import context1Image from '@/assets/context-1.jpeg';
 import context2Image from '@/assets/context-2.jpeg';
 import heroMainImage from '@/assets/hero-main.jpeg';
-import stackImage from '@/assets/stack-1.jpeg';
-import detailImage from '@/assets/detail-2.jpeg';
-import gallery5Image from '@/assets/gallery-5.jpeg';
 import galleryCatImage from '@/assets/gallery-cat.jpeg';
 import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
 import galleryTeal from '@/assets/gallery-teal.jpeg';
@@ -27,11 +24,13 @@ import galleryCello from '@/assets/gallery-cello.jpg';
  *    emplacements au survol (desktop, ~800 ms) ; le clic ouvre la
  *    lightbox filtrée sur la section (5 emplacements, flèches, clavier,
  *    compteur — mécanique de l'ancienne galerie réutilisée).
- * 3. Manifeste complet (ex-page philosophie, en l'état)
- * 4. What we do — grille collée 4 activités (déplacée de la home 20/09)
- * 5. Aperçu galerie — 3 photos (déplacé de la home 20/09)
- * 6. The system — trois piliers (déplacé de la home 20/09)
- * 7. CTA unique — bouton filet orange, remplissage au survol → /contact
+ * 3. Aperçu galerie — 3 photos (déplacé de la home 20/09)
+ * 4. CTA unique — bouton filet orange, remplissage au survol → /contact
+ *
+ * (20/09) : manifeste SUPPRIMÉ (redite de la philosophie de la home) ;
+ * At a glance GRISÉ (showAtAGlance=false — textes déplacés sur la home) ;
+ * The system DÉPLACÉ vers About ; sections réordonnées (listening avant
+ * nights) ; module photo réduit (col 7→6).
  *
  * ⚠️ EMPLACEMENTS PHOTOS VIDES PAR CONVENTION : les noms de fichiers
  * seront fournis par le client. Les insérer dans `sectionPhotos`
@@ -40,7 +39,10 @@ import galleryCello from '@/assets/gallery-cello.jpg';
  * légende lightbox utilise `cases` de la section si disponible.
  */
 
-/** Blocs déplacés de la home (20/09) — What we do / Gallery / The system */
+/** At a glance : GRISÉ en production (20/09) — réactiver à true */
+const showAtAGlance = false;
+
+/** Blocs déplacés de la home (20/09) — What we do (grisé) / Gallery */
 
 const activityImages = [architectureImage, context1Image, context2Image, heroMainImage];
 /** Image alternative au survol (blocs 2 et 4) — façon Friendly Pressure */
@@ -48,8 +50,6 @@ const activitySwapImages: (string | null)[] = [null, galleryCatImage, null, desi
 /** Sur cette page, seule la cellule Custom navigue (vers /custom) ;
  *  les trois premières sont décoratives (l'activité EST cette page). */
 const activityLinks: (string | null)[] = [null, null, null, '/custom'];
-/** Piliers ex-philosophie — images alternées */
-const pillarImages = [stackImage, detailImage, gallery5Image];
 /** Filets entre cellules — grille collée serrée (1px, comme FP) */
 const cellBorders = ['border-t', 'border-t border-l', 'border-t md:border-l', 'border-t border-l'];
 
@@ -157,7 +157,11 @@ const kickerClass = 'font-mono text-[11px] uppercase tracking-[0.25em] text-mute
 const Activity = () => {
   const { t } = useLanguage();
   usePageMeta(t.meta.activityTitle, t.meta.activityDesc);
-  const sections = t.activityPage.sections;
+  /* Ordre d'affichage (20/09) : listening AVANT nights (échange client) */
+  const SECTION_ORDER = ['brands', 'festivals', 'listening', 'nights'] as const;
+  const sections = SECTION_ORDER.map(
+    (id) => t.activityPage.sections.find((sec) => sec.id === id)!
+  );
 
   const [open, setOpen] = useState<{ section: number; index: number } | null>(null);
 
@@ -191,7 +195,7 @@ const Activity = () => {
   const openSrc = openPhotos ? openPhotos[open.index] : null;
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-svh">
       {/* ── En-tête + manifeste très court ────────────────────────── */}
       <section className="mx-auto max-w-none px-6 pt-24 md:px-10 md:pt-28">
         <Reveal>
@@ -242,8 +246,8 @@ const Activity = () => {
                 >
                   {i % 2 === 0 ? (
                     <>
-                      <div className="md:col-span-5">{textBlock}</div>
-                      <div className="md:col-span-7">
+                      <div className="md:col-span-6">{textBlock}</div>
+                      <div className="md:col-span-6">
                         <HoverPhotoModule
                           photos={photos}
                           slotLabel={t.activityPage.slotLabel}
@@ -253,14 +257,14 @@ const Activity = () => {
                     </>
                   ) : (
                     <>
-                      <div className="md:col-span-7 md:order-first">
+                      <div className="md:col-span-6 md:order-first">
                         <HoverPhotoModule
                           photos={photos}
                           slotLabel={t.activityPage.slotLabel}
                           onOpen={() => setOpen({ section: i, index: 0 })}
                         />
                       </div>
-                      <div className="md:col-span-5 md:order-last">{textBlock}</div>
+                      <div className="md:col-span-6 md:order-last">{textBlock}</div>
                     </>
                   )}
                 </div>
@@ -270,28 +274,10 @@ const Activity = () => {
         </div>
       </section>
 
-      {/* ── Manifeste complet (ex-philosophie, en l'état) ─────────── */}
-      <section className="border-t border-foreground/15 px-6 pt-16 md:px-10 md:pt-24">
-        <div className="mx-auto max-w-none">
-          <Reveal>
-            <p className={kickerClass}>{t.philosophyPage.kicker}</p>
-            <div className="mt-8 max-w-3xl space-y-8">
-              {t.philosophyPage.paragraphs.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-lg font-light leading-relaxed text-foreground/75 md:text-xl"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── What we do — grille collée (déplacée de la home, 20/09). 
-            Seule la cellule Custom navigue (vers /custom) ; les trois
-            premières sont décoratives sur cette page. ──────────────── */}
+      {/* ── At a glance — GRISÉ (20/09) : conservé au code mais non
+          affiché en production. Réactiver : passer showAtAGlance à true.
+          Les 4 textes vivent désormais dans le bloc Philosophy de la home. */}
+      {showAtAGlance && (
       <section className="pb-16 pt-16 md:pb-24 md:pt-24 lg:pb-28 lg:pt-28">
         <div className="mx-auto max-w-none px-6 md:px-10">
           <p className={`${kickerClass} mb-8 md:mb-10`}>{t.activityPage.gridKicker}</p>
@@ -373,6 +359,7 @@ const Activity = () => {
         </div>
       </section>
 
+      )}
       {/* ── Aperçu galerie (déplacé de la home, 20/09) — photos sans
             lien : la galerie EST cette page ───────────────────────── */}
       <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
@@ -390,59 +377,6 @@ const Activity = () => {
                   alt=""
                   className="aspect-square w-full object-cover"
                 />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── The system — trois piliers (déplacé de la home, 20/09) ── */}
-      <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
-        <div className="mx-auto max-w-none">
-          <p className={`${kickerClass} border-t border-foreground/15 pt-16 md:pt-24`}>
-            {t.philosophyPage.pillarsKicker}
-          </p>
-
-          <div className="flex flex-col gap-16 md:gap-24">
-            {t.philosophyPage.pillars.map((pillar, i) => (
-              <div key={pillar.title} className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
-                {i % 2 === 0 ? (
-                  <>
-                    <div className="film-grain group overflow-hidden md:col-span-7">
-                      <img
-                        src={pillarImages[i]}
-                        alt={pillar.title}
-                        className="aspect-[4/3] w-full object-cover"
-                      />
-                    </div>
-                    <div className="md:col-span-4 md:col-start-9">
-                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
-                        {pillar.title}
-                      </h2>
-                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
-                        {pillar.text}
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="md:col-span-4 md:col-start-2 md:order-first">
-                      <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
-                        {pillar.title}
-                      </h2>
-                      <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
-                        {pillar.text}
-                      </p>
-                    </div>
-                    <div className="film-grain group overflow-hidden md:col-span-7 md:col-start-6 md:order-last">
-                      <img
-                        src={pillarImages[i]}
-                        alt={pillar.title}
-                        className="aspect-[4/3] w-full object-cover"
-                      />
-                    </div>
-                  </>
-                )}
               </div>
             ))}
           </div>
@@ -494,7 +428,7 @@ const Activity = () => {
                   <img
                     src={openSrc}
                     alt=""
-                    className="max-h-[72vh] w-auto max-w-full object-contain"
+                    className="max-h-[72svh] w-auto max-w-full object-contain"
                     onClick={(e) => e.stopPropagation()}
                   />
                   <figcaption className="mt-5 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/60">

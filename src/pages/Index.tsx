@@ -31,7 +31,7 @@ const Index = () => {
   const [videoAvailable, setVideoAvailable] = useState(true);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-svh">
       {/* ── Hero : vidéo plein écran (poster/image en attendant l'upload) ── */}
       <section className="relative h-[100svh]">
         {videoAvailable ? (
@@ -42,7 +42,7 @@ const Index = () => {
             playsInline
             poster={heroImage}
             aria-label="Orange Decibel Sound System"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover transform-gpu"
             onError={() => setVideoAvailable(false)}
           >
             <source
@@ -54,7 +54,7 @@ const Index = () => {
           <img
             src={heroImage}
             alt="Orange Decibel Sound System"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover transform-gpu"
           />
         )}
         {/* Voiles pour la lisibilité du header et de la légende */}
@@ -105,6 +105,19 @@ const Index = () => {
                 className="text-base font-light leading-relaxed text-foreground/80 md:text-lg"
               >
                 {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Les 4 savoir-faire (ex-« At a glance » d'Activity, 20/09) —
+              textes seuls, sans images ni titres, dans le même bloc. */}
+          <div className="mt-12 grid gap-6 border-t border-foreground/15 pt-10 text-left sm:grid-cols-2">
+            {t.home.activities.map((activity) => (
+              <p
+                key={activity.title}
+                className="text-sm font-light leading-relaxed text-muted-foreground"
+              >
+                {activity.text}
               </p>
             ))}
           </div>

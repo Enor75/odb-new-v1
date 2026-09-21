@@ -226,7 +226,7 @@ const BackgroundPhoto = () => {
       )}
 
       {/* Sélecteur de test — à retirer au choix final */}
-      <div className="fixed bottom-[72px] right-4 z-[90] border border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
+      <div className="fixed right-4 top-56 z-[90] border lg:bottom-[72px] lg:top-auto border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
         <div className="flex items-center gap-2">
           <span className="text-foreground/40">fond</span>
           <button onClick={() => pick(-1)} aria-label="Fond précédent" className={btn}>‹</button>

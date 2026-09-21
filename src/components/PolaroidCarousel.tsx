@@ -27,7 +27,7 @@ import polaroidPhoto45 from '@/assets/photo-45.jpg';
  * - cartes grandes : ~2/3 de la hauteur d'écran ;
  * - OPACITÉ CONTINUE : le sommet de la pile reste toujours à 1 (la
  *   dernière carte ne devient jamais transparente) ; chaque carte posée
- *   s'estompe progressivement (paliers doux 1 → 0.3 → 0.1 → 0 (cartes profondes supprimées)) au
+ *   s'estompe progressivement (paliers 20/09 : 1 → 0.15 → 0.05 → 0 — estompage très marqué) au
  *   rythme exact de la montée de la suivante ; l'arrivée se fait quasi
  *   opaque (léger fondu 0.6 → 1 sur le premier quart de montée, hors
  *   champ) — modèle « première polaroid », plus de sauts brusques.
@@ -54,7 +54,12 @@ function useSectionProgress(ref: React.RefObject<HTMLElement | null>) {
     const onScroll = () => {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
-      const scrollable = ref.current.offsetHeight - window.innerHeight;
+      /* Référence stable = l'écran sticky (100svh en px), PAS
+         window.innerHeight qui change quand la barre d'URL du mobile
+         se masque au premier scroll (mini-zoom perceptible). */
+      const sticky = ref.current.firstElementChild as HTMLElement | null;
+      const viewportH = sticky ? sticky.offsetHeight : window.innerHeight;
+      const scrollable = ref.current.offsetHeight - viewportH;
       const scrolled = -rect.top;
       setProgress(clamp(scrolled / scrollable, 0, 1));
     };
@@ -161,14 +166,14 @@ const PolaroidCarousel = () => {
       cover += clamp((progress - jStart) / w, 0, 1);
     }
 
-    /* Montée depuis 70vh dessous — à opacité constante (modèle « première
+    /* Montée depuis 70svh dessous — à opacité constante (modèle « première
        polaroid » : la carte arrive comme une photo qu'on pose, sans fondu) */
     const ty = !isActive ? 70 : lerp(70, 0, localT);
 
     /* Opacité : 1 à l'arrivée et tant que la carte est au sommet ;
        en dessous, estompage progressif à chaque nouvelle carte posée
-       (paliers doux 1 → 0.3 → 0.1 → 0 (cartes profondes supprimées), aucun saut). */
-    const opacity = !isActive ? 0 : chain(1, 0.3, 0.1, 0, cover);
+       (paliers 1 → 0.15 → 0.05 → 0 — très estompées, aucun saut). */
+    const opacity = !isActive ? 0 : chain(1, 0.15, 0.05, 0, cover);
 
     /* Rotation en éventail + dispersion — mêmes courbes continues */
     const dir = index % 2 === 0 ? -1 : 1;
@@ -179,7 +184,7 @@ const PolaroidCarousel = () => {
     const zIndex = isActive ? 10 + index : 1;
 
     return {
-      transform: `translateX(${tx}px) translateY(calc(${ty}vh + ${tyExtra - 50}px)) rotate(${rotate}deg)`,
+      transform: `translateX(${tx}px) translateY(calc(${ty}svh + ${tyExtra - 50}px)) rotate(${rotate}deg)`,
       opacity,
       zIndex,
       transition: 'transform 0.15s ease-out, opacity 0.15s ease-out',
@@ -192,17 +197,17 @@ const PolaroidCarousel = () => {
       ref={sectionRef}
       aria-label={t.carousel.kicker}
       className="relative"
-      style={{ height: `${n * 70}vh` }}
+      style={{ height: `${n * 70}svh` }}
     >
       {/* Écran sticky : kicker + pile de polaroids (pas de cadre, pas de titre) */}
-      <div className="sticky top-0 flex h-screen flex-col items-center overflow-hidden">
+      <div className="sticky top-0 flex h-svh flex-col items-center overflow-hidden">
         <p className="px-6 pt-16 text-center font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-20">
           {t.carousel.kicker}
         </p>
 
         <div className="flex w-full flex-1 items-center justify-center">
           {/* Cartes ~2/3 de la hauteur d'écran (couverte par le plafond 85vw) */}
-          <div className="relative aspect-[1/1.18] w-[min(calc(66vh-76px),85vw)]">
+          <div className="relative aspect-[1/1.18] w-[min(calc(66svh-76px),85vw)]">
             {carouselPhotos.map((photo, i) => (
               <div
                 key={i}

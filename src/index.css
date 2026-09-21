@@ -64,8 +64,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
-    /* Scrollbar fine (E2) — piste transparente, pouce crème/20 */
+      /* Scrollbar fine (E2) — piste transparente, pouce crème/20 */
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--foreground) / 0.2) transparent;
   }
