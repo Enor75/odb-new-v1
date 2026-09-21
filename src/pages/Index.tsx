@@ -17,14 +17,16 @@ const arrowLinkClass =
  * volontairement SANS animation au scroll (pas de composant Reveal ici).
  * Les hovers sophistiqués sont autorisés partout.
  *
- * Structure (20/09) : hero VIDÉO (`public/videos/compressO-OdB-compressed.mp4`,
+ * Structure (20/09, ajusté) : hero VIDÉO puis Philosophy RESSERRÉE
+ * pleine largeur (CTA « Explore » centré en bas du bloc), puis Partners.
+ * (vidéo : `public/videos/compressO-OdB-compressed.mp4`,
  * upload manuel client — poster puis fallback image automatique tant que
  * le fichier est absent). POSTER = PREMIÈRE FRAME DE LA VIDÉO (20/09,
  * extraite en 2560×1440) : plus de flash de l'ancienne photo pendant les
- * premiers ms de chargement → CTA « Explore » sous la vidéo → déclaration
- * Philosophy (sans lien flèche) → Partners & Collaborators → Ticker →
+ * premiers ms de chargement. Chaîne : vidéo → Philosophy (pleine largeur,
+ * CTA « Explore » centré en bas) → Partners & Collaborators → Ticker →
  * CTA « Contact us ». Les blocs What we do / Gallery / The system ont
- * été déplacés sur Activity, sous le manifeste (20/09).
+ * été déplacés sur Activity (20/09).
  */
 const Index = () => {
   const { t } = useLanguage();
@@ -79,25 +81,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CTA « Explore » — directement sous l'encart vidéo (20/09 ;
-            ex-CTA du bloc galerie, désormais sur Activity) ────────── */}
-      <section className="px-6 pb-6 pt-10 md:px-10 md:pb-8 md:pt-14">
-        <div className="mx-auto max-w-none">
-          <Link to="/activity" className={arrowLinkClass}>
-            {t.home.galleryLink}
-            <ArrowRight
-              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-              strokeWidth={1.5}
-            />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── Philosophy — bio sans titre, centrée au milieu de la page
-            (20/09) : kicker seul + 3 paragraphes, bloc verticalement
-            centré dans une section haute. ────────────────────────── */}
-      <section className="flex min-h-[75svh] items-center px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-3xl text-center">
+      {/* ── Philosophy — bio sans titre (20/09) : RESSERRÉE sous la vidéo,
+            PLEINE LARGEUR (plus de colonne max-w : le texte utilise toute
+            la largeur du site), 4 textes savoir-faire en grille, CTA
+            « Explore » centré en bas du bloc. ──────────────────────── */}
+      <section className="px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14">
+        <div className="mx-auto max-w-none text-center">
           <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             {t.home.statementKicker}
           </p>
@@ -113,8 +102,8 @@ const Index = () => {
           </div>
 
           {/* Les 4 savoir-faire (ex-« At a glance » d'Activity, 20/09) —
-              textes seuls, sans images ni titres, dans le même bloc. */}
-          <div className="mt-12 grid gap-6 border-t border-foreground/15 pt-10 text-left sm:grid-cols-2">
+              textes seuls, sans images ni titres, pleine largeur. */}
+          <div className="mt-12 grid gap-6 border-t border-foreground/15 pt-10 text-left sm:grid-cols-2 lg:grid-cols-4">
             {t.home.activities.map((activity) => (
               <p
                 key={activity.title}
@@ -123,6 +112,17 @@ const Index = () => {
                 {activity.text}
               </p>
             ))}
+          </div>
+
+          {/* CTA « Explore » — centré au milieu du site, bas du bloc (20/09) */}
+          <div className="mt-12 flex justify-center md:mt-16">
+            <Link to="/activity" className={arrowLinkClass}>
+              {t.home.galleryLink}
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                strokeWidth={1.5}
+              />
+            </Link>
           </div>
         </div>
       </section>
