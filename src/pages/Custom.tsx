@@ -5,6 +5,10 @@ import Reveal from '@/components/Reveal';
 import designDrawing1 from '@/assets/design-drawing-1.png';
 import designDrawing2 from '@/assets/design-drawing-2.jpeg';
 import detail1 from '@/assets/detail-1.jpeg';
+import photo24 from '@/assets/photo-24.jpg';
+import photo25 from '@/assets/photo-25.jpg';
+import photo48 from '@/assets/photo-48.jpg';
+import photo50 from '@/assets/photo-50.jpg';
 import gallery3 from '@/assets/gallery-3.jpeg';
 import stack1 from '@/assets/stack-1.jpeg';
 import gallery2 from '@/assets/gallery-2.jpeg';
@@ -30,7 +34,8 @@ const Custom = () => {
   const cp = t.customPage;
 
   /* Images provisoires — en attente des vraies photos d'atelier */
-  const miniImages = [designDrawing1, designDrawing2, detail1];
+  /* Atelier (option A client 21/09) : 1 croquis + photos atelier */
+  const miniImages = [designDrawing1, photo24, photo25];
   const blockImages = [gallery3, stack1, gallery2];
 
   const sectionTitle = (strong: string, rest: string) => (
@@ -216,44 +221,20 @@ const Custom = () => {
                     son bas s'aligne sur la dernière ligne du carnet de
                     spécifications (sous « Finish »). */}
                 <div className="group relative min-h-[40svh] w-full flex-1 overflow-hidden bg-foreground/[0.06] md:min-h-0">
-                  {/* Photo au repos */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <svg
-                        className="mx-auto h-8 w-8 text-foreground/25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                        aria-hidden="true"
-                      >
-                        <path d="M12 4v16M4 12h16" />
-                      </svg>
-                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-                        {cp.img1Label}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Photo de survol — fondu par-dessus */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="text-center">
-                      <svg
-                        className="mx-auto h-8 w-8 text-foreground/25"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1"
-                        aria-hidden="true"
-                      >
-                        <path d="M12 4v16M4 12h16" />
-                      </svg>
-                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-                        {cp.img1Label}
-                      </p>
-                    </div>
-                  </div>
+                  {/* Photo au repos — photo-50 (option A client, 21/09) */}
+                  <img
+                    src={photo50}
+                    alt={cp.img1Label}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  {/* Photo de survol — photo-48, fondu par-dessus */}
+                  <img
+                    src={photo48}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  />
                 </div>
-              </Reveal>
+                            </Reveal>
             </div>
           </div>
         </div>

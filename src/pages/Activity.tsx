@@ -14,6 +14,20 @@ import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
 import galleryTeal from '@/assets/gallery-teal.jpeg';
 import galleryBass from '@/assets/gallery-bass.jpg';
 import galleryCello from '@/assets/gallery-cello.jpg';
+// Photos événements (sélection client 21/09)
+import photo1 from '@/assets/photo-1.jpg';
+import photo12 from '@/assets/photo-12.jpg';
+import photo15 from '@/assets/photo-15.jpg';
+import photo16 from '@/assets/photo-16.jpg';
+import photo19 from '@/assets/photo-19.jpg';
+import photo21 from '@/assets/photo-21.jpg';
+import photo26 from '@/assets/photo-26.jpg';
+import photo29 from '@/assets/photo-29.jpg';
+import photo31 from '@/assets/photo-31.jpg';
+import photo33 from '@/assets/photo-33.jpg';
+import photo34 from '@/assets/photo-34.jpg';
+import photo37 from '@/assets/photo-37.jpg';
+import photo38 from '@/assets/photo-38.jpg';
 
 /**
  * PAGE ACTIVITY — fusion ex-Gallery + ex-Philosophy (17/09).
@@ -55,15 +69,14 @@ const cellBorders = ['border-t', 'border-t border-l', 'border-t md:border-l', 'b
 
 /** Photos au survol (cycle) puis lightbox */
 const HOVER_SLOTS = 3;
-/** Total par section — la lightbox montre les 5 */
-const LIGHTBOX_SLOTS = 5;
-
 /** Emplacements photos par section — null = encart vide (croix fine) */
 const sectionPhotos: Record<string, (string | null)[]> = {
-  brands: [null, null, null, null, null],
-  festivals: [null, null, null, null, null],
-  nights: [null, null, null, null, null],
-  listening: [null, null, null, null, null],
+  /* Sélection client 21/09 — 3 premières = survol, toutes = lightbox
+     (compteur dynamique NN/<total>). Nights : en attente de photos. */
+  brands: [photo15, photo38, photo34, photo37],
+  festivals: [photo1, photo12, photo16],
+  nights: [null, null, null],
+  listening: [photo33, photo31, photo26, photo29, photo19, photo21],
 };
 
 /** Encart vide — croix fine + libellé (F7) */
@@ -144,7 +157,7 @@ const HoverPhotoModule = ({
       {/* Liseré bas — compteur d'emplacements + indice d'ouverture */}
       <div className="flex items-center justify-between border-t border-foreground/15 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50 transition-colors duration-300 group-hover:border-foreground/40 group-hover:text-foreground">
         <span>
-          {String(filled).padStart(2, '0')} / {String(LIGHTBOX_SLOTS).padStart(2, '0')}
+          {String(filled).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
         </span>
         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </div>
@@ -166,14 +179,20 @@ const Activity = () => {
   const [open, setOpen] = useState<{ section: number; index: number } | null>(null);
 
   const close = useCallback(() => setOpen(null), []);
-  const prev = useCallback(
-    () => setOpen((o) => (o ? { ...o, index: (o.index - 1 + LIGHTBOX_SLOTS) % LIGHTBOX_SLOTS } : o)),
-    []
-  );
-  const next = useCallback(
-    () => setOpen((o) => (o ? { ...o, index: (o.index + 1) % LIGHTBOX_SLOTS } : o)),
-    []
-  );
+  /* Chaque section a son nombre de photos (compteur dynamique 21/09) :
+     la navigation boucle sur la longueur de la section ouverte. */
+  const prev = () =>
+    setOpen((o) => {
+      if (!o) return o;
+      const len = (sectionPhotos[sections[o.section].id] ?? []).length;
+      return { ...o, index: (o.index - 1 + len) % len };
+    });
+  const next = () =>
+    setOpen((o) => {
+      if (!o) return o;
+      const len = (sectionPhotos[sections[o.section].id] ?? []).length;
+      return { ...o, index: (o.index + 1) % len };
+    });
 
   // Navigation clavier + verrouillage du scroll quand la lightbox est ouverte
   useEffect(() => {
@@ -203,9 +222,19 @@ const Activity = () => {
           <h1 className="max-w-4xl font-serif text-4xl font-light leading-[1.05] tracking-tight md:text-6xl">
             {t.activityPage.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground md:text-lg">
-            {t.activityPage.introShort}
-          </p>
+          <div className="mt-8 max-w-2xl space-y-5">
+            {t.activityPage.introParagraphs.map((paragraph, i) => (
+              <p
+                key={i}
+                className="text-base font-light leading-relaxed text-muted-foreground md:text-lg"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <p className="pt-3 text-base font-light leading-relaxed text-foreground md:text-lg">
+              {t.activityPage.introClosing}
+            </p>
+          </div>
         </Reveal>
       </section>
 
@@ -402,7 +431,7 @@ const Activity = () => {
               {sections[open.section].kicker}
             </p>
             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-              {String(open.index + 1).padStart(2, '0')} / {String(LIGHTBOX_SLOTS).padStart(2, '0')}
+              {String(open.index + 1).padStart(2, '0')} / {String(openPhotos.length).padStart(2, '0')}
             </p>
             <button
               onClick={close}

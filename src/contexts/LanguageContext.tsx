@@ -71,7 +71,9 @@ export interface Translations {
         doublon avec le kicker d'en-tête « What we do ». */
     gridKicker: string;
     title: string;
-    introShort: string;
+    /** Intro éditoriale validée client (21/09) — 4 ¶ + ligne de clôture */
+    introParagraphs: string[];
+    introClosing: string;
     sections: ActivitySectionData[];
     ctaButton: string;
     slotLabel: string;
@@ -269,34 +271,40 @@ const translations: Record<Language, Translations> = {
       kicker: 'What we do',
       gridKicker: 'At a glance',
       title: 'Brands, festivals, nights and listening sessions.',
-      introShort: 'Orange Decibel is a High-End Sound System born in France — Hi-Fi precision and professional power, for brands, festivals, nights and listening sessions.',
+      introParagraphs: [
+        "Sound has the power to awaken emotions and transform an event. It is not a mere accessory, but the beating heart of every experience.",
+        "Reading venues, artists and our clients' intentions is part of our DNA — it is what allows us to deliver creative sound solutions, whatever the brief.",
+        "Our proactive approach guarantees a reliable, powerful and constantly evolving system. With a team of passionate people and our own workshop, we offer a personal, fast and exclusive service.",
+        "Through a unique sound, we help you captivate your audience and amplify the essence of your project.",
+      ],
+      introClosing: "Let's create the sonic identity of your event together.",
       sections: [
         {
           id: 'brands',
           kicker: 'Brand events',
           title: 'Brands & labels.',
-          text: 'Launch nights, collaborations, exhibitions and DJ sets — we design the sound of brand events, in France and in Italy. From the Nike × Rassvet « Dawn Space » collaborative launch in Paris to video productions for Netflix — the trailer of « Nouvelle École » — the same care for every format.',
+          text: "Launches, activations, exhibitions, showcases — we give brand events a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging. From the Nike × Rassvet « Dawn Space » launch in Paris to the trailer of Netflix's « Nouvelle École » — the same standard, format after format.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer'],
         },
         {
           id: 'festivals',
           kicker: 'Festivals',
           title: 'Festivals & live stages.',
-          text: "Complete systems for festivals and live stages — power and clarity at every scale. The Fête de la Musique with Superbock × Halfpipe at the Cirque d'hiver, Paris.",
+          text: "Full systems for festivals and live stages — from a single stage to multi-zone setups. Power where it matters, clarity everywhere else: the crowd feels the impact, the artists hear themselves. Assembled, aligned and calibrated by our own crew, however tight the schedule.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
         },
         {
           id: 'nights',
           kicker: 'Night sound',
           title: 'Sound for nights & parties.',
-          text: 'Club nights, warehouse parties, late sessions — sound for nights that go long. Warehouse nights with Loophole in Paris, the Fête de la Musique with Urban Outfitters × Foundation FM × M0NDIAL.',
+          text: "Club nights, warehouse parties, late sessions — sound for nights that go long. Bass you feel in your chest, control you keep at 3 a.m., a system that stays musical from the first record to the last. Warehouse nights with Loophole in Paris; the Fête de la Musique with Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
         {
           id: 'listening',
           kicker: 'Listening',
           title: 'Listening sessions.',
-          text: 'Shared listening, live experimental sound, performances and films — quiet attention, precise reproduction. The inaugural edition of Salomon Listening Grounds: international artists from the experimental sound scene, for a night of live sound, performances, films and shared listening.',
+          text: "Our Hi-Fi DNA at its purest: listening sessions where detail, silence and texture matter as much as level. Analog and acoustic sources, a calibrated system, a room treated like an instrument. The inaugural edition of Salomon Listening Grounds was conceived exactly this way.",
           cases: ['Salomon — Listening Grounds, inaugural edition'],
         },
       ],
@@ -553,34 +561,40 @@ const translations: Record<Language, Translations> = {
       kicker: 'Ce que nous faisons',
       gridKicker: "En un coup d'œil",
       title: 'Marques, festivals, soirées et listening.',
-      introShort: "Orange Decibel est un sound system haut de gamme né en France — précision Hi-Fi et puissance professionnelle, pour les marques, les festivals, les soirées et les listening.",
+      introParagraphs: [
+        "Le son a le pouvoir d'éveiller les émotions et de transformer un événement. Il n'est pas un simple accessoire, mais le cœur battant de chaque expérience.",
+        "Comprendre les lieux, les artistes et les intentions de nos clients fait partie de notre ADN : c'est ce qui nous permet de proposer des solutions sonores créatives, quelle que soit la demande.",
+        "Notre approche proactive garantit un système fiable, puissant et en constante évolution. Avec une équipe de passionnés et notre atelier, nous offrons un service personnalisé, rapide et exclusif.",
+        "À travers un son unique, nous vous aidons à captiver votre audience et à amplifier l'essence de votre projet.",
+      ],
+      introClosing: "Créons ensemble l'identité sonore de votre événement.",
       sections: [
         {
           id: 'brands',
           kicker: 'Événements de marques',
           title: 'Marques & labels.',
-          text: "Soirées de lancement, collaborations, expositions et DJ sets — nous concevons le son des événements de marques, en France et en Italie. Du lancement collaboratif Nike × Rassvet « Dawn Space » à Paris aux productions vidéo pour Netflix — la bande-annonce de « Nouvelle École » — le même soin pour chaque format.",
+          text: "Lancements, activations, expositions, showcases — nous donnons aux événements de marques un son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie. Du lancement Nike × Rassvet « Dawn Space » à Paris à la bande-annonce de « Nouvelle École » pour Netflix — la même exigence, format après format.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce'],
         },
         {
           id: 'festivals',
           kicker: 'Festivals',
           title: 'Festivals & scènes live.',
-          text: "Des systèmes complets pour les festivals et les scènes live — puissance et clarté à toutes les échelles. La Fête de la Musique avec Superbock × Halfpipe au Cirque d'hiver, Paris.",
+          text: "Des systèmes complets pour les festivals et les scènes live — d'une scène unique aux dispositifs multi-zones. La puissance là où elle compte, la clarté partout ailleurs : le public ressent l'impact, les artistes s'entendent. Montage, alignement et calibration par notre propre équipe, quel que soit le timing.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
         },
         {
           id: 'nights',
           kicker: 'Sonorisation de soirée',
           title: 'Le son des soirées.',
-          text: "Nuits de club, warehouse parties, sessions tardives — le son des soirées qui durent. Soirées warehouse avec Loophole à Paris, la Fête de la Musique avec Urban Outfitters × Foundation FM × M0NDIAL.",
+          text: "Soirées en club, warehouse parties, sessions tardives — le son des nuits qui durent. Des basses qu'on sent dans la poitrine, un contrôle qu'on garde à 3 h du matin, un système qui reste musical du premier au dernier disque. Les nuits warehouse avec Loophole à Paris ; la Fête de la Musique avec Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Paris', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
         {
           id: 'listening',
           kicker: 'Listening',
           title: "Sessions d'écoute.",
-          text: "Écoute partagée, son live expérimental, performances et films — attention tranquille, reproduction précise. L'édition inaugurale de Salomon Listening Grounds : des artistes internationaux de la scène sonore expérimentale, pour une soirée de son live, de performances, de films et d'écoute partagée.",
+          text: "Notre ADN Hi-Fi à l'état pur : des sessions d'écoute où le détail, le silence et la texture comptent autant que le niveau. Sources analogiques et acoustiques, système calibré, salle traitée comme un instrument. L'édition inaugurale des Salomon Listening Grounds a été pensée exactement ainsi.",
           cases: ['Salomon — Listening Grounds, édition inaugurale'],
         },
       ],
@@ -837,34 +851,40 @@ const translations: Record<Language, Translations> = {
       kicker: 'Cosa facciamo',
       gridKicker: 'In sintesi',
       title: 'Marchi, festival, serate e listening.',
-      introShort: "Orange Decibel è un sound system di alta gamma nato in Francia — precisione Hi-Fi e potenza professionale, per marchi, festival, serate e listening.",
+      introParagraphs: [
+        "Il suono ha il potere di risvegliare le emozioni e di trasformare un evento. Non è un semplice accessorio, ma il cuore pulsante di ogni esperienza.",
+        "Capire i luoghi, gli artisti e le intenzioni dei nostri clienti fa parte del nostro DNA: è ciò che ci permette di proporre soluzioni sonore creative, qualsiasi sia la richiesta.",
+        "Il nostro approccio proattivo garantisce un sistema affidabile, potente e in costante evoluzione. Con una squadra di appassionati e il nostro laboratorio, offriamo un servizio personalizzato, rapido ed esclusivo.",
+        "Attraverso un suono unico, vi aiutiamo a catturare il vostro pubblico e ad amplificare l'essenza del vostro progetto.",
+      ],
+      introClosing: "Creiamo insieme l'identità sonora del vostro evento.",
       sections: [
         {
           id: 'brands',
           kicker: 'Eventi per marchi',
           title: 'Marchi & label.',
-          text: "Serate di lancio, collaborazioni, esposizioni e DJ set — progettiamo il suono degli eventi dei marchi, in Francia e in Italia. Dal lancio collaborativo Nike × Rassvet « Dawn Space » a Parigi alle produzioni video per Netflix — il trailer di « Nouvelle École » — la stessa cura per ogni formato.",
+          text: "Lanci, attivazioni, mostre, showcase — diamo agli eventi dei brand un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia. Dal lancio Nike × Rassvet « Dawn Space » a Parigi al trailer di « Nouvelle École » per Netflix — lo stesso standard, formato dopo formato.",
           cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer'],
         },
         {
           id: 'festivals',
           kicker: 'Festival',
           title: 'Palchi live & festival.',
-          text: "Sistemi completi per festival e palchi live — potenza e chiarezza a ogni scala. La Fête de la Musique con Superbock × Halfpipe al Cirque d'hiver, Parigi.",
+          text: "Sistemi completi per festival e palchi live — da una singola scena a disposizioni multi-zona. Potenza dove serve, chiarezza ovunque: il pubblico sente l'impatto, gli artisti si sentono. Montaggio, allineamento e calibrazione con la nostra squadra, qualsiasi sia il timing.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Parigi"],
         },
         {
           id: 'nights',
           kicker: 'Sonorizzazione serate',
           title: 'Il suono delle serate.',
-          text: "Notti di club, warehouse party, sessioni fino a tardi — il suono delle serate che durano. Serate warehouse con Loophole a Parigi, la Fête de la Musique con Urban Outfitters × Foundation FM × M0NDIAL.",
+          text: "Notti in club, warehouse party, late session — il suono delle notti che durano. Bassi che si sentono nel petto, controllo che si mantiene alle tre del mattino, un sistema che resta musicale dal primo all'ultimo disco. Le notti warehouse con Loophole a Parigi; la Fête de la Musique con Urban Outfitters × Foundation FM × M0NDIAL.",
           cases: ['Soirée Loophole — Warehouse, Parigi', 'Urban Outfitters × Foundation FM × M0NDIAL — Fête de la Musique'],
         },
         {
           id: 'listening',
           kicker: 'Listening',
           title: "Sessioni d'ascolto.",
-          text: "Ascolto condiviso, suono live sperimentale, performance e film — attenzione quieta, riproduzione precisa. L'edizione inaugurale di Salomon Listening Grounds: artisti internazionali della scena sonora sperimentale, per una serata di live, performance, film e ascolto condiviso.",
+          text: "Il nostro DNA Hi-Fi allo stato puro: listening session dove il dettaglio, il silenzio e la texture contano quanto il volume. Sorgenti analogiche e acustiche, sistema calibrato, sala trattata come uno strumento. L'edizione inaugurale dei Salomon Listening Grounds è stata pensata esattamente così.",
           cases: ['Salomon — Listening Grounds, edizione inaugurale'],
         },
       ],
