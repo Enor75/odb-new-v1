@@ -284,7 +284,7 @@ const translations: Record<Language, Translations> = {
           kicker: 'Brand events',
           title: 'Brands & labels.',
           text: "Launches, activations, exhibitions, showcases — we give brand events a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging. From the Nike × Rassvet « Dawn Space » launch in Paris to the trailer of Netflix's « Nouvelle École » — the same standard, format after format.",
-          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer'],
+          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {
           id: 'festivals',
@@ -574,7 +574,7 @@ const translations: Record<Language, Translations> = {
           kicker: 'Événements de marques',
           title: 'Marques & labels.',
           text: "Lancements, activations, expositions, showcases — nous donnons aux événements de marques un son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie. Du lancement Nike × Rassvet « Dawn Space » à Paris à la bande-annonce de « Nouvelle École » pour Netflix — la même exigence, format après format.",
-          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce'],
+          cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce', 'SNIPES × Air Max'],
         },
         {
           id: 'festivals',
@@ -864,7 +864,7 @@ const translations: Record<Language, Translations> = {
           kicker: 'Eventi per marchi',
           title: 'Marchi & label.',
           text: "Lanci, attivazioni, mostre, showcase — diamo agli eventi dei brand un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia. Dal lancio Nike × Rassvet « Dawn Space » a Parigi al trailer di « Nouvelle École » per Netflix — lo stesso standard, formato dopo formato.",
-          cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer'],
+          cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {
           id: 'festivals',

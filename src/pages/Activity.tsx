@@ -11,7 +11,6 @@ import context2Image from '@/assets/context-2.jpeg';
 import heroMainImage from '@/assets/hero-main.jpeg';
 import galleryCatImage from '@/assets/gallery-cat.jpeg';
 import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
-import galleryTeal from '@/assets/gallery-teal.jpeg';
 import galleryBass from '@/assets/gallery-bass.jpg';
 import galleryCello from '@/assets/gallery-cello.jpg';
 // Photos événements (sélection client 21/09)
@@ -28,6 +27,13 @@ import photo33 from '@/assets/photo-33.jpg';
 import photo34 from '@/assets/photo-34.jpg';
 import photo37 from '@/assets/photo-37.jpg';
 import photo38 from '@/assets/photo-38.jpg';
+import photo40 from '@/assets/photo-40.jpg';
+import photo52 from '@/assets/photo-52.jpg';
+import photo53 from '@/assets/photo-53.jpg';
+import photo54 from '@/assets/photo-54.jpg';
+import gallery6 from '@/assets/gallery-6.jpg';
+import gallery7 from '@/assets/gallery-7.jpg';
+import detail2 from '@/assets/detail-2.jpeg';
 
 /**
  * PAGE ACTIVITY — fusion ex-Gallery + ex-Philosophy (17/09).
@@ -71,12 +77,14 @@ const cellBorders = ['border-t', 'border-t border-l', 'border-t md:border-l', 'b
 const HOVER_SLOTS = 3;
 /** Emplacements photos par section — null = encart vide (croix fine) */
 const sectionPhotos: Record<string, (string | null)[]> = {
-  /* Sélection client 21/09 — 3 premières = survol, toutes = lightbox
-     (compteur dynamique NN/<total>). Nights : en attente de photos. */
-  brands: [photo15, photo38, photo34, photo37],
+  /* Sélection client 21/09 (complétée) — 3 premières = survol, toutes =
+     lightbox (compteur dynamique NN/<total>). Nights : en attente.
+     Brands : + SNIPES × Air Max (photo-52/53/54, upload client).
+     Listening : + Salomon (gallery-6, gallery-7, photo-40). */
+  brands: [photo15, photo38, photo34, photo37, photo52, photo53, photo54],
   festivals: [photo1, photo12, photo16],
   nights: [null, null, null],
-  listening: [photo33, photo31, photo26, photo29, photo19, photo21],
+  listening: [photo33, photo31, photo26, photo29, photo19, photo21, gallery6, gallery7, photo40],
 };
 
 /** Encart vide — croix fine + libellé (F7) */
@@ -399,7 +407,7 @@ const Activity = () => {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
-            {[galleryTeal, galleryBass, galleryCello].map((src, i) => (
+            {[detail2, galleryBass, galleryCello].map((src, i) => (
               <div key={i} className="overflow-hidden">
                 <img
                   src={src}
