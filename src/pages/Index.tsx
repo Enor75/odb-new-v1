@@ -6,7 +6,7 @@ import usePageMeta from '@/hooks/usePageMeta';
 import PartnerLogos from '@/components/PartnerLogos';
 import Ticker from '@/components/Ticker';
 import ContactCta from '@/components/ContactCta';
-import heroImage from '@/assets/modular-1.jpeg';
+import heroVideoFrame from '@/assets/hero-video-frame.jpg';
 
 const kickerClass = 'mb-6 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground';
 const arrowLinkClass =
@@ -19,7 +19,9 @@ const arrowLinkClass =
  *
  * Structure (20/09) : hero VIDÉO (`public/videos/compressO-OdB-compressed.mp4`,
  * upload manuel client — poster puis fallback image automatique tant que
- * le fichier est absent) → CTA « Explore » sous la vidéo → déclaration
+ * le fichier est absent). POSTER = PREMIÈRE FRAME DE LA VIDÉO (20/09,
+ * extraite en 2560×1440) : plus de flash de l'ancienne photo pendant les
+ * premiers ms de chargement → CTA « Explore » sous la vidéo → déclaration
  * Philosophy (sans lien flèche) → Partners & Collaborators → Ticker →
  * CTA « Contact us ». Les blocs What we do / Gallery / The system ont
  * été déplacés sur Activity, sous le manifeste (20/09).
@@ -40,7 +42,8 @@ const Index = () => {
             muted
             loop
             playsInline
-            poster={heroImage}
+            preload="auto"
+            poster={heroVideoFrame}
             aria-label="Orange Decibel Sound System"
             className="absolute inset-0 h-full w-full object-cover transform-gpu"
             onError={() => setVideoAvailable(false)}
@@ -52,7 +55,7 @@ const Index = () => {
           </video>
         ) : (
           <img
-            src={heroImage}
+            src={heroVideoFrame}
             alt="Orange Decibel Sound System"
             className="absolute inset-0 h-full w-full object-cover transform-gpu"
           />
