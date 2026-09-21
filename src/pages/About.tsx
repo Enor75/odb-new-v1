@@ -96,7 +96,7 @@ const About = () => {
       </section>
 
       {/* ── The system — trois piliers (déplacé d'Activity, 20/09 ;
-            images réduites : colonne 7→6) ─────────────────────────── */}
+            images réduites 21/09 : colonne 6→4, ~33 % du conteneur) ── */}
       <section className="mx-auto max-w-none px-6 pb-16 md:px-10 md:pb-24">
         <p className="mb-6 border-t border-foreground/15 pt-16 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-24">
           {t.philosophyPage.pillarsKicker}
@@ -106,14 +106,14 @@ const About = () => {
             <div key={pillar.title} className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
               {i % 2 === 0 ? (
                 <>
-                  <div className="film-grain group overflow-hidden md:col-span-6">
+                  <div className="film-grain group overflow-hidden md:col-span-4">
                     <img
                       src={pillarImages[i]}
                       alt={pillar.title}
                       className="aspect-[4/3] w-full object-cover"
                     />
                   </div>
-                  <div className="md:col-span-5 md:col-start-8">
+                  <div className="md:col-span-6 md:col-start-6">
                     <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                       {pillar.title}
                     </h2>
@@ -124,7 +124,7 @@ const About = () => {
                 </>
               ) : (
                 <>
-                  <div className="md:col-span-5 md:col-start-2 md:order-first">
+                  <div className="md:col-span-6 md:col-start-2 md:order-first">
                     <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                       {pillar.title}
                     </h2>
@@ -132,7 +132,7 @@ const About = () => {
                       {pillar.text}
                     </p>
                   </div>
-                  <div className="film-grain group overflow-hidden md:col-span-6 md:col-start-7 md:order-last">
+                  <div className="film-grain group overflow-hidden md:col-span-4 md:col-start-9 md:order-last">
                     <img
                       src={pillarImages[i]}
                       alt={pillar.title}
