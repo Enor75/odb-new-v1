@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import GrainOverlay from '@/components/GrainOverlay';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { Language } from '@/contexts/LanguageContext';
 import type { HeaderSettings } from '@/hooks/useHeaderSettings';
@@ -254,7 +255,7 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
       {/* ── Mobile < lg : dock bas + panneau ─────────────────────────── */}
       <header className="fixed inset-x-2 bottom-2 z-40 lg:hidden">
         <div
-          className="grid overflow-hidden border transition-[grid-template-rows] duration-500"
+          className="relative grid overflow-hidden border transition-[grid-template-rows] duration-500"
           style={{
             gridTemplateRows: open ? '1fr' : '0fr',
             backgroundColor: th.bg,
@@ -284,6 +285,8 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
               </li>
             </ul>
           </nav>
+          {/* Grain animé newformcap (21/09) — texture « pellicule » du panneau */}
+          <GrainOverlay />
         </div>
 
         {/* Barre du dock : marque + Menu/Close */}

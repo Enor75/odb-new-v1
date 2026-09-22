@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import GrainOverlay from '@/components/GrainOverlay';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { Language } from '@/contexts/LanguageContext';
 
@@ -155,6 +156,11 @@ const Header = () => {
               </Link>
             ))}
           </nav>
+
+          {/* Grain animé newformcap (21/09) — texture « pellicule » par-dessus
+              le fond du menu, exactement comme newformcap.com (opacity 0.6,
+              tuile 15 %, steps(6) 0.3s) */}
+          <GrainOverlay />
 
           {/* Sélecteur de langue — en bas à GAUCHE (les liens restent à droite) */}
           <div
