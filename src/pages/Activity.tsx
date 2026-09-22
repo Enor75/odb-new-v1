@@ -250,7 +250,9 @@ const Activity = () => {
 
       {/* ── Quatre sections thématiques ───────────────────────────── */}
       <section className="mx-auto max-w-none px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-14">
-        <div className="flex flex-col gap-16 md:gap-24">
+        {/* 21/09 : filets entre modules SUPPRIMÉS (demande client) et
+            modules resserrés à la suite. */}
+        <div className="flex flex-col gap-10 md:gap-14">
           {sections.map((section, i) => {
             const photos = sectionPhotos[section.id] ?? [];
 
@@ -280,9 +282,7 @@ const Activity = () => {
             return (
               <Reveal key={section.id}>
                 <div
-                  className={`grid items-center gap-10 md:grid-cols-12 md:gap-8 ${
-                    i > 0 ? 'border-t border-foreground/15 pt-16 md:pt-24' : ''
-                  }`}
+                  className="grid items-center gap-10 md:grid-cols-12 md:gap-8"
                 >
                   {i % 2 === 0 ? (
                     <>
@@ -402,7 +402,7 @@ const Activity = () => {
       )}
       {/* ── Aperçu galerie (déplacé de la home, 20/09) — photos sans
             lien : la galerie EST cette page ───────────────────────── */}
-      <section className="px-6 pb-16 md:px-10 md:pb-24 lg:pb-28">
+      <section className="px-6 pb-0 md:px-10">
         <div className="mx-auto max-w-none">
           <p className={kickerClass}>{t.home.galleryKicker}</p>
           <h2 className="mb-8 max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight md:mb-10 md:text-4xl">

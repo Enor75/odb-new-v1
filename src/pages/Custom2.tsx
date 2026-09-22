@@ -135,7 +135,7 @@ const Custom2 = () => {
       </section>
 
       {/* ── Rail (desktop) + phases ── */}
-      <div className="mx-auto max-w-none px-6 pb-16 pt-14 md:px-10 md:pb-24 md:pt-20">
+      <div className="mx-auto max-w-none px-6 pb-0 pt-14 md:px-10 md:pt-20">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           {/* Rail « régle » (21/09, refonte) : épine verticale 1px qui se
               remplit d'orange au scroll + ticks horizontaux par phase.
@@ -215,7 +215,9 @@ const Custom2 = () => {
                 ref={(el) => {
                   phaseRefs.current[i] = el;
                 }}
-                className="scroll-mt-24 border-t border-foreground/15 py-14 md:py-20"
+                className={`scroll-mt-24 border-t border-foreground/15 pt-14 md:pt-20 ${
+                  i === c2.phases.length - 1 ? 'pb-0' : 'pb-14 md:pb-20'
+                }`}
               >
                 <Reveal>
                   <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">

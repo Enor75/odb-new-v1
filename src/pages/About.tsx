@@ -98,7 +98,7 @@ const About = () => {
 
       {/* ── The system — trois piliers (déplacé d'Activity, 20/09 ;
             images réduites 21/09 : colonne 6→4, ~33 % du conteneur) ── */}
-      <section className="mx-auto max-w-none px-6 pb-16 md:px-10 md:pb-24">
+      <section className="mx-auto max-w-none px-6 pb-0 md:px-10">
         <p className="mb-6 border-t border-foreground/15 pt-16 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-24">
           {t.philosophyPage.pillarsKicker}
         </p>
