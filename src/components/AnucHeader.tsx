@@ -58,6 +58,7 @@ const THEMES = {
 const ACCENT_ANUC: Record<string, string> = {
   activity: '#9A682C',
   custom: '#707455',
+  custom2: '#707455',
   about: '#4A626F',
   contact: '#976751',
 };
@@ -149,6 +150,7 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
   const items = [
     { to: '/activity', key: 'activity', label: t.nav.activity },
     { to: '/custom', key: 'custom', label: t.nav.custom },
+    { to: '/custom-2', key: 'custom2', label: t.nav.custom2 },
     { to: '/about', key: 'about', label: t.nav.about },
     { to: '/contact', key: 'contact', label: t.nav.contact },
   ];
@@ -218,7 +220,7 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
         style={{ backgroundColor: th.bg, borderColor: th.hairline }}
       >
         <nav aria-label="Principale">
-          <ul className="grid grid-cols-6" style={{ height: h, color: th.ink }}>
+          <ul className="grid grid-cols-7" style={{ height: h, color: th.ink }}>
             <li>
               <FaceLink
                 to="/"

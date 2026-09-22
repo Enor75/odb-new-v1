@@ -34,6 +34,7 @@ export interface Translations {
     home: string;
     activity: string;
     custom: string;
+    custom2: string;
     about: string;
     contact: string;
     menu: string;
@@ -115,6 +116,22 @@ export interface Translations {
     /** Libellé des emplacements photos vides */
     photoLabel: string;
   };
+  custom2Page: {
+    kicker: string;
+    title: string;
+    intro: string;
+    /** Libellé « Phase » (kicker de chaque phase) */
+    phaseLabel: string;
+    deliverablesLabel: string;
+    /** 6 phases du parcours (rail de navigation court + contenu) */
+    phases: {
+      short: string;
+      title: string;
+      subtitle: string;
+      points: string[];
+      deliverables: string;
+    }[];
+  };
   aboutPage: {
     kicker: string;
     paragraphs: string[];
@@ -191,6 +208,8 @@ export interface Translations {
     activityDesc: string;
     customTitle: string;
     customDesc: string;
+    custom2Title: string;
+    custom2Desc: string;
     aboutTitle: string;
     aboutDesc: string;
     contactTitle: string;
@@ -206,7 +225,7 @@ export interface Translations {
 
 const translations: Record<Language, Translations> = {
   en: {
-    nav: { home: 'Home', activity: 'Activity', custom: 'Custom', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
+    nav: { home: 'Home', activity: 'Activity', custom: 'Custom', custom2: 'Custom 2', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
     hero: {
       caption: 'High-End Sound System — Designed in France, based in Paris & Milan',
     },
@@ -355,6 +374,84 @@ const translations: Record<Language, Translations> = {
         { name: '18″ Bass Cabinets', type: 'Bass-reflex / custom design', drivers: 'Depending on the system: 18Sound 18LW1400, 18TLW3000 or 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 depending on the configuration', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Depending on the model', weight: 'Depending on the model', finish: 'To be confirmed' },
       ],
     },
+    custom2Page: {
+      kicker: 'Custom',
+      title: 'The journey of your system.',
+      intro: 'From the first conversation to the first record — how we design, build and tune a system that is yours alone.',
+      phaseLabel: 'Phase',
+      deliverablesLabel: 'Deliverables',
+      phases: [
+        {
+          short: 'Brief',
+          title: 'Pre-conception.',
+          subtitle: 'Understanding your needs & constraints',
+          points: [
+            'Initial meetings and on-site visit: the project takes shape in a design brief — use-case scenarios and site-specific constraints.',
+            'Analysis of the space: architecture, key elements, everything that shapes sound behaviour.',
+            'Definition of the required system and audio sources, according to the listening experience you want.',
+          ],
+          deliverables: 'Briefing summary, moodboards, benchmark, initial sketches.',
+        },
+        {
+          short: 'Concept',
+          title: 'Concept development.',
+          subtitle: 'Exploring directions, generating concepts',
+          points: [
+            'Collaborative work sessions: we explore two or three directions for your system.',
+            'Presentation of the concepts — sketches, drawings, early 3D models, material samples, reference images.',
+            'Dialogue with your architects and scenographers on layout, materials and staging, for the best possible acoustic result.',
+          ],
+          deliverables: 'Concept sketches, design variations, initial 3D models, material choices.',
+        },
+        {
+          short: 'Refinement',
+          title: 'Design refinement.',
+          subtitle: 'Detailing the selected concept',
+          points: [
+            'Development of the chosen direction — research and validation of every element and detail.',
+            'Precise costing of cabinets and components, adjusted together.',
+            '3D modelling and rendering of the final system.',
+            'Sourcing of complementary equipment — turntables, mixers, sources — in line with the artistic direction.',
+          ],
+          deliverables: 'High-fidelity 3D renders and detailed visuals.',
+        },
+        {
+          short: 'Final design',
+          title: 'Final design.',
+          subtitle: 'Preparing for manufacturing',
+          points: [
+            'Precise design of every speaker component and detailed modelling for CNC machining.',
+            'Preparation of technical files and exports, according to manufacturing constraints.',
+            'Ordering of the materials and components required for production.',
+            'Hand finishing of individual parts.',
+          ],
+          deliverables: 'Production-ready 3D files (CAD), technical drawings, material & finish specifications.',
+        },
+        {
+          short: 'Build',
+          title: 'Handcrafted production.',
+          subtitle: 'Building your system in our workshop',
+          points: [
+            'Hand assembly of every cabinet in our workshop.',
+            'Electronics: soldering, audio cabling, amplifier mounting, installation of the drivers.',
+            'First verification tests and acoustic measurements, followed by adjustments and finish detailing.',
+            'Signature and numbering of your system; preparation for transport.',
+          ],
+          deliverables: 'Workshop validation, measurement report, pre-series adjustments.',
+        },
+        {
+          short: 'Delivery',
+          title: 'Delivery & calibration.',
+          subtitle: 'Installation and first listen',
+          points: [
+            'Delivery and installation on site — positioning, cable routing, configuration of the equipment.',
+            'Sound tuning and final equalisation, in your presence, according to your listening habits.',
+            'Support on your first events — we stay with the system until it sounds right.',
+          ],
+          deliverables: 'Installation guidelines, care & maintenance documentation, on-site support.',
+        },
+      ],
+    },
     aboutPage: {
       kicker: 'About',
       paragraphs: [
@@ -478,6 +575,7 @@ const translations: Record<Language, Translations> = {
       activityDesc: 'Brand events, festivals, nights and listening sessions by the Orange Decibel sound system.',
       customTitle: 'Custom — Orange Decibel',
       customDesc: 'Custom sound stages and tailor-made systems for brands and venues.',
+      custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: 'From brief to calibration — the six phases of a custom Orange Decibel system.',
       aboutTitle: 'About — Orange Decibel',
       aboutDesc: 'Orange Decibel, a sound system collective based in Paris and Milan.',
       contactTitle: 'Contact — Orange Decibel',
@@ -488,7 +586,7 @@ const translations: Record<Language, Translations> = {
   },
 
   fr: {
-    nav: { home: 'Accueil', activity: 'Activités', custom: 'Sur mesure', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
+    nav: { home: 'Accueil', activity: 'Activités', custom: 'Sur mesure', custom2: 'Custom 2', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
     hero: {
       caption: 'Système Son Haut de Gamme — Conçu en France, basé à Paris et à Milan',
     },
@@ -632,6 +730,84 @@ const translations: Record<Language, Translations> = {
         { name: 'Caissons de basses 18″', type: 'Bass-reflex / conception sur mesure', drivers: 'Selon les systèmes : 18Sound 18LW1400, 18TLW3000 ou 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 selon la configuration', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Selon le modèle', weight: 'Selon le modèle', finish: 'À préciser' },
       ],
     },
+    custom2Page: {
+      kicker: 'Sur mesure',
+      title: 'Le chemin de votre système.',
+      intro: 'De la première conversation au premier disque — comment nous concevons, fabriquons et réglons un système qui n’appartient qu’à vous.',
+      phaseLabel: 'Phase',
+      deliverablesLabel: 'Livrables',
+      phases: [
+        {
+          short: 'Brief',
+          title: 'Pré-conception.',
+          subtitle: 'Comprendre vos besoins et vos contraintes',
+          points: [
+            'Premières rencontres et visite du lieu : le projet prend forme dans une note de conception — scénarios d’usage et contraintes du site.',
+            'Analyse de l’espace : architecture, éléments clés, tout ce qui façonne le comportement du son.',
+            'Définition du système et des sources nécessaires, selon l’expérience d’écoute visée.',
+          ],
+          deliverables: 'Note de brief, moodboards, benchmark, premiers croquis.',
+        },
+        {
+          short: 'Concept',
+          title: 'Développement du concept.',
+          subtitle: 'Explorer des directions, générer des concepts',
+          points: [
+            'Sessions de travail collaboratives : nous explorons deux ou trois directions pour votre système.',
+            'Présentation des concepts — croquis, dessins, premières 3D, échantillons de matériaux, images de référence.',
+            'Dialogue avec vos architectes et scénographes sur l’agencement, les matériaux et la scénographie, pour le meilleur résultat acoustique.',
+          ],
+          deliverables: 'Croquis concept, variantes de design, premières 3D, choix de matériaux.',
+        },
+        {
+          short: 'Affinage',
+          title: 'Affinage du design.',
+          subtitle: 'Détailler le concept retenu',
+          points: [
+            'Développement de la direction retenue — recherche et validation de chaque élément et détail.',
+            'Chiffrage précis des caissons et composants, ajusté ensemble.',
+            'Modélisation 3D et rendus du système final.',
+            'Sourcing d’équipements complémentaires — platines, mixeurs, sources — en accord avec la direction artistique.',
+          ],
+          deliverables: 'Rendus 3D haute fidélité et visuels détaillés.',
+        },
+        {
+          short: 'Design final',
+          title: 'Design final.',
+          subtitle: 'Préparer la fabrication',
+          points: [
+            'Conception précise de chaque composant et modélisation détaillée pour l’usinage CNC.',
+            'Préparation des dossiers techniques et exports, selon les contraintes de fabrication.',
+            'Commande des matériaux et composants nécessaires à la production.',
+            'Finition à la main des pièces individuelles.',
+          ],
+          deliverables: 'Fichiers 3D de production (CAO), plans techniques, spécifications matériaux et finitions.',
+        },
+        {
+          short: 'Fabrication',
+          title: 'Fabrication à la main.',
+          subtitle: 'Construire votre système à l’atelier',
+          points: [
+            'Assemblage à la main de chaque caisson, à notre atelier.',
+            'Électronique : soudure, câblage audio, montage des amplificateurs, installation des haut-parleurs.',
+            'Premiers tests de vérification et mesures acoustiques, puis ajustements et finitions.',
+            'Signature et numérotation de votre système ; préparation au transport.',
+          ],
+          deliverables: 'Validation atelier, rapport de mesure, ajustements de pré-série.',
+        },
+        {
+          short: 'Livraison',
+          title: 'Livraison & calibration.',
+          subtitle: 'Installation et première écoute',
+          points: [
+            'Livraison et installation sur site — positionnement, passage des câbles, configuration.',
+            'Réglage du son et égalisation finale, en votre présence, selon vos habitudes d’écoute.',
+            'Accompagnement de vos premiers événements — nous restons avec le système jusqu’à ce que le son soit juste.',
+          ],
+          deliverables: 'Guides d’installation, documentation d’entretien, présence au montage.',
+        },
+      ],
+    },
     aboutPage: {
       kicker: 'À propos',
       paragraphs: [
@@ -755,6 +931,7 @@ const translations: Record<Language, Translations> = {
       activityDesc: 'Événements de marques, festivals, soirées et listening par le sound system Orange Decibel.',
       customTitle: 'Sur mesure — Orange Decibel',
       customDesc: 'Scènes sonores et systèmes conçus sur mesure pour marques et lieux.',
+      custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: "Du brief à la calibration — les six phases d'un système Orange Decibel sur mesure.",
       aboutTitle: 'À propos — Orange Decibel',
       aboutDesc: 'Orange Decibel, un collectif sound system basé à Paris et à Milan.',
       contactTitle: 'Contact — Orange Decibel',
@@ -765,7 +942,7 @@ const translations: Record<Language, Translations> = {
   },
 
   it: {
-    nav: { home: 'Home', activity: 'Attività', custom: 'Su misura', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
+    nav: { home: 'Home', activity: 'Attività', custom: 'Su misura', custom2: 'Custom 2', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
     hero: {
       caption: 'High-End Sound System — Progettato in Francia, con base a Parigi e Milano',
     },
@@ -909,6 +1086,84 @@ carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio
         { name: 'Sub 18″', type: 'Bass-reflex / progettazione su misura', drivers: 'Secondo i sistemi: 18Sound 18LW1400, 18TLW3000 o 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 secondo la configurazione', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Secondo il modello', weight: 'Secondo il modello', finish: 'Da definire' },
       ],
     },
+    custom2Page: {
+      kicker: 'Su misura',
+      title: 'Il percorso del vostro sistema.',
+      intro: 'Dalla prima conversazione al primo disco — come progettiamo, costruiamo e regoliamo un sistema che è solo vostro.',
+      phaseLabel: 'Fase',
+      deliverablesLabel: 'Consegnabili',
+      phases: [
+        {
+          short: 'Brief',
+          title: 'Pre-concezione.',
+          subtitle: 'Capire le vostre esigenze e i vincoli',
+          points: [
+            'Primi incontri e visita sul posto: il progetto prende forma in un brief di progettazione — scenari d’uso e vincoli del sito.',
+            'Analisi dello spazio: architettura, elementi chiave, tutto ciò che modella il comportamento del suono.',
+            'Definizione del sistema e delle sorgenti necessarie, secondo l’esperienza d’ascolto desiderata.',
+          ],
+          deliverables: 'Sintesi del brief, moodboard, benchmark, primi schizzi.',
+        },
+        {
+          short: 'Concept',
+          title: 'Sviluppo del concept.',
+          subtitle: 'Esplorare direzioni, generare concept',
+          points: [
+            'Sessioni di lavoro collaborative: esploriamo due o tre direzioni per il vostro sistema.',
+            'Presentazione dei concept — schizzi, disegni, prime 3D, campioni di materiali, immagini di riferimento.',
+            'Dialogo con i vostri architetti e scenografi su layout, materiali e allestimento, per il miglior risultato acustico.',
+          ],
+          deliverables: 'Schizzi concettuali, varianti di design, prime 3D, scelta dei materiali.',
+        },
+        {
+          short: 'Rifinitura',
+          title: 'Rifinitura del design.',
+          subtitle: 'Dettagliare il concept scelto',
+          points: [
+            'Sviluppo della direzione scelta — ricerca e validazione di ogni elemento e dettaglio.',
+            'Preventivo preciso di casse e componenti, aggiustato insieme.',
+            'Modellazione 3D e rendering del sistema finale.',
+            'Ricerca di equipaggiamenti complementari — giradischi, mixer, sorgenti — in linea con la direzione artistica.',
+          ],
+          deliverables: 'Rendering 3D ad alta fedeltà e visuali dettagliate.',
+        },
+        {
+          short: 'Design finale',
+          title: 'Design finale.',
+          subtitle: 'Preparare la produzione',
+          points: [
+            'Progettazione precisa di ogni componente e modellazione dettagliata per la lavorazione CNC.',
+            'Preparazione dei file tecnici e degli export, secondo i vincoli di produzione.',
+            'Ordine dei materiali e dei componenti necessari alla produzione.',
+            'Finitura a mano dei singoli pezzi.',
+          ],
+          deliverables: 'File 3D di produzione (CAD), disegni tecnici, specifiche di materiali e finiture.',
+        },
+        {
+          short: 'Costruzione',
+          title: 'Produzione artigianale.',
+          subtitle: 'Costruire il vostro sistema in laboratorio',
+          points: [
+            'Assemblaggio a mano di ogni cassa, nel nostro laboratorio.',
+            'Elettronica: saldatura, cablaggio audio, montaggio degli amplificatori, installazione degli altoparlanti.',
+            'Primi test di verifica e misurazioni acustiche, seguiti da aggiustamenti e finiture.',
+            'Firma e numerazione del vostro sistema; preparazione al trasporto.',
+          ],
+          deliverables: 'Validazione in laboratorio, rapporto di misura, aggiustamenti pre-serie.',
+        },
+        {
+          short: 'Consegna',
+          title: 'Consegna e calibrazione.',
+          subtitle: 'Installazione e primo ascolto',
+          points: [
+            'Consegna e installazione sul sito — posizionamento, passaggio dei cavi, configurazione.',
+            'Regolazione del suono ed equalizzazione finale, in vostra presenza, secondo le vostre abitudini d’ascolto.',
+            'Supporto ai primi eventi — restiamo con il sistema finché il suono non è giusto.',
+          ],
+          deliverables: 'Linee guida di installazione, documentazione di manutenzione, supporto on-site.',
+        },
+      ],
+    },
     aboutPage: {
       kicker: 'Chi siamo',
       paragraphs: [
@@ -1032,6 +1287,7 @@ carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio
       activityDesc: 'Eventi per marchi, festival, serate e listening del sound system Orange Decibel.',
       customTitle: 'Su misura — Orange Decibel',
       customDesc: 'Palchi sonori e sistemi su misura per brand e luoghi.',
+      custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: 'Dal brief alla calibrazione — le sei fasi di un sistema Orange Decibel su misura.',
       aboutTitle: 'Chi siamo — Orange Decibel',
       aboutDesc: 'Orange Decibel, un collettivo sound system con base a Parigi e Milano.',
       contactTitle: 'Contatti — Orange Decibel',
