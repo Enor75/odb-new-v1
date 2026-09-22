@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ContactCta from '@/components/ContactCta';
 import usePageMeta from '@/hooks/usePageMeta';
@@ -43,8 +44,8 @@ const Custom = () => {
   const sp = cp.speakers[speaker];
   const cycleSpeaker = (dir: number) =>
     setSpeaker((i) => (i + dir + cp.speakers.length) % cp.speakers.length);
-  const arrowBtn =
-    'flex h-10 w-10 items-center justify-center border border-foreground/15 font-mono text-base text-foreground/70 transition-colors hover:border-foreground/50 hover:text-foreground';
+  /* Flèches chevrons (21/09) — glyphes fins SANS carré de bouton */
+  const chevronBtn = 'p-2 text-foreground/40 transition-colors hover:text-foreground';
 
   const sectionTitle = (strong: string, rest: string) => (
     <h2 className="font-serif text-2xl font-light leading-snug tracking-tight md:text-4xl">
@@ -147,42 +148,11 @@ const Custom = () => {
         </div>
       </section>
 
-      {/* ── Le chemin de création — process en 5 étapes (20/09) :
-            le client se projette dans la construction de ses enceintes. */}
-      <section className="mx-auto mt-16 max-w-none px-6 md:mt-24 md:px-10">
-        <Reveal>
-          <p className="mb-8 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-            {cp.process.kicker}
-          </p>
-          <h2 className="max-w-2xl font-serif text-2xl font-light tracking-tight md:text-4xl">
-            {cp.process.title}
-          </h2>
-        </Reveal>
-        <div className="mt-10 border-b border-foreground/15 md:mt-14">
-          {cp.process.steps.map((step, i) => (
-            <Reveal key={step.title} delay={i * 60}>
-              <div className="grid gap-3 border-t border-foreground/15 py-8 md:grid-cols-12 md:gap-8 md:py-10">
-                <p className="font-mono text-[11px] tracking-[0.25em] text-primary md:col-span-1">
-                  {String(i + 1).padStart(2, '0')}
-                </p>
-                <h3 className="font-serif text-xl font-light tracking-tight md:col-span-4 md:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="text-sm font-light leading-relaxed text-muted-foreground md:col-span-6 md:col-start-7">
-                  {step.text}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
       {/* ── Caractéristiques : carnet de conception — CARROUSEL des 4
-            enceintes (21/09) : flèches ‹ › pour faire défiler fiche
-            technique + 2 emplacements photos côte à côte (vides pour
-            l'instant). Largeur des specs RÉDUITE pour laisser place aux
-            deux images à droite (cf. stoneacoustic.com). Le sous-titre
-            « The system in numbers » a été supprimé. ──────────────── */}
+            enceintes (21/09, ajusté) : flèches CHEVRONS flottantes aux
+            bords (sans carré de bouton), specs étirées (col 6/12), les
+            2 emplacements photos s'étirent jusqu'à aligner leur bas sur
+            la dernière ligne de specs (« Finition »). ───────────────── */}
       <section>
         <div className="mx-auto max-w-none px-6 pt-12 pb-0 md:px-10 md:pt-20">
           <Reveal>
@@ -195,103 +165,111 @@ const Custom = () => {
           </Reveal>
 
           <Reveal delay={100}>
-            {/* Contrôles mobile : ‹ compteur › */}
+            {/* Contrôles mobile : ‹ compteur › (chevrons sans carré) */}
             <div className="mt-8 flex items-center justify-between md:hidden">
-              <button onClick={() => cycleSpeaker(-1)} aria-label="Enceinte précédente" className={arrowBtn}>
-                ‹
+              <button onClick={() => cycleSpeaker(-1)} aria-label="Enceinte précédente" className={chevronBtn}>
+                <ChevronLeft className="h-6 w-6" strokeWidth={1.25} />
               </button>
               <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50">
                 {String(speaker + 1).padStart(2, '0')} / {String(cp.speakers.length).padStart(2, '0')}
               </span>
-              <button onClick={() => cycleSpeaker(1)} aria-label="Enceinte suivante" className={arrowBtn}>
-                ›
+              <button onClick={() => cycleSpeaker(1)} aria-label="Enceinte suivante" className={chevronBtn}>
+                <ChevronRight className="h-6 w-6" strokeWidth={1.25} />
               </button>
             </div>
 
-            <div className="mt-6 grid gap-6 md:mt-10 md:grid-cols-12 md:gap-4">
-              {/* Flèche gauche — desktop */}
+            <div className="relative mt-6 md:mt-10">
+              {/* Flèches chevrons flottantes — desktop, aux bords de la
+                  section (pas de carré visible, léger glissement au survol) */}
               <button
                 onClick={() => cycleSpeaker(-1)}
                 aria-label="Enceinte précédente"
-                className={`${arrowBtn} hidden self-center md:col-span-1 md:flex`}
+                className="group absolute -left-2 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block lg:-left-5"
               >
-                ‹
+                <ChevronLeft
+                  className="h-8 w-8 transition-transform duration-300 group-hover:-translate-x-1"
+                  strokeWidth={0.75}
+                />
               </button>
-
-              {/* Fiche technique (largeur réduite : col 5/12) */}
-              <div className="md:col-span-5" key={`spec-${speaker}`}>
-                <div className="odb-slide-in">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
-                      {sp.name}
-                    </p>
-                    <span className="hidden font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/40 md:block">
-                      {String(speaker + 1).padStart(2, '0')} / {String(cp.speakers.length).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <div className="mt-6">
-                    <div className="flex items-baseline justify-between border-b-[3px] border-foreground pb-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
-                      <span>{cp.specHeaderA}</span>
-                      <span>{cp.specHeaderB}</span>
-                    </div>
-                    {(
-                      [
-                        ['type', cp.specLabels.type],
-                        ['drivers', cp.specLabels.drivers],
-                        ['amplification', cp.specLabels.amplification],
-                        ['bandwidth', cp.specLabels.bandwidth],
-                        ['dimensions', cp.specLabels.dimensions],
-                        ['weight', cp.specLabels.weight],
-                        ['finish', cp.specLabels.finish],
-                      ] as const
-                    ).map(([key, label]) => (
-                      <div
-                        key={key}
-                        className="flex items-baseline justify-between gap-4 border-b border-foreground py-3"
-                      >
-                        <span className="shrink-0 text-sm font-light text-foreground/90">{label}</span>
-                        <span className="max-w-[62%] text-right text-sm font-light text-foreground/50">
-                          {sp[key]}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* 2 emplacements photos côte à côte (vides — croix fine) */}
-              <div className="grid grid-cols-2 gap-3 md:col-span-5" key={`img-${speaker}`}>
-                {[0, 1].map((n) => (
-                  <div
-                    key={n}
-                    className="odb-slide-in flex aspect-[4/5] flex-col items-center justify-center border border-foreground/10 bg-foreground/[0.04]"
-                    style={{ animationDelay: `${n * 90}ms` }}
-                  >
-                    <svg
-                      className="h-7 w-7 text-foreground/25"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 4v16M4 12h16" />
-                    </svg>
-                    <p className="mt-3 px-2 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50">
-                      {cp.photoLabel}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Flèche droite — desktop */}
               <button
                 onClick={() => cycleSpeaker(1)}
                 aria-label="Enceinte suivante"
-                className={`${arrowBtn} hidden self-center md:col-span-1 md:flex`}
+                className="group absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block lg:-right-5"
               >
-                ›
+                <ChevronRight
+                  className="h-8 w-8 transition-transform duration-300 group-hover:translate-x-1"
+                  strokeWidth={0.75}
+                />
               </button>
+
+              <div className="grid gap-6 md:grid-cols-12 md:gap-8">
+                {/* Fiche technique — étirée col 6/12 */}
+                <div className="md:col-span-6" key={`spec-${speaker}`}>
+                  <div className="odb-slide-in">
+                    <div className="flex items-baseline justify-between gap-4">
+                      <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-primary">
+                        {sp.name}
+                      </p>
+                      <span className="hidden font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/40 md:block">
+                        {String(speaker + 1).padStart(2, '0')} / {String(cp.speakers.length).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="mt-6">
+                      <div className="flex items-baseline justify-between border-b-[3px] border-foreground pb-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
+                        <span>{cp.specHeaderA}</span>
+                        <span>{cp.specHeaderB}</span>
+                      </div>
+                      {(
+                        [
+                          ['type', cp.specLabels.type],
+                          ['drivers', cp.specLabels.drivers],
+                          ['amplification', cp.specLabels.amplification],
+                          ['bandwidth', cp.specLabels.bandwidth],
+                          ['dimensions', cp.specLabels.dimensions],
+                          ['weight', cp.specLabels.weight],
+                          ['finish', cp.specLabels.finish],
+                        ] as const
+                      ).map(([key, label]) => (
+                        <div
+                          key={key}
+                          className="flex items-baseline justify-between gap-4 border-b border-foreground py-3.5"
+                        >
+                          <span className="shrink-0 text-sm font-light text-foreground/90">{label}</span>
+                          <span className="max-w-[62%] text-right text-sm font-light text-foreground/50">
+                            {sp[key]}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 2 emplacements photos côte à côte — étirés jusqu'au
+                    bas de la fiche technique (ligne « Finition ») */}
+                <div className="grid grid-cols-2 gap-3 md:col-span-6" key={`img-${speaker}`}>
+                  {[0, 1].map((n) => (
+                    <div
+                      key={n}
+                      className="odb-slide-in flex min-h-[300px] flex-col items-center justify-center border border-foreground/10 bg-foreground/[0.04] md:min-h-0"
+                      style={{ animationDelay: `${n * 90}ms` }}
+                    >
+                      <svg
+                        className="h-7 w-7 text-foreground/25"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 4v16M4 12h16" />
+                      </svg>
+                      <p className="mt-3 px-2 text-center font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50">
+                        {cp.photoLabel}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
