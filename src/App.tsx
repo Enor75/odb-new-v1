@@ -31,7 +31,9 @@ const App = () => {
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        {/* basename piloté par Vite : "/" en dev, "/odb-new-v1/" sur GitHub
+            Pages (build --base) — les routes internes restent correctes. */}
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           {/* Wrapper positionné : en mode « défile », la couche de fond
               (absolute inset-0, voir BackgroundPhoto) épouse exactement
               la hauteur réelle du contenu — aucune mesure JS (l'ancienne
