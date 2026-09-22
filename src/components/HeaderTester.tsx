@@ -1,4 +1,5 @@
 import { useHeaderSettings } from '@/hooks/useHeaderSettings';
+import TestBox from '@/components/TestBox';
 
 /**
  * BOX DE TEST HEADER (20/09) — TEMPORAIRE, à retirer au choix final
@@ -50,7 +51,7 @@ const HeaderTester = () => {
   };
 
   return (
-    <div className="fixed right-4 top-14 z-[95] border border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
+    <TestBox id="header" title="header">
       <Row
         label="header"
         value={settings.variant}
@@ -91,7 +92,7 @@ const HeaderTester = () => {
           />
         </>
       )}
-    </div>
+    </TestBox>
   );
 };
 

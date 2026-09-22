@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import TestBox from '@/components/TestBox';
 
 /**
  * FOND (PHOTO OU COULEUR) — phase de test (17/09).
@@ -172,6 +174,13 @@ const BackgroundPhoto = () => {
   const btn =
     'border border-foreground/15 px-1.5 py-0.5 transition-colors hover:border-foreground/50 hover:text-foreground';
 
+  /* Box de réglages rendue par portail dans la colonne #odb-testboxes
+     (App) — s'empile avec les autres box de test, repliable (21/09). */
+  const [boxHost, setBoxHost] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setBoxHost(document.getElementById('odb-testboxes'));
+  }, []);
+
   return (
     <>
       {/* Couche fond (photo ou couleur) + voile — derrière tout le contenu.
@@ -225,8 +234,12 @@ const BackgroundPhoto = () => {
         </div>
       )}
 
-      {/* Sélecteur de test — à retirer au choix final */}
-      <div className="fixed right-4 top-56 z-[90] border lg:bottom-[72px] lg:top-auto border-foreground/15 bg-background/90 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70 backdrop-blur-md">
+      {/* Sélecteur de test — à retirer au choix final. Rendu par portail
+          dans la colonne #odb-testboxes (voir App) : empilement avec les
+          autres box de test, repliable via TestBox (21/09). */}
+      {boxHost &&
+        createPortal(
+          <TestBox id="bg" title="fond">
         <div className="flex items-center gap-2">
           <span className="text-foreground/40">fond</span>
           <button onClick={() => pick(-1)} aria-label="Fond précédent" className={btn}>‹</button>
@@ -337,7 +350,9 @@ const BackgroundPhoto = () => {
             aria-label="Grain plus intense" className={btn}
           >+</button>
         </div>
-      </div>
+          </TestBox>,
+          boxHost
+        )}
     </>
   );
 };

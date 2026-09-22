@@ -37,10 +37,19 @@ const App = () => {
               mesure au scrollHeight se figeait après resize ou navigation
               et créait un scroll fantôme sous le footer). */}
           <div className="relative min-h-svh">
+            {/* Colonne des box de test (21/09) — box REPLIABLES (onglet
+                compact <-> box complète, persistance odb-box-*), empilées
+                sous le header sur desktop ET mobile. La box « fond » de
+                BackgroundPhoto s'y insère par portail. À RETIRER au ship. */}
+            <div
+              id="odb-testboxes"
+              className="fixed right-4 top-14 z-[95] flex flex-col items-end gap-2"
+            >
+              <HeaderTester />
+              <TypoTester />
+            </div>
             <BackgroundPhoto />
-            <TypoTester />
             <ScrollToTop />
-            <HeaderTester />
             {headerSettings.variant === 'anuc' ? (
               <AnucHeader settings={headerSettings} />
             ) : (
