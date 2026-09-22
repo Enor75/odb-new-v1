@@ -13,9 +13,11 @@ import photo25 from '@/assets/photo-25.jpg';
  * (00→05), sur la structure de garciamateo.com/custom, réinterprétée
  * avec la direction artistique ODB :
  *
- *  · RAIL DE NAVIGATION scroll-spy (desktop ≥ lg) : colonne sticky à
- *    gauche — marqueurs mono cliquables 00→05, ligne verticale 1px qui
- *    se remplit d'orange au fil du scroll (scaleY, GPU).
+ *  · RAIL « RÈGLE » scroll-spy (desktop ≥ lg, refonte 21/09) : colonne
+ *    ÉTROITE (1/12) sticky — épine verticale 1px remplie d'orange au
+ *    scroll + ticks horizontaux par phase avec ONDE DE PROXIMITÉ au
+ *    survol (CodePen NWVvNqy : 40×4px spring, voisins ±1/±2) + labels
+ *    mono flottants au survol.
  *  · Chaque phase : kicker mono orange « PHASE 0N » + titre serif light
  *    + sous-titre serif italique (comme la référence) + points à filets
  *    (Reveal décalé) + encart « LIVRABLES » (hairline + fond discret).
@@ -35,6 +37,9 @@ const Custom2 = () => {
   const railRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
+  /* Tick survolé (rail) — onde de proximité façon CodePen NWVvNqy :
+     le tick survolé grandit (spring), ses voisins ±1 et ±2 réagissent. */
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   /* Scroll-spy : phase active = dernière phase passée sous le seuil
      (40 % du viewport) ; progression = avancement dans le rail. */
@@ -103,50 +108,75 @@ const Custom2 = () => {
       {/* ── Rail (desktop) + phases ── */}
       <div className="mx-auto max-w-none px-6 pb-16 pt-14 md:px-10 md:pb-24 md:pt-20">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-          {/* Rail scroll-spy — sticky, ligne qui se remplit */}
-          <aside className="hidden lg:col-span-2 lg:block">
+          {/* Rail « régle » (21/09, refonte) : épine verticale 1px qui se
+              remplit d'orange au scroll + ticks horizontaux par phase.
+              Onde de proximité (CodePen NWVvNqy) : tick survolé 40×4px
+              (spring), voisins ±1 30×3px, ±2 20×2px ; label flottant au
+              survol. Colonne ÉTROITE (1/12) pour laisser la place aux
+              phases. */}
+          <aside className="hidden lg:col-span-1 lg:block">
             <div ref={railRef} className="sticky top-28">
-              <div className="relative ml-[5px]">
-                <div className="absolute bottom-2 left-0 top-2 w-px bg-foreground/15">
+              <div className="relative">
+                <div className="absolute bottom-3 left-0 top-3 w-px bg-foreground/15">
                   <div
                     className="absolute inset-x-0 top-0 h-full origin-top bg-primary"
                     style={{ transform: `scaleY(${progress})` }}
                   />
                 </div>
-                <ul className="space-y-6">
-                  {c2.phases.map((ph, i) => (
-                    <li key={ph.title}>
-                      <button
-                        onClick={() => scrollToPhase(i)}
-                        className="group flex items-center gap-3 py-0.5 text-left"
-                        aria-label={`${c2.phaseLabel} ${String(i).padStart(2, '0')} — ${ph.short}`}
+                <ul className="space-y-9">
+                  {c2.phases.map((ph, i) => {
+                    const d = hoverIdx === null ? 9 : Math.abs(i - hoverIdx);
+                    const isActive = i === active;
+                    const w = isActive && d > 2 ? 24 : d === 0 ? 40 : d === 1 ? 30 : d === 2 ? 20 : 15;
+                    const h = isActive && d > 2 ? 2 : d === 0 ? 4 : d === 1 ? 3 : d === 2 ? 2 : 1;
+                    const bg = isActive
+                      ? 'hsl(var(--primary))'
+                      : d === 0
+                        ? 'hsl(var(--foreground))'
+                        : `hsl(var(--foreground) / ${d === 1 ? 0.55 : d === 2 ? 0.4 : 0.3})`;
+                    return (
+                      <li
+                        key={ph.title}
+                        onMouseEnter={() => setHoverIdx(i)}
+                        onMouseLeave={() => setHoverIdx(null)}
                       >
-                        <span
-                          className={`h-px w-4 shrink-0 transition-colors duration-300 ${
-                            i === active
-                              ? 'bg-primary'
-                              : 'bg-foreground/30 group-hover:bg-foreground/60'
-                          }`}
-                        />
-                        <span
-                          className={`font-mono text-[10px] uppercase tracking-[0.25em] transition-colors duration-300 ${
-                            i === active
-                              ? 'text-primary'
-                              : 'text-foreground/40 group-hover:text-foreground'
-                          }`}
+                        <button
+                          onClick={() => scrollToPhase(i)}
+                          className="relative flex h-5 items-center"
+                          aria-label={`${c2.phaseLabel} ${String(i).padStart(2, '0')} — ${ph.short}`}
                         >
-                          {String(i).padStart(2, '0')} · {ph.short}
-                        </span>
-                      </button>
-                    </li>
-                  ))}
+                          <span
+                            className="block rounded-full"
+                            style={{
+                              width: `${w}px`,
+                              height: `${h}px`,
+                              backgroundColor: bg,
+                              transition:
+                                'width 300ms cubic-bezier(0.34, 1.56, 0.64, 1), height 300ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 200ms linear',
+                            }}
+                          />
+                          <span
+                            className={`pointer-events-none absolute left-12 z-20 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.25em] transition-all duration-300 ${
+                              d === 0 ? 'translate-x-2 opacity-100' : 'translate-x-0 scale-75 opacity-0'
+                            }`}
+                            style={{
+                              transformOrigin: 'left center',
+                              color: isActive ? 'hsl(var(--primary))' : 'hsl(var(--foreground) / 0.75)',
+                            }}
+                          >
+                            {String(i).padStart(2, '0')} · {ph.short}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
           </aside>
 
           {/* Phases */}
-          <div className="lg:col-span-10">
+          <div className="lg:col-span-11">
             {c2.phases.map((ph, i) => (
               <section
                 key={ph.title}

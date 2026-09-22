@@ -184,7 +184,7 @@ const Custom = () => {
               <button
                 onClick={() => cycleSpeaker(-1)}
                 aria-label="Enceinte précédente"
-                className="group absolute -left-2 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block lg:-left-5"
+                className="group absolute -left-12 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block"
               >
                 <ChevronLeft
                   className="h-8 w-8 transition-transform duration-300 group-hover:-translate-x-1"
@@ -194,7 +194,7 @@ const Custom = () => {
               <button
                 onClick={() => cycleSpeaker(1)}
                 aria-label="Enceinte suivante"
-                className="group absolute -right-2 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block lg:-right-5"
+                className="group absolute -right-12 top-1/2 z-10 hidden -translate-y-1/2 p-2 text-foreground/40 transition-colors hover:text-foreground md:block"
               >
                 <ChevronRight
                   className="h-8 w-8 transition-transform duration-300 group-hover:translate-x-1"
