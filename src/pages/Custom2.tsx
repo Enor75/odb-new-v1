@@ -35,28 +35,57 @@ const Custom2 = () => {
 
   const phaseRefs = useRef<(HTMLElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement | null>(null);
+  const tickRefs = useRef<(HTMLLIElement | null)[]>([]);
   const [active, setActive] = useState(0);
-  const [progress, setProgress] = useState(0);
+  /* Hauteur remplie de l'épine verticale (px) — atteint le tick i quand
+     la phase i s'active (bug 21/09 : l'ancien calcul mesurait l'élément
+     sticky, dont le top se fige à 112px -> progression gelée à ~83 %). */
+  const [fill, setFill] = useState(0);
   /* Tick survolé (rail) — onde de proximité façon CodePen NWVvNqy :
      le tick survolé grandit (spring), ses voisins ±1 et ±2 réagissent. */
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
 
   /* Scroll-spy : phase active = dernière phase passée sous le seuil
-     (40 % du viewport) ; progression = avancement dans le rail. */
+     (40 % du viewport). REMPLISSAGE DE L'ÉPINE : la ligne atteint le
+     tick i quand la phase i s'active, avec interpolation douce entre
+     deux activations (mesure des positions réelles des ticks dans le
+     rail — plus aucune dépendance au rect de l'élément sticky). */
   useEffect(() => {
     let raf = 0;
     const update = () => {
       const threshold = window.innerHeight * 0.4;
       let idx = 0;
+      const docTops = phaseRefs.current.map(
+        (el) => (el ? el.getBoundingClientRect().top + window.scrollY : 0)
+      );
       phaseRefs.current.forEach((el, i) => {
         if (el && el.getBoundingClientRect().top <= threshold) idx = i;
       });
       setActive(idx);
+
       const rail = railRef.current;
-      if (rail) {
-        const r = rail.getBoundingClientRect();
-        const done = Math.min(Math.max(threshold - r.top, 0), r.height);
-        setProgress(r.height > 0 ? done / r.height : 0);
+      const rel = rail?.firstElementChild as HTMLElement | null;
+      if (rail && rel) {
+        const n = phaseRefs.current.length;
+        const SPINE_TOP = 12; // top-3 de l'épine
+        const tickY = (i: number) => {
+          const li = tickRefs.current[i];
+          return li ? li.offsetTop + li.offsetHeight / 2 - SPINE_TOP : 0;
+        };
+        // position de scroll (doc) à laquelle la phase i s'active
+        const A = (i: number) => docTops[i] - threshold;
+        const y = window.scrollY;
+        let target = 0;
+        if (y >= A(n - 1)) {
+          target = tickY(n - 1);
+        } else if (y > A(0)) {
+          const t = Math.min(
+            1,
+            Math.max(0, (y - A(idx)) / Math.max(1, A(idx + 1) - A(idx)))
+          );
+          target = tickY(idx) + t * (tickY(idx + 1) - tickY(idx));
+        }
+        setFill(Math.max(0, Math.min(target, rel.clientHeight - 24)));
       }
     };
     const onScroll = () => {
@@ -119,8 +148,8 @@ const Custom2 = () => {
               <div className="relative">
                 <div className="absolute bottom-3 left-0 top-3 w-px bg-foreground/15">
                   <div
-                    className="absolute inset-x-0 top-0 h-full origin-top bg-primary"
-                    style={{ transform: `scaleY(${progress})` }}
+                    className="absolute inset-x-0 top-0 bg-primary"
+                    style={{ height: `${fill}px` }}
                   />
                 </div>
                 <ul className="space-y-9">
@@ -137,6 +166,9 @@ const Custom2 = () => {
                     return (
                       <li
                         key={ph.title}
+                        ref={(el) => {
+                          tickRefs.current[i] = el;
+                        }}
                         onMouseEnter={() => setHoverIdx(i)}
                         onMouseLeave={() => setHoverIdx(null)}
                       >
