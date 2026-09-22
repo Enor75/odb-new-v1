@@ -95,12 +95,31 @@ export interface Translations {
     blocksTitleB: string;
     blocks: { title: string; desc: string }[];
     carTitleA: string;
-    carTitleB: string;
     carText: string;
     specHeaderA: string;
     specHeaderB: string;
-    specs: { label: string; value: string }[];
-    img1Label: string;
+    /** 4 enceintes du catalogue (21/09) — carrousel de fiches techniques */
+    specLabels: {
+      type: string;
+      drivers: string;
+      amplification: string;
+      bandwidth: string;
+      dimensions: string;
+      weight: string;
+      finish: string;
+    };
+    speakers: {
+      name: string;
+      type: string;
+      drivers: string;
+      amplification: string;
+      bandwidth: string;
+      dimensions: string;
+      weight: string;
+      finish: string;
+    }[];
+    /** Libellé des emplacements photos vides */
+    photoLabel: string;
   };
   aboutPage: {
     kicker: string;
@@ -341,27 +360,25 @@ const translations: Record<Language, Translations> = {
         { title: 'Sound system', desc: 'Loading, filtering, placement: acoustics first. The system is tuned to the room for a deep, precise listening experience.' },
       ],
       carTitleA: 'Specifications',
-      carTitleB: 'The system in numbers',
-      carText: 'Every Orange Decibel system is designed on a custom basis. The values below are given as an example for a typical configuration — every project comes with its own technical sheet.',
+      carText: 'Our standard cabinets, built and tuned in our workshop. Some values are still being finalized — every project comes with its own technical sheet.',
       specHeaderA: 'Specification',
       specHeaderB: 'Value',
-      specs: [
-        { label: 'Enclosure type', value: '—' },
-        { label: 'Drivers', value: '—' },
-        { label: 'Amplification', value: '—' },
-        { label: 'Bandwidth', value: '—' },
-        { label: 'Dimensions', value: '—' },
-        { label: 'Weight', value: '—' },
-        { label: 'Finish', value: '—' },
+            specLabels: { type: 'Enclosure type', drivers: 'Drivers', amplification: 'Amplification', bandwidth: 'Bandwidth', dimensions: 'Dimensions', weight: 'Weight', finish: 'Finish' },
+      photoLabel: 'Photo to come',
+      speakers: [
+        { name: '15″ Tops — Les Blues', type: 'Bass-reflex, 2-way', drivers: '1 × 18Sound 15NMB420 + 1 × 18Sound NSD1480N compression driver on XT1464 horn', amplification: 'Active bi-amplification, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'To be measured', weight: 'To be weighed', finish: 'To be confirmed' },
+        { name: '15″ Coaxial Tops', type: 'Bass-reflex, 2-way coaxial', drivers: '1 × 18Sound 15NCX750', amplification: 'Active bi-amplification, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'To be measured', weight: 'To be weighed', finish: 'To be confirmed' },
+        { name: '12″ Tops', type: 'Bass-reflex, 2-way', drivers: '1 × 18Sound 12NTLW2500 + 1.4″ compression driver', amplification: 'Active bi-amplification, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'To be measured', weight: 'To be weighed', finish: 'To be confirmed' },
+        { name: '18″ Bass Cabinets', type: 'Bass-reflex / custom design', drivers: 'Depending on the system: 18Sound 18LW1400, 18TLW3000 or 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 depending on the configuration', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Depending on the model', weight: 'Depending on the model', finish: 'To be confirmed' },
       ],
-      img1Label: 'Speaker front',
     },
     aboutPage: {
       kicker: 'About',
       paragraphs: [
-        'Founder of Orange Decibel in 2023, Sébastien Coutelas drives a High-End Sound System project born in France and now based in Paris & Milan.',
-        'His concept rests on the alliance between the acoustic precision of Hi-Fi and the power and impact of professional sound reinforcement. Through Orange Decibel, he offers a complete service for the organisation and equipment of musical and cultural events.',
-        'Specialised in electronic music (DJ sets and live sets), Sébastien also adapts his system for the sound reinforcement of bands and acoustic performances.',
+        'Sébastien Coutelas is a musician, producer and the founder of Orange Decibel.',
+        'His relationship to sound comes first from music and sensation, before technique. Self-taught, he develops his own speakers with one desire: to build systems that render music in a physical, living and immersive way.',
+        'Orange Decibel was born from this approach: bringing together instinct and precision, vibration and the science of sound. Every system is built and tuned with particular attention to the venue — its materials, its acoustics — and above all to the experience felt by the audience.',
+        'Today, Orange Decibel accompanies projects in music, art, fashion and events, in France and abroad.',
       ],
       workLabel: 'Selected Work',
       scrollHint: 'Scroll to explore',
@@ -631,27 +648,25 @@ const translations: Record<Language, Translations> = {
         { title: 'Système son', desc: 'Charge, filtrage, placement : l’acoustique d’abord. Le système est accordé à la pièce pour une écoute profonde et précise.' },
       ],
       carTitleA: 'Caractéristiques',
-      carTitleB: 'Le système en chiffres',
-      carText: 'Chaque système Orange Decibel est conçu sur mesure. Les valeurs ci-dessous sont données à titre d’exemple pour une configuration type — chaque projet fait l’objet d’une fiche technique dédiée.',
+      carText: 'Nos caissons standards, conçus et réglés à l’atelier. Certaines valeurs sont en cours de finalisation — chaque projet fait l’objet d’une fiche technique dédiée.',
       specHeaderA: 'Caractéristique',
       specHeaderB: 'Spécification',
-      specs: [
-        { label: 'Type d’enceinte', value: '—' },
-        { label: 'Haut-parleurs', value: '—' },
-        { label: 'Amplification', value: '—' },
-        { label: 'Bande passante', value: '—' },
-        { label: 'Dimensions', value: '—' },
-        { label: 'Poids', value: '—' },
-        { label: 'Finition', value: '—' },
+            specLabels: { type: 'Type d’enceinte', drivers: 'Haut-parleurs', amplification: 'Amplification', bandwidth: 'Bande passante', dimensions: 'Dimensions', weight: 'Poids', finish: 'Finition' },
+      photoLabel: 'Photo à venir',
+      speakers: [
+        { name: 'Têtes 15″ – Les Blues', type: 'Bass-reflex, 2 voies', drivers: '1 × 18Sound 15NMB420 + 1 × compression 18Sound NSD1480N sur pavillon XT1464', amplification: 'Bi-amplification active, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'À mesurer', weight: 'À peser', finish: 'À préciser' },
+        { name: 'Têtes coaxiales 15″', type: 'Bass-reflex, 2 voies coaxiales', drivers: '1 × 18Sound 15NCX750', amplification: 'Bi-amplification active, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'À mesurer', weight: 'À peser', finish: 'À préciser' },
+        { name: 'Têtes 12″', type: 'Bass-reflex, 2 voies', drivers: '1 × 18Sound 12NTLW2500 + moteur de compression 1,4″', amplification: 'Bi-amplification active, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'À mesurer', weight: 'À peser', finish: 'À préciser' },
+        { name: 'Caissons de basses 18″', type: 'Bass-reflex / conception sur mesure', drivers: 'Selon les systèmes : 18Sound 18LW1400, 18TLW3000 ou 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 selon la configuration', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Selon le modèle', weight: 'Selon le modèle', finish: 'À préciser' },
       ],
-      img1Label: 'Front d’enceinte',
     },
     aboutPage: {
       kicker: 'À propos',
       paragraphs: [
-        'Fondateur d’Orange Decibel en 2023, Sébastien Coutelas pilote un projet de Sound System High-End né en France et aujourd’hui basé à Paris et à Milan.',
-        'Son concept repose sur l’alliance entre la précision acoustique de la Hi-Fi et la puissance d’impact de la sonorisation professionnelle. À travers Orange Decibel, il propose une prestation globale pour l’organisation et l’équipement d’événements musicaux et culturels.',
-        'Spécialisé dans les musiques électroniques (DJ sets et live sets), Sébastien adapte également son système pour la sonorisation de groupes et de prestations acoustiques.',
+        'Sébastien Coutelas est musicien, producteur et fondateur d’Orange Decibel.',
+        'Son rapport au son vient d’abord de la musique et de la sensation, avant la technique. Autodidacte, il développe ses propres enceintes avec l’envie de créer des systèmes capables de restituer la musique de manière physique, vivante et immersive.',
+        'C’est de cette approche qu’est né Orange Decibel : faire cohabiter l’instinct et la précision, la vibration et la science du son. Chaque système est fabriqué et réglé avec une attention particulière portée au lieu, à ses matériaux, à son acoustique et surtout à l’expérience ressentie par le public.',
+        'Aujourd’hui, Orange Decibel accompagne des projets dans la musique, l’art, la mode et l’événementiel, en France et à l’étranger.',
       ],
       workLabel: 'Travaux sélectionnés',
       scrollHint: 'Défiler pour explorer',
@@ -921,27 +936,25 @@ const translations: Record<Language, Translations> = {
         { title: 'Sistema audio', desc: 'Carico, filtraggio, posizionamento: prima l’acustica. Il sistema è accordato alla sala per un ascolto profondo e preciso.' },
       ],
       carTitleA: 'Caratteristiche',
-      carTitleB: 'Il sistema in numeri',
-      carText: 'Ogni sistema Orange Decibel è progettato su misura. I valori qui sotto sono indicativi per una configurazione tipo — ogni progetto ha una propria scheda tecnica.',
+carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio. Alcuni valori sono ancora in via di definizione — ogni progetto ha una propria scheda tecnica.',
       specHeaderA: 'Caratteristica',
       specHeaderB: 'Specifica',
-      specs: [
-        { label: 'Tipo di cassa', value: '—' },
-        { label: 'Driver', value: '—' },
-        { label: 'Amplificazione', value: '—' },
-        { label: 'Banda passante', value: '—' },
-        { label: 'Dimensioni', value: '—' },
-        { label: 'Peso', value: '—' },
-        { label: 'Finitura', value: '—' },
+            specLabels: { type: 'Tipo di cassa', drivers: 'Altoparlanti', amplification: 'Amplificazione', bandwidth: 'Banda passante', dimensions: 'Dimensioni', weight: 'Peso', finish: 'Finitura' },
+      photoLabel: 'Foto in arrivo',
+      speakers: [
+        { name: 'Tops 15″ — Les Blues', type: 'Bass-reflex, 2 vie', drivers: '1 × 18Sound 15NMB420 + 1 × driver a compressione 18Sound NSD1480N su tromba XT1464', amplification: 'Biamplificazione attiva, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'Da misurare', weight: 'Da pesare', finish: 'Da definire' },
+        { name: 'Tops coassiali 15″', type: 'Bass-reflex, 2 vie coassiali', drivers: '1 × 18Sound 15NCX750', amplification: 'Biamplificazione attiva, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'Da misurare', weight: 'Da pesare', finish: 'Da definire' },
+        { name: 'Tops 12″', type: 'Bass-reflex, 2 vie', drivers: '1 × 18Sound 12NTLW2500 + motore a compressione 1,4″', amplification: 'Biamplificazione attiva, PKN', bandwidth: '150 Hz – 20 kHz', dimensions: 'Da misurare', weight: 'Da pesare', finish: 'Da definire' },
+        { name: 'Sub 18″', type: 'Bass-reflex / progettazione su misura', drivers: 'Secondo i sistemi: 18Sound 18LW1400, 18TLW3000 o 18TLW5000 Tetracoil', amplification: 'PKN XD6000 / XE10000 secondo la configurazione', bandwidth: '30 Hz – 120/130 Hz', dimensions: 'Secondo il modello', weight: 'Secondo il modello', finish: 'Da definire' },
       ],
-      img1Label: 'Fronte cassa',
     },
     aboutPage: {
       kicker: 'Chi siamo',
       paragraphs: [
-        'Fondatore di Orange Decibel nel 2023, Sébastien Coutelas guida un progetto di Sound System High-End nato in Francia e oggi con base a Parigi e Milano.',
-        'Il suo concept si basa sull’unione tra la precisione acustica dell’Hi-Fi e la potenza d’impatto della sonorizzazione professionale. Attraverso Orange Decibel, offre un servizio completo per l’organizzazione e l’equipaggiamento di eventi musicali e culturali.',
-        'Specializzato in musiche elettroniche (DJ set e live set), Sébastien adatta il proprio sistema anche alla sonorizzazione di band e performance acustiche.',
+        'Sébastien Coutelas è musicista, produttore e fondatore di Orange Decibel.',
+        'Il suo rapporto con il suono nasce prima di tutto dalla musica e dalla sensazione, prima ancora che dalla tecnica. Autodidatta, sviluppa i propri altoparlanti con il desiderio di creare sistemi capaci di restituire la musica in modo fisico, vivo e coinvolgente.',
+        'È da questo approccio che nasce Orange Decibel: far convivere l’istinto e la precisione, la vibrazione e la scienza del suono. Ogni sistema è costruito e regolato con un’attenzione particolare al luogo, ai suoi materiali, alla sua acustica e soprattutto all’esperienza vissuta dal pubblico.',
+        'Oggi Orange Decibel accompagna progetti nella musica, nell’arte, nella moda e negli eventi, in Francia e all’estero.',
       ],
       workLabel: 'Lavori selezionati',
       scrollHint: 'Scorri per esplorare',
