@@ -103,7 +103,7 @@ const Index = () => {
 
           {/* Les 4 savoir-faire (ex-« At a glance » d'Activity, 20/09) —
               textes seuls, sans images ni titres, pleine largeur. */}
-          <div className="mt-12 grid gap-6 border-t border-foreground/15 pt-10 text-left sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
             {t.home.activities.map((activity) => (
               <p
                 key={activity.title}

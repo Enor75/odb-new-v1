@@ -62,10 +62,10 @@ const About = () => {
   return (
     <main className="min-h-svh">
       {/* ── Portrait à gauche / texte à droite ─────────────────── */}
-      <section className="mx-auto max-w-none px-6 pb-8 pt-24 md:px-10 md:pb-10 md:pt-28">
+      <section className="mx-auto max-w-none px-6 pb-4 pt-24 md:px-10 md:pb-6 md:pt-28">
         <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
           {/* Premier tiers gauche : photo de Sébastien */}
-          <Reveal className="md:col-span-4" delay={100}>
+          <Reveal className="md:col-span-3" delay={100}>
             <div className="film-grain relative aspect-[4/5] w-full overflow-hidden">
               <img
                 src={sebastien}
@@ -76,7 +76,7 @@ const About = () => {
           </Reveal>
 
           {/* Droite : texte — plus de titre, juste le kicker « About » en gras */}
-          <div className="md:col-span-7 md:col-start-6">
+          <div className="md:col-span-8 md:col-start-5">
             <Reveal delay={150}>
               <p className="mb-8 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-muted-foreground">
                 {ap.kicker}
@@ -97,24 +97,25 @@ const About = () => {
       </section>
 
       {/* ── The system — trois piliers (déplacé d'Activity, 20/09 ;
-            images réduites 21/09 : colonne 6→4, ~33 % du conteneur) ── */}
+            images réduites 22/09 : colonne 4→3, ~25 % ; modules
+            resserrés : gap-10/14, kicker pt-10/12) ── */}
       <section className="mx-auto max-w-none px-6 pb-0 md:px-10">
-        <p className="mb-6 border-t border-foreground/15 pt-16 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-24">
+        <p className="mb-6 border-t border-foreground/15 pt-10 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-12">
           {t.philosophyPage.pillarsKicker}
         </p>
-        <div className="flex flex-col gap-16 md:gap-24">
+        <div className="flex flex-col gap-10 md:gap-14">
           {t.philosophyPage.pillars.map((pillar, i) => (
             <div key={pillar.title} className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
               {i % 2 === 0 ? (
                 <>
-                  <div className="film-grain group overflow-hidden md:col-span-4">
+                  <div className="film-grain group overflow-hidden md:col-span-3">
                     <img
                       src={pillarImages[i]}
                       alt={pillar.title}
                       className="aspect-[4/3] w-full object-cover"
                     />
                   </div>
-                  <div className="md:col-span-6 md:col-start-6">
+                  <div className="md:col-span-7 md:col-start-5">
                     <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                       {pillar.title}
                     </h2>
@@ -125,7 +126,7 @@ const About = () => {
                 </>
               ) : (
                 <>
-                  <div className="md:col-span-6 md:col-start-2 md:order-first">
+                  <div className="md:col-span-7 md:col-start-2 md:order-first">
                     <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                       {pillar.title}
                     </h2>
@@ -133,7 +134,7 @@ const About = () => {
                       {pillar.text}
                     </p>
                   </div>
-                  <div className="film-grain group overflow-hidden md:col-span-4 md:col-start-9 md:order-last">
+                  <div className="film-grain group overflow-hidden md:col-span-3 md:col-start-10 md:order-last">
                     <img
                       src={pillarImages[i]}
                       alt={pillar.title}
