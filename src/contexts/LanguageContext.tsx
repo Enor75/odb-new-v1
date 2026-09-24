@@ -72,9 +72,9 @@ export interface Translations {
         doublon avec le kicker d'en-tête « What we do ». */
     gridKicker: string;
     title: string;
-    /** Intro éditoriale validée client (21/09) — 4 ¶ + ligne de clôture */
-    introParagraphs: string[];
-    introClosing: string;
+    /** (22/09) : titre = ancienne ligne de clôture ; les 4 ¶ de
+        l'intro sont fusionnées en UN seul bloc centré. */
+    intro: string;
     sections: ActivitySectionData[];
     ctaButton: string;
     slotLabel: string;
@@ -302,20 +302,14 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'What we do',
       gridKicker: 'At a glance',
-      title: 'Brands, festivals, nights and listening sessions.',
-      introParagraphs: [
-        "Sound has the power to awaken emotions and transform an event. It is not a mere accessory, but the beating heart of every experience.",
-        "Reading venues, artists and our clients' intentions is part of our DNA — it is what allows us to deliver creative sound solutions, whatever the brief.",
-        "Our proactive approach guarantees a reliable, powerful and constantly evolving system. With a team of passionate people and our own workshop, we offer a personal, fast and exclusive service.",
-        "Through a unique sound, we help you captivate your audience and amplify the essence of your project.",
-      ],
-      introClosing: "Let's create the sonic identity of your event together.",
+      title: "Let's create the sonic identity of your event together.",
+      intro: "Sound has the power to awaken emotions and transform an event. It is not a mere accessory, but the beating heart of every experience. Reading venues, artists and our clients' intentions is part of our DNA — it is what allows us to deliver creative sound solutions, whatever the brief. Our proactive approach guarantees a reliable, powerful and constantly evolving system. With a team of passionate people and our own workshop, we offer a personal, fast and exclusive service. Through a unique sound, we help you captivate your audience and amplify the essence of your project.",
       sections: [
         {
           id: 'brands',
           kicker: 'Brand events',
           title: 'Brand events.',
-          text: "Launches, activations, exhibitions, showcases — for brands and labels alike, we design events with a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging. From the Nike × Rassvet « Dawn Space » launch in Paris to the trailer of Netflix's « Nouvelle École » — the same standard, format after format.",
+          text: "Launches, activations, exhibitions, showcases — for brands and labels alike, we design events with a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {
@@ -658,20 +652,14 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'Ce que nous faisons',
       gridKicker: "En un coup d'œil",
-      title: 'Marques, festivals, soirées et listening.',
-      introParagraphs: [
-        "Le son a le pouvoir d'éveiller les émotions et de transformer un événement. Il n'est pas un simple accessoire, mais le cœur battant de chaque expérience.",
-        "Comprendre les lieux, les artistes et les intentions de nos clients fait partie de notre ADN : c'est ce qui nous permet de proposer des solutions sonores créatives, quelle que soit la demande.",
-        "Notre approche proactive garantit un système fiable, puissant et en constante évolution. Avec une équipe de passionnés et notre atelier, nous offrons un service personnalisé, rapide et exclusif.",
-        "À travers un son unique, nous vous aidons à captiver votre audience et à amplifier l'essence de votre projet.",
-      ],
-      introClosing: "Créons ensemble l'identité sonore de votre événement.",
+      title: "Créons ensemble l'identité sonore de votre événement.",
+      intro: "Le son a le pouvoir d'éveiller les émotions et de transformer un événement. Il n'est pas un simple accessoire, mais le cœur battant de chaque expérience. Comprendre les lieux, les artistes et les intentions de nos clients fait partie de notre ADN : c'est ce qui nous permet de proposer des solutions sonores créatives, quelle que soit la demande. Notre approche proactive garantit un système fiable, puissant et en constante évolution. Avec une équipe de passionnés et notre atelier, nous offrons un service personnalisé, rapide et exclusif. À travers un son unique, nous vous aidons à captiver votre audience et à amplifier l'essence de votre projet.",
       sections: [
         {
           id: 'brands',
           kicker: 'Événements de marques',
           title: 'Événements de marque.',
-          text: "Lancements, activations, expositions, showcases — pour des marques comme des labels, nous concevons des événements au son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie. Du lancement Nike × Rassvet « Dawn Space » à Paris à la bande-annonce de « Nouvelle École » pour Netflix — la même exigence, format après format.",
+          text: "Lancements, activations, expositions, showcases — pour des marques comme des labels, nous concevons des événements au son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'Netflix — « Nouvelle École », bande-annonce', 'SNIPES × Air Max'],
         },
         {
@@ -1014,20 +1002,14 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'Cosa facciamo',
       gridKicker: 'In sintesi',
-      title: 'Marchi, festival, serate e listening.',
-      introParagraphs: [
-        "Il suono ha il potere di risvegliare le emozioni e di trasformare un evento. Non è un semplice accessorio, ma il cuore pulsante di ogni esperienza.",
-        "Capire i luoghi, gli artisti e le intenzioni dei nostri clienti fa parte del nostro DNA: è ciò che ci permette di proporre soluzioni sonore creative, qualsiasi sia la richiesta.",
-        "Il nostro approccio proattivo garantisce un sistema affidabile, potente e in costante evoluzione. Con una squadra di appassionati e il nostro laboratorio, offriamo un servizio personalizzato, rapido ed esclusivo.",
-        "Attraverso un suono unico, vi aiutiamo a catturare il vostro pubblico e ad amplificare l'essenza del vostro progetto.",
-      ],
-      introClosing: "Creiamo insieme l'identità sonora del vostro evento.",
+      title: "Creiamo insieme l'identità sonora del vostro evento.",
+      intro: "Il suono ha il potere di risvegliare le emozioni e di trasformare un evento. Non è un semplice accessorio, ma il cuore pulsante di ogni esperienza. Capire i luoghi, gli artisti e le intenzioni dei nostri clienti fa parte del nostro DNA: è ciò che ci permette di proporre soluzioni sonore creative, qualsiasi sia la richiesta. Il nostro approccio proattivo garantisce un sistema affidabile, potente e in costante evoluzione. Con una squadra di appassionati e il nostro laboratorio, offriamo un servizio personalizzato, rapido ed esclusivo. Attraverso un suono unico, vi aiutiamo a catturare il vostro pubblico e ad amplificare l'essenza del vostro progetto.",
       sections: [
         {
           id: 'brands',
           kicker: 'Eventi per marchi',
           title: 'Eventi per marchi.',
-          text: "Lanci, attivazioni, mostre, showcase — per marchi e label, diamo agli eventi un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia. Dal lancio Nike × Rassvet « Dawn Space » a Parigi al trailer di « Nouvelle École » per Netflix — lo stesso standard, formato dopo formato.",
+          text: "Lanci, attivazioni, mostre, showcase — per marchi e label, diamo agli eventi un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia.",
           cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'Netflix — « Nouvelle École », trailer', 'SNIPES × Air Max'],
         },
         {

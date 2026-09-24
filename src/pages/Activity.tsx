@@ -11,8 +11,6 @@ import context2Image from '@/assets/context-2.jpeg';
 import heroMainImage from '@/assets/hero-main.jpeg';
 import galleryCatImage from '@/assets/gallery-cat.jpeg';
 import designDrawing2Image from '@/assets/design-drawing-2.jpeg';
-import galleryBass from '@/assets/gallery-bass.jpg';
-import galleryCello from '@/assets/gallery-cello.jpg';
 // Photos événements (sélection client 21/09)
 import photo1 from '@/assets/photo-1.jpg';
 import photo12 from '@/assets/photo-12.jpg';
@@ -33,7 +31,6 @@ import photo53 from '@/assets/photo-53.jpg';
 import photo54 from '@/assets/photo-54.jpg';
 import gallery6 from '@/assets/gallery-6.jpg';
 import gallery7 from '@/assets/gallery-7.jpg';
-import detail2 from '@/assets/detail-2.jpeg';
 
 /**
  * PAGE ACTIVITY — fusion ex-Gallery + ex-Philosophy (17/09).
@@ -44,8 +41,13 @@ import detail2 from '@/assets/detail-2.jpeg';
  *    emplacements au survol (desktop, ~800 ms) ; le clic ouvre la
  *    lightbox filtrée sur la section (5 emplacements, flèches, clavier,
  *    compteur — mécanique de l'ancienne galerie réutilisée).
- * 3. Aperçu galerie — 3 photos (déplacé de la home 20/09)
- * 4. CTA unique — bouton filet orange, remplissage au survol → /contact
+ * 3. CTA unique — bouton filet orange, remplissage au survol → /contact
+ *
+ * (22/09) : titre = invitation directe (ancienne clôture), intro = UN
+ * seul bloc centré très aéré ; « What we do » et bloc galerie
+ * SUPPRIMÉS ; modules photo réduits (col 5/12) ; textes + exemples
+ * des sections en ORANGE (text-primary) ; phrase Nike × Rassvet
+ * retirée de Brand events.
  *
  * (20/09) : manifeste SUPPRIMÉ (redite de la philosophie de la home) ;
  * At a glance GRISÉ (showAtAGlance=false — textes déplacés sur la home) ;
@@ -226,30 +228,22 @@ const Activity = () => {
       {/* ── En-tête — PLEINE LARGEUR, typographie compacte (21/09) :
             charte pleine largeur + typos modestes, le premier module
             « Brand events » est visible dès l'arrivée sur la page. ── */}
-      <section className="mx-auto max-w-none px-6 pt-16 md:px-10 md:pt-20">
+      <section className="mx-auto max-w-none px-6 pt-16 text-center md:px-10 md:pt-24">
         <Reveal>
-          <p className={`mb-5 ${kickerClass}`}>{t.activityPage.kicker}</p>
-          <h1 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+          {/* 22/09 : « What we do » supprimé — le titre EST l'ancienne
+              ligne de clôture ; les 4 ¶ forment UN seul bloc centré,
+              très aéré. */}
+          <h1 className="mx-auto max-w-3xl font-serif text-2xl font-light tracking-tight md:text-3xl">
             {t.activityPage.title}
           </h1>
-          <div className="mt-6 space-y-4">
-            {t.activityPage.introParagraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-sm font-light leading-relaxed text-muted-foreground md:text-base"
-              >
-                {paragraph}
-              </p>
-            ))}
-            <p className="pt-2 text-sm font-light leading-relaxed text-foreground md:text-base">
-              {t.activityPage.introClosing}
-            </p>
-          </div>
+          <p className="mx-auto mt-8 max-w-2xl text-sm font-light leading-loose text-muted-foreground md:text-base md:leading-loose">
+            {t.activityPage.intro}
+          </p>
         </Reveal>
       </section>
 
       {/* ── Quatre sections thématiques ───────────────────────────── */}
-      <section className="mx-auto max-w-none px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-14">
+      <section className="mx-auto max-w-none px-6 pb-0 pt-10 md:px-10 md:pt-14">
         {/* 21/09 : filets entre modules SUPPRIMÉS (demande client) et
             modules resserrés à la suite. */}
         <div className="flex flex-col gap-10 md:gap-14">
@@ -263,14 +257,14 @@ const Activity = () => {
                 <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                   {section.title}
                 </h2>
-                <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                <p className="mt-5 text-sm font-light leading-relaxed text-primary md:text-base">
                   {section.text}
                 </p>
                 <ul className="mt-6 space-y-1.5">
                   {section.cases.map((study) => (
                     <li
                       key={study}
-                      className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-foreground/50"
+                      className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-primary"
                     >
                       — {study}
                     </li>
@@ -286,8 +280,8 @@ const Activity = () => {
                 >
                   {i % 2 === 0 ? (
                     <>
-                      <div className="md:col-span-6">{textBlock}</div>
-                      <div className="md:col-span-6">
+                      <div className="md:col-span-7">{textBlock}</div>
+                      <div className="md:col-span-5">
                         <HoverPhotoModule
                           photos={photos}
                           slotLabel={t.activityPage.slotLabel}
@@ -297,14 +291,14 @@ const Activity = () => {
                     </>
                   ) : (
                     <>
-                      <div className="md:col-span-6 md:order-first">
+                      <div className="md:col-span-5 md:order-first">
                         <HoverPhotoModule
                           photos={photos}
                           slotLabel={t.activityPage.slotLabel}
                           onOpen={() => setOpen({ section: i, index: 0 })}
                         />
                       </div>
-                      <div className="md:col-span-6 md:order-last">{textBlock}</div>
+                      <div className="md:col-span-7 md:order-last">{textBlock}</div>
                     </>
                   )}
                 </div>
@@ -400,29 +394,6 @@ const Activity = () => {
       </section>
 
       )}
-      {/* ── Aperçu galerie (déplacé de la home, 20/09) — photos sans
-            lien : la galerie EST cette page ───────────────────────── */}
-      <section className="px-6 pb-0 md:px-10">
-        <div className="mx-auto max-w-none">
-          <p className={kickerClass}>{t.home.galleryKicker}</p>
-          <h2 className="mb-8 max-w-3xl font-serif text-2xl font-light leading-tight tracking-tight md:mb-10 md:text-4xl">
-            {t.home.galleryTitle}
-          </h2>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6">
-            {[detail2, galleryBass, galleryCello].map((src, i) => (
-              <div key={i} className="overflow-hidden">
-                <img
-                  src={src}
-                  alt=""
-                  className="aspect-square w-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA — bouton « Contact us » partagé ─────────────────── */}
       <ContactCta />
 
