@@ -33,6 +33,14 @@ const pillarImages = [photo24, detailImage, gallery5Image];
  * P1 Pile éditoriale numérotée · P2 Manifeste centré · P3 Index à
  * filets · P4 Empilement pleine hauteur. Le client choisit, la
  * variante retenue remplacera The system sur About.
+ *
+ * (22/09, 2e vague) : 4 propositions HORIZONTALES (P5-P8) issues
+ * d'un deep-dive styles.refero.design — teenage engineering
+ * (« industrial catalogue » : ruled bands 1px, type whisper, un
+ * seul accent) et Intercom (« warm cream editorial spread » :
+ * display 300, mono en étiquettes, pas de filet dur) : P5 Rangées
+ * catalogue · P6 Colonnes à filets · P7 Double page éditoriale ·
+ * P8 Cartes empilées sticky.
  */
 
 /** Étiquette de variante — « Proposition 01 — Nom » */
@@ -146,6 +154,111 @@ const FullHeightStack = ({ pillars, images }: { pillars: Pillar[]; images: strin
   </div>
 );
 
+/* ── Propositions HORIZONTALES (22/09, deep-dive styles.refero.design) ── */
+
+/** P5 — Rangées catalogue industriel : « ruled bands » en filets 1px,
+ *  type whisper (font-light), préfixe SEC., aligné à gauche, un seul
+ *  accent orange rationné — teenage engineering (industrial catalogue
+ *  under studio light). */
+const CatalogueRows = ({ pillars }: { pillars: Pillar[] }) => (
+  <div className="border-t border-foreground/15">
+    {pillars.map((p, i) => (
+      <div
+        key={p.title}
+        className="grid gap-3 border-b border-foreground/15 py-7 md:grid-cols-12 md:gap-6 md:py-9"
+      >
+        <p className="font-mono text-[10px] tracking-[0.25em] text-primary md:col-span-2">
+          SEC. 0{i + 1}
+        </p>
+        <h3 className="font-mono text-base font-light uppercase tracking-[0.2em] md:col-span-3">
+          {p.title}
+        </h3>
+        <p className="text-sm font-light leading-relaxed text-muted-foreground md:col-span-7 md:text-base">
+          {p.text}
+        </p>
+      </div>
+    ))}
+  </div>
+);
+
+/** P6 — Colonnes à filets : 3 cellules côte à côte séparées par des
+ *  filets partagés, photo à vif bord à bord (sans padding — « the
+ *  product is the card ») — hairline grid rules / teenage engineering. */
+const HairlineGridColumns = ({ pillars, images }: { pillars: Pillar[]; images: string[] }) => (
+  <div className="grid border border-foreground/15 md:grid-cols-3">
+    {pillars.map((p, i) => (
+      <div
+        key={p.title}
+        className={`flex flex-col gap-5 border-foreground/15 p-6 md:p-8 ${
+          i > 0 ? 'border-t md:border-t-0 md:border-l' : ''
+        }`}
+      >
+        <p className="font-mono text-[10px] tracking-[0.25em] text-primary">0{i + 1}</p>
+        <h3 className="font-serif text-2xl font-light tracking-tight md:text-3xl">{p.title}</h3>
+        <div className="film-grain -mx-6 overflow-hidden md:-mx-8">
+          <img src={images[i]} alt={p.title} className="aspect-[4/3] w-full object-cover" />
+        </div>
+        <p className="text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+          {p.text}
+        </p>
+      </div>
+    ))}
+  </div>
+);
+
+/** P7 — Double page éditoriale : adjectif en display serif géant
+ *  weight 300 / leading 0.95 (le « whisper » d'Intercom), texte en
+ *  colonne étroite décalée, numéro orange, AUCUN filet dur — la
+ *  séparation vient du ton et de l'espace (gaps 64-96). */
+const EditorialSpread = ({ pillars }: { pillars: Pillar[] }) => (
+  <div className="flex flex-col gap-16 py-4 md:gap-24">
+    {pillars.map((p, i) => (
+      <Reveal key={p.title}>
+        <div className="grid items-end gap-8 md:grid-cols-12">
+          <h3 className="font-serif text-6xl font-light leading-[0.95] tracking-tight md:col-span-7 md:text-8xl">
+            {p.title}
+          </h3>
+          <div className="md:col-span-4 md:col-start-9">
+            <p className="mb-4 font-mono text-[10px] tracking-[0.25em] text-primary">— 0{i + 1}</p>
+            <p className="text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+              {p.text}
+            </p>
+          </div>
+        </div>
+      </Reveal>
+    ))}
+  </div>
+);
+
+/** P8 — Cartes empilées : panneaux pleine largeur sticky qui se
+ *  superposent au scroll, bordure 1px, fond crème opaque, texte à
+ *  gauche / photo à droite. */
+const StackingCards = ({ pillars, images }: { pillars: Pillar[]; images: string[] }) => (
+  <div>
+    {pillars.map((p, i) => (
+      <div
+        key={p.title}
+        className="sticky top-24 mb-6 border border-foreground/15 bg-background md:mb-8"
+      >
+        <div className="grid gap-8 p-6 md:grid-cols-12 md:p-12">
+          <div className="md:col-span-7">
+            <p className="font-mono text-[10px] tracking-[0.25em] text-primary">0{i + 1}</p>
+            <h3 className="mt-4 font-serif text-4xl font-light tracking-tight md:text-6xl">
+              {p.title}
+            </h3>
+            <p className="mt-6 max-w-md text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+              {p.text}
+            </p>
+          </div>
+          <div className="film-grain md:col-span-5">
+            <img src={images[i]} alt={p.title} className="aspect-[4/3] w-full object-cover" />
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const About2 = () => {
   const { t } = useLanguage();
   usePageMeta(t.meta.about2Title, t.meta.about2Desc);
@@ -199,6 +312,23 @@ const About2 = () => {
 
         <PropLabel label={ap.propositionLabel} n={4} name={ap.propositionNames[3]} />
         <FullHeightStack pillars={pillars} images={pillarImages} />
+
+        {/* ── Propositions HORIZONTALES (styles.refero.design) ────── */}
+        <p className="mt-24 border-t border-foreground/15 pt-10 text-center font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:pt-12">
+          {ap.horizontalSectionLabel}
+        </p>
+
+        <PropLabel label={ap.propositionLabel} n={5} name={ap.horizontalNames[0]} />
+        <CatalogueRows pillars={pillars} />
+
+        <PropLabel label={ap.propositionLabel} n={6} name={ap.horizontalNames[1]} />
+        <HairlineGridColumns pillars={pillars} images={pillarImages} />
+
+        <PropLabel label={ap.propositionLabel} n={7} name={ap.horizontalNames[2]} />
+        <EditorialSpread pillars={pillars} />
+
+        <PropLabel label={ap.propositionLabel} n={8} name={ap.horizontalNames[3]} />
+        <StackingCards pillars={pillars} images={pillarImages} />
       </section>
 
       {/* ── CTA + Moments (polaroids) — identiques à About ──────── */}

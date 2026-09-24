@@ -150,6 +150,7 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
 
   const items = [
     { to: '/activity', key: 'activity', label: t.nav.activity },
+    { to: '/activity-2', key: 'activity2', label: t.nav.activity2 },
     { to: '/custom', key: 'custom', label: t.nav.custom },
     { to: '/custom-2', key: 'custom2', label: t.nav.custom2 },
     { to: '/about', key: 'about', label: t.nav.about },

@@ -74,6 +74,7 @@ const Header = () => {
   const menuItems = [
     { to: '/', label: t.nav.home },
     { to: '/activity', label: t.nav.activity },
+    { to: '/activity-2', label: t.nav.activity2 },
     { to: '/custom', label: t.nav.custom },
     { to: '/custom-2', label: t.nav.custom2 },
     { to: '/about', label: t.nav.about },

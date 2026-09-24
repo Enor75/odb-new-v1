@@ -14,6 +14,7 @@ import BackgroundPhoto from "@/components/BackgroundPhoto";
 import TypoTester from "@/components/TypoTester";
 import Index from "./pages/Index";
 import Activity from "./pages/Activity";
+import Activity2 from "./pages/Activity2";
 import About from "./pages/About";
 import About2 from "./pages/About2";
 import Contact from "./pages/Contact";
@@ -62,6 +63,7 @@ const App = () => {
             <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/activity" element={<Activity />} />
+            <Route path="/activity-2" element={<Activity2 />} />
             <Route path="/gallery" element={<Navigate to="/activity" replace />} />
             <Route path="/philosophy" element={<Navigate to="/activity" replace />} />
             <Route path="/about" element={<About />} />

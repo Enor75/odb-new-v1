@@ -33,6 +33,7 @@ export interface Translations {
   nav: {
     home: string;
     activity: string;
+    activity2: string;
     custom: string;
     custom2: string;
     about2: string;
@@ -138,6 +139,16 @@ export interface Translations {
     propositionLabel: string;
     /** Noms des 4 propositions verticales */
     propositionNames: string[];
+    /** Intertitre entre les propositions verticales et horizontales */
+    horizontalSectionLabel: string;
+    /** Noms des 4 propositions horizontales (styles.refero.design) */
+    horizontalNames: string[];
+  };
+  activity2Page: {
+    /** Étiquette au-dessus de chaque variante de présentation */
+    propositionLabel: string;
+    /** Noms des 4 propositions (styles.refero.design) */
+    propositionNames: string[];
   };
   aboutPage: {
     kicker: string;
@@ -213,6 +224,8 @@ export interface Translations {
     indexDesc: string;
     activityTitle: string;
     activityDesc: string;
+    activity2Title: string;
+    activity2Desc: string;
     customTitle: string;
     customDesc: string;
     custom2Title: string;
@@ -234,7 +247,7 @@ export interface Translations {
 
 const translations: Record<Language, Translations> = {
   en: {
-    nav: { home: 'Home', activity: 'Activity', custom: 'Custom', custom2: 'Custom 2', about2: 'About 2', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
+    nav: { home: 'Home', activity: 'Activity', activity2: 'Activity 2', custom: 'Custom', custom2: 'Custom 2', about2: 'About 2', about: 'About', contact: 'Contact', menu: 'Menu', close: 'Close' },
     hero: {
       caption: 'High-End Sound System — Designed in France, based in Paris & Milan',
     },
@@ -463,6 +476,22 @@ const translations: Record<Language, Translations> = {
         'Index with hairlines',
         'Full-height stacking',
       ],
+      horizontalSectionLabel: 'Horizontal propositions',
+      horizontalNames: [
+        'Industrial catalogue rows',
+        'Hairline grid columns',
+        'Editorial spread',
+        'Stacking cards',
+      ],
+    },
+    activity2Page: {
+      propositionLabel: 'Proposition',
+      propositionNames: [
+        'Hairline grid',
+        'Industrial catalogue',
+        'Stacking cards',
+        'Editorial spread',
+      ],
     },
     aboutPage: {
       kicker: 'About',
@@ -589,6 +618,7 @@ const translations: Record<Language, Translations> = {
       customDesc: 'Custom sound stages and tailor-made systems for brands and venues.',
       custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: 'From brief to calibration — the six phases of a custom Orange Decibel system.',
       about2Title: 'About 2 — Orange Decibel', about2Desc: 'The system, vertical — four layout propositions.',
+      activity2Title: 'Activity 2 — Orange Decibel', activity2Desc: 'Brand events, festivals, listening sessions, nights — four layout propositions.',
       aboutTitle: 'About — Orange Decibel',
       aboutDesc: 'Orange Decibel, a sound system collective based in Paris and Milan.',
       contactTitle: 'Contact — Orange Decibel',
@@ -599,7 +629,7 @@ const translations: Record<Language, Translations> = {
   },
 
   fr: {
-    nav: { home: 'Accueil', activity: 'Activités', custom: 'Sur mesure', custom2: 'Custom 2', about2: 'About 2', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
+    nav: { home: 'Accueil', activity: 'Activités', activity2: 'Activity 2', custom: 'Sur mesure', custom2: 'Custom 2', about2: 'About 2', about: 'À propos', contact: 'Contact', menu: 'Menu', close: 'Fermer' },
     hero: {
       caption: 'Système Son Haut de Gamme — Conçu en France, basé à Paris et à Milan',
     },
@@ -823,6 +853,22 @@ const translations: Record<Language, Translations> = {
         'Index à filets',
         'Empilement pleine hauteur',
       ],
+      horizontalSectionLabel: 'Propositions horizontales',
+      horizontalNames: [
+        'Rangées catalogue industriel',
+        'Colonnes à filets',
+        'Double page éditoriale',
+        'Cartes empilées',
+      ],
+    },
+    activity2Page: {
+      propositionLabel: 'Proposition',
+      propositionNames: [
+        'Grille à filets',
+        'Catalogue industriel',
+        'Cartes empilées',
+        'Double page éditoriale',
+      ],
     },
     aboutPage: {
       kicker: 'À propos',
@@ -949,6 +995,7 @@ const translations: Record<Language, Translations> = {
       customDesc: 'Scènes sonores et systèmes conçus sur mesure pour marques et lieux.',
       custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: "Du brief à la calibration — les six phases d'un système Orange Decibel sur mesure.",
       about2Title: 'About 2 — Orange Decibel', about2Desc: 'The system, à la verticale — quatre propositions de mise en page.',
+      activity2Title: 'Activity 2 — Orange Decibel', activity2Desc: 'Brand events, festivals, listening, soirées — quatre propositions de mise en page.',
       aboutTitle: 'À propos — Orange Decibel',
       aboutDesc: 'Orange Decibel, un collectif sound system basé à Paris et à Milan.',
       contactTitle: 'Contact — Orange Decibel',
@@ -959,7 +1006,7 @@ const translations: Record<Language, Translations> = {
   },
 
   it: {
-    nav: { home: 'Home', activity: 'Attività', custom: 'Su misura', custom2: 'Custom 2', about2: 'About 2', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
+    nav: { home: 'Home', activity: 'Attività', activity2: 'Activity 2', custom: 'Su misura', custom2: 'Custom 2', about2: 'About 2', about: 'Chi siamo', contact: 'Contatti', menu: 'Menu', close: 'Chiudi' },
     hero: {
       caption: 'High-End Sound System — Progettato in Francia, con base a Parigi e Milano',
     },
@@ -1183,6 +1230,22 @@ carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio
         'Indice con filetti',
         'Impilamento a piena altezza',
       ],
+      horizontalSectionLabel: 'Proposte orizzontali',
+      horizontalNames: [
+        'Righe da catalogo industriale',
+        'Colonne a filetti',
+        'Doppia pagina editoriale',
+        'Carte impilate',
+      ],
+    },
+    activity2Page: {
+      propositionLabel: 'Proposta',
+      propositionNames: [
+        'Griglia a filetti',
+        'Catalogo industriale',
+        'Carte impilate',
+        'Doppia pagina editoriale',
+      ],
     },
     aboutPage: {
       kicker: 'Chi siamo',
@@ -1309,6 +1372,7 @@ carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio
       customDesc: 'Palchi sonori e sistemi su misura per brand e luoghi.',
       custom2Title: 'Custom 2 — Orange Decibel', custom2Desc: 'Dal brief alla calibrazione — le sei fasi di un sistema Orange Decibel su misura.',
       about2Title: 'About 2 — Orange Decibel', about2Desc: 'The system, in verticale — quattro proposte di layout.',
+      activity2Title: 'Activity 2 — Orange Decibel', activity2Desc: 'Brand event, festival, listening, notti — quattro proposte di layout.',
       aboutTitle: 'Chi siamo — Orange Decibel',
       aboutDesc: 'Orange Decibel, un collettivo sound system con base a Parigi e Milano.',
       contactTitle: 'Contatti — Orange Decibel',
