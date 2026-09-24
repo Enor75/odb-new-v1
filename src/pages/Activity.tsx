@@ -45,8 +45,8 @@ import gallery7 from '@/assets/gallery-7.jpg';
  *
  * (22/09) : titre = invitation directe (ancienne clôture), intro = UN
  * seul bloc centré très aéré ; « What we do » et bloc galerie
- * SUPPRIMÉS ; modules photo réduits (col 5/12) ; textes + exemples
- * des sections en ORANGE (text-primary) ; phrase Nike × Rassvet
+ * SUPPRIMÉS ; modules photo réduits (col 5/12) ; exemples (cases)
+ * en ORANGE (text-primary) SEULEMENT — descriptions en gris ;
  * retirée de Brand events.
  *
  * (20/09) : manifeste SUPPRIMÉ (redite de la philosophie de la home) ;
@@ -257,7 +257,7 @@ const Activity = () => {
                 <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
                   {section.title}
                 </h2>
-                <p className="mt-5 text-sm font-light leading-relaxed text-primary md:text-base">
+                <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
                   {section.text}
                 </p>
                 <ul className="mt-6 space-y-1.5">
