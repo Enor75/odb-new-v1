@@ -77,6 +77,7 @@ const Header = () => {
     { to: '/custom', label: t.nav.custom },
     { to: '/custom-2', label: t.nav.custom2 },
     { to: '/about', label: t.nav.about },
+    { to: '/about-2', label: t.nav.about2 },
     { to: '/contact', label: t.nav.contact },
   ];
 

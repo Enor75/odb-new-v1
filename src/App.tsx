@@ -15,6 +15,7 @@ import TypoTester from "@/components/TypoTester";
 import Index from "./pages/Index";
 import Activity from "./pages/Activity";
 import About from "./pages/About";
+import About2 from "./pages/About2";
 import Contact from "./pages/Contact";
 import Custom from "./pages/Custom";
 import Custom2 from './pages/Custom2';
@@ -64,6 +65,7 @@ const App = () => {
             <Route path="/gallery" element={<Navigate to="/activity" replace />} />
             <Route path="/philosophy" element={<Navigate to="/activity" replace />} />
             <Route path="/about" element={<About />} />
+            <Route path="/about-2" element={<About2 />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/custom" element={<Custom />} />
             <Route path="/custom-2" element={<Custom2 />} />

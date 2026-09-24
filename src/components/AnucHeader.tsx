@@ -153,6 +153,7 @@ const AnucHeader = ({ settings }: { settings: HeaderSettings }) => {
     { to: '/custom', key: 'custom', label: t.nav.custom },
     { to: '/custom-2', key: 'custom2', label: t.nav.custom2 },
     { to: '/about', key: 'about', label: t.nav.about },
+    { to: '/about-2', key: 'about2', label: t.nav.about2 },
     { to: '/contact', key: 'contact', label: t.nav.contact },
   ];
 
