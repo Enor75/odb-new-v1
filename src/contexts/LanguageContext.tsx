@@ -19,6 +19,8 @@ export interface ActivitySectionData {
   title: string;
   text: string;
   cases: string[];
+  /** Déclinaisons d'activité (stacking cards de la page Activity) */
+  subTypes: string[];
 }
 
 export interface EstimatorLabels {
@@ -336,6 +338,7 @@ const translations: Record<Language, Translations> = {
           title: 'Brand events.',
           text: "Launches, activations, exhibitions, showcases — for brands and labels alike, we design events with a sound of their own. The system adapts to the creative direction, the venue and the audience: precise, powerful, and visually part of the staging.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'SNIPES × Air Max'],
+          subTypes: ['Launches', 'Activations', 'Exhibitions', 'Showcases'],
         },
         {
           id: 'festivals',
@@ -343,13 +346,15 @@ const translations: Record<Language, Translations> = {
           title: 'Festivals & lives.',
           text: "Full systems for festivals and lives — from a single stage to multi-zone setups. Power where it matters, clarity everywhere else: the crowd feels the impact, the artists hear themselves. Assembled, aligned and calibrated by our own crew, however tight the schedule.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
+          subTypes: ['Festivals', 'Public & private parties', 'Live concerts', 'Multi-zone setups'],
         },
         {
           id: 'nights',
-          kicker: 'Tournage vidéo',
-          title: 'Tournage.',
+          kicker: 'Video shoots',
+          title: 'Filming.',
           text: "Film shoots, trailers and brand videos — our systems in front of the camera. Speakers become part of the set: sculptural orange presences that stage a space, silent or in action. From the trailer of Netflix's « Nouvelle École » — where the speakers appear as set design — to music-driven shoots, sound becomes part of the image.",
           cases: ['Netflix — « Nouvelle École », trailer'],
+          subTypes: ['Film shoots', 'Trailers', 'Brand videos'],
         },
         {
           id: 'listening',
@@ -357,10 +362,11 @@ const translations: Record<Language, Translations> = {
           title: 'Listening.',
           text: "Our Hi-Fi DNA at its purest: listening sessions where detail, silence and texture matter as much as level. Analog and acoustic sources, a calibrated system, a room treated like an instrument. The inaugural edition of Salomon Listening Grounds was conceived exactly this way.",
           cases: ['Salomon — Listening Grounds, inaugural edition'],
+          subTypes: ['Listening sessions', 'Listening bars', 'Vinyl & Hi-Fi evenings', 'Brand listening events'],
         },
       ],
       viewLabel: 'View',
-    ctaButton: 'Contact us',
+      ctaButton: 'Contact us',
       slotLabel: 'Photo to come',
     },
     customPage: {
@@ -518,8 +524,8 @@ const translations: Record<Language, Translations> = {
       emailFranceLabel: 'Email — France',
       emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Follow us',
-      socialItalia: 'Instagram — Italia',
-      socialFrance: 'Instagram — France',
+      socialItalia: 'Instagram — IT',
+      socialFrance: 'Instagram — FR',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Based in',
       baseValue: 'Based in Paris & Milan — Designed in France',
@@ -715,6 +721,7 @@ const translations: Record<Language, Translations> = {
           title: 'Événements de marque.',
           text: "Lancements, activations, expositions, showcases — pour des marques comme des labels, nous concevons des événements au son qui leur appartient. Le système s'adapte à la direction artistique, au lieu et au public : précis, puissant, et visuellement intégré à la scénographie.",
           cases: ['Nike × Rassvet — « Dawn Space », Paris', 'SNIPES × Air Max'],
+          subTypes: ['Lancements', 'Activations', 'Expositions', 'Showcases'],
         },
         {
           id: 'festivals',
@@ -722,6 +729,7 @@ const translations: Record<Language, Translations> = {
           title: 'Festivals & lives.',
           text: "Des systèmes complets pour les festivals et les lives — d'une scène unique aux dispositifs multi-zones. La puissance là où elle compte, la clarté partout ailleurs : le public ressent l'impact, les artistes s'entendent. Montage, alignement et calibration par notre propre équipe, quel que soit le timing.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Paris"],
+          subTypes: ['Festivals', 'Fêtes publiques & privées', 'Concerts live', 'Dispositifs multi-zones'],
         },
         {
           id: 'nights',
@@ -729,6 +737,7 @@ const translations: Record<Language, Translations> = {
           title: 'Tournage.',
           text: "Tournages, bandes-annonces et vidéos de marque — nos systèmes devant la caméra. Les enceintes deviennent décor : des présences orange sculpturales qui mettent en scène un lieu, muettes ou en action. De la bande-annonce de « Nouvelle École » pour Netflix — où les enceintes apparaissent comme élément de décor — aux tournages musicaux, le son fait partie de l'image.",
           cases: ['Netflix — « Nouvelle École », bande-annonce'],
+          subTypes: ['Tournages', 'Bandes-annonces', 'Vidéos de marque'],
         },
         {
           id: 'listening',
@@ -736,6 +745,7 @@ const translations: Record<Language, Translations> = {
           title: 'Listening.',
           text: "Notre ADN Hi-Fi à l'état pur : des sessions d'écoute où le détail, le silence et la texture comptent autant que le niveau. Sources analogiques et acoustiques, système calibré, salle traitée comme un instrument. L'édition inaugurale des Salomon Listening Grounds a été pensée exactement ainsi.",
           cases: ['Salomon — Listening Grounds, édition inaugurale'],
+          subTypes: ["Sessions d'écoute", 'Listening bars', 'Soirées vinyle & Hi-Fi', 'Écoutes de marque'],
         },
       ],
       viewLabel: 'Voir',
@@ -897,8 +907,8 @@ const translations: Record<Language, Translations> = {
       emailFranceLabel: 'Email — France',
       emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Suivez-nous',
-      socialItalia: 'Instagram — Italia',
-      socialFrance: 'Instagram — France',
+      socialItalia: 'Instagram — IT',
+      socialFrance: 'Instagram — FR',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Basé à',
       baseValue: 'Basé à Paris et à Milan — Conçu en France',
@@ -1094,6 +1104,7 @@ const translations: Record<Language, Translations> = {
           title: 'Eventi per marchi.',
           text: "Lanci, attivazioni, mostre, showcase — per marchi e label, diamo agli eventi un suono che appartiene loro. Il sistema si adatta alla direzione creativa, al luogo e al pubblico: preciso, potente e visivamente parte della scenografia.",
           cases: ['Nike × Rassvet — « Dawn Space », Parigi', 'SNIPES × Air Max'],
+          subTypes: ['Lanci', 'Attivazioni', 'Mostre', 'Showcase'],
         },
         {
           id: 'festivals',
@@ -1101,13 +1112,15 @@ const translations: Record<Language, Translations> = {
           title: 'Festival & lives.',
           text: "Sistemi completi per festival e live — da una singola scena a disposizioni multi-zona. Potenza dove serve, chiarezza ovunque: il pubblico sente l'impatto, gli artisti si sentono. Montaggio, allineamento e calibrazione con la nostra squadra, qualsiasi sia il timing.",
           cases: ["Superbock × Halfpipe — Fête de la Musique, Cirque d'hiver, Parigi"],
+          subTypes: ['Festival', 'Feste pubbliche & private', 'Concerti live', 'Dispositivi multi-zona'],
         },
         {
           id: 'nights',
           kicker: 'Riprese video',
-          title: 'Tournage.',
+          title: 'Riprese.',
           text: "Riprese, trailer e video di marca — i nostri sistemi davanti alla camera. Le casse diventano scenografia: presenze arancioni scultoree che mettono in scena uno spazio, silenziose o in azione. Dal trailer di « Nouvelle École » per Netflix — dove le casse appaiono come elemento di scenografia — alle riprese musicali, il suono fa parte dell'immagine.",
           cases: ['Netflix — « Nouvelle École », trailer'],
+          subTypes: ['Riprese', 'Trailer', 'Video di marca'],
         },
         {
           id: 'listening',
@@ -1115,6 +1128,7 @@ const translations: Record<Language, Translations> = {
           title: 'Listening.',
           text: "Il nostro DNA Hi-Fi allo stato puro: listening session dove il dettaglio, il silenzio e la texture contano quanto il volume. Sorgenti analogiche e acustiche, sistema calibrato, sala trattata come uno strumento. L'edizione inaugurale dei Salomon Listening Grounds è stata pensata esattamente così.",
           cases: ['Salomon — Listening Grounds, edizione inaugurale'],
+          subTypes: ["Sessioni d'ascolto", 'Listening bar', 'Serate vinile & Hi-Fi', 'Ascolti per marchi'],
         },
       ],
       viewLabel: 'Vedi',
@@ -1276,8 +1290,8 @@ carText: 'Le nostre casse standard, progettate e regolate nel nostro laboratorio
       emailFranceLabel: 'Email — France',
       emailItaliaLabel: 'Email — Italia',
       socialLabel: 'Seguici',
-      socialItalia: 'Instagram — Italia',
-      socialFrance: 'Instagram — France',
+      socialItalia: 'Instagram — IT',
+      socialFrance: 'Instagram — FR',
       socialLinkedIn: 'LinkedIn',
       baseLabel: 'Base a',
       baseValue: 'Basato a Parigi e a Milano — Progettato in Francia',

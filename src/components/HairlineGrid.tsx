@@ -103,9 +103,11 @@ const HairlineGrid = ({
               onMouseMove={(e) => setCursor({ x: e.clientX, y: e.clientY })}
               onMouseLeave={() => setCursor(null)}
               aria-label={`${s.title} — ${viewLabel}`}
-              className="mt-auto hidden w-fit pt-4 text-foreground/50 transition-colors duration-300 hover:text-primary md:inline-flex"
+              className={`mt-auto hidden pt-6 pb-1 text-foreground/50 transition-colors duration-300 hover:text-primary md:inline-flex ${
+                centered ? 'self-center' : 'self-start'
+              }`}
             >
-              <ChevronDown className="h-5 w-5" strokeWidth={1.5} />
+              <ChevronDown className="h-8 w-8" strokeWidth={1.25} />
             </button>
           )}
         </div>

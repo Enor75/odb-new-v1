@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
@@ -48,6 +48,20 @@ const Activity = () => {
 
   /* ── Carrousel desktop ── */
   const [open, setOpen] = useState<{ section: number; slide: number } | null>(null);
+
+  /* ── Extension « stacking cards » (30/09) : le clic sur une flèche
+     déploie sous la grille les déclinaisons de l'activité, en cartes
+     empilées sticky (style Proposition 03 d'Activity 2 ; titres à la
+     Proposition 02 Industrial catalogue). Re-clic = replie. */
+  const [expanded, setExpanded] = useState<number | null>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const toggleExpand = (i: number) => {
+    setExpanded((cur) => (cur === i ? null : i));
+    window.setTimeout(
+      () => stackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      80
+    );
+  };
   const close = useCallback(() => setOpen(null), []);
   const openSlides = open ? slidesOf(sections[open.section].id) : null;
   const prev = () =>
@@ -94,9 +108,82 @@ const Activity = () => {
             centered
             casesMode="arrow"
             viewLabel={t.activityPage.viewLabel}
-            onOpenCase={(i) => setOpen({ section: i, slide: 0 })}
+            onOpenCase={(i) => toggleExpand(i)}
           />
         </Reveal>
+
+        {/* ── EXTENSION DESKTOP : déclinaisons en stacking cards ──
+            (style Prop. 03 Stacking cards ; en-têtes à la Prop. 02
+            Industrial catalogue — numéro orange + titre mono uppercase.
+            Les photos sont cliquables → carrousel de la section.) */}
+        {expanded !== null && (
+          <div ref={stackRef} className="mt-10 hidden scroll-mt-24 md:block">
+            {(sectionPhotos[sections[expanded].id] ?? []).length > 0 &&
+              sections[expanded].subTypes.map((sub, j, all) => {
+                const pool = sectionPhotos[sections[expanded].id] ?? [];
+                /* répartition des photos de la section entre cartes */
+                const cardPhotos = pool
+                  .map((src, idx) => ({ src, idx }))
+                  .filter(({ src, idx }) => src && idx % all.length === j);
+                return (
+                  <div
+                    key={sub}
+                    className="sticky top-24 mb-6 border border-foreground/15 bg-background"
+                  >
+                    <div className="flex items-baseline gap-6 border-b border-foreground/15 px-6 py-5 md:px-10">
+                      <p className="font-mono text-[10px] tracking-[0.25em] text-primary">
+                        0{j + 1}
+                      </p>
+                      <h4 className="font-mono text-base font-light uppercase tracking-[0.2em]">
+                        {sub}
+                      </h4>
+                    </div>
+                    <div className="flex gap-3 overflow-x-auto px-6 py-6 md:px-10">
+                      {cardPhotos.length > 0 ? (
+                        cardPhotos.map(({ src, idx }) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => setOpen({ section: expanded, slide: idx })}
+                            className="film-grain group w-44 shrink-0 overflow-hidden"
+                            aria-label={`${sub} — ${t.activityPage.viewLabel}`}
+                          >
+                            <img
+                              src={src ?? undefined}
+                              alt=""
+                              className="aspect-[4/3] w-full object-cover transition-opacity duration-300 group-hover:opacity-75"
+                            />
+                          </button>
+                        ))
+                      ) : (
+                        /* En attente de photos client — croix fine (F7) */
+                        <div className="flex aspect-[4/3] w-44 shrink-0 items-center justify-center border border-foreground/15 bg-secondary/40">
+                          <svg
+                            className="h-6 w-6 text-foreground/25"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            aria-hidden="true"
+                          >
+                            <path d="M12 4v16M4 12h16" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            {sections[expanded].subTypes.length > 0 &&
+              (sectionPhotos[sections[expanded].id] ?? []).length === 0 && (
+                <div className="sticky top-24 mb-6 border border-foreground/15 bg-background px-6 py-10 text-center md:px-10">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                    {sections[expanded].subTypes.join(' · ')}
+                  </p>
+                </div>
+              )}
+          </div>
+        )}
 
         {/* ── MOBILE : exemples + photos en défilement horizontal ──
             (pas de clic « Voir » sur mobile — demande client) */}
