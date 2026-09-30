@@ -28,6 +28,17 @@ const arrowLinkClass =
  * CTA « Contact us ». Les blocs What we do / Gallery / The system ont
  * été déplacés sur Activity (20/09).
  */
+/**
+ * Garde les mots composés et les petits mots insécables : les tirets
+ * internes deviennent U+2011 (non-breaking hyphen) et tout mot de
+ * 1 à 3 lettres reste lié au mot suivant (U+00A0). « on-site » ne peut
+ * plus se couper après « on », quelle que soit la largeur.
+ */
+const keepTogether = (text: string) =>
+  text
+    .replace(/(\p{L})-(\p{L})/gu, '$1\u2011$2')
+    .replace(/(^|\s)(\p{L}{1,3})\s/gu, '$1$2\u00A0');
+
 const Index = () => {
   const { t } = useLanguage();
   usePageMeta(t.meta.indexTitle, t.meta.indexDesc);
@@ -81,12 +92,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Philosophy — bio sans titre (20/09) : RESSERRÉE sous la vidéo,
-            PLEINE LARGEUR (plus de colonne max-w : le texte utilise toute
-            la largeur du site), 4 textes savoir-faire en grille, CTA
-            « Explore » centré en bas du bloc. ──────────────────────── */}
+      {/* ── Philosophy — bio sans titre (20/09) : RESSERRÉE sous la vidéo.
+            (30/09) : texte recentré avec une marge légère mais perceptible
+            de chaque côté (px-4 / md:px-24) ; veille typographique
+            keepTogether (mots composés et déterminants insécables —
+            « on-site » ne casse plus après « on ») ; les 3 mini-modules
+            savoir-faire sont SUPPRIMÉS (demande client) — seul le CTA
+            « Explore » reste en bas du bloc. ─────────────────────── */}
       <section className="px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14">
-        <div className="mx-auto max-w-none text-center">
+        <div className="mx-auto max-w-none px-4 text-center md:px-24">
           <p className="mb-10 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
             {t.home.statementKicker}
           </p>
@@ -96,23 +110,13 @@ const Index = () => {
                 key={i}
                 className="text-base font-light leading-relaxed text-foreground/80 md:text-lg"
               >
-                {paragraph}
+                {keepTogether(paragraph)}
               </p>
             ))}
           </div>
 
-          {/* Les 4 savoir-faire (ex-« At a glance » d'Activity, 20/09) —
-              textes seuls, sans images ni titres, pleine largeur. */}
-          <div className="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
-            {t.home.activities.map((activity) => (
-              <p
-                key={activity.title}
-                className="text-sm font-light leading-relaxed text-muted-foreground"
-              >
-                {activity.text}
-              </p>
-            ))}
-          </div>
+          {/* (30/09) les 3 mini-modules savoir-faire sont SUPPRIMÉS
+              (demande client) — le CTA suit directement le texte. */}
 
           {/* CTA « Explore » — centré au milieu du site, bas du bloc (20/09) */}
           <div className="mt-12 flex justify-center md:mt-16">

@@ -35,7 +35,9 @@ import TestBox from '@/components/TestBox';
  * ⚙️ OUTIL DE TEST TEMPORAIRE : sélecteur flottant (bas droite, au-dessus
  * du sélecteur typo) — 00 = brun actuel, 01–11 = photos, 12–17 = palette
  * orange (#F1B278, #EEA562, #EC994B, #EA8C35, #E87F1F, #B8704A),
- * 18–21 = textures, 22 = Solder Orange #FF6C2F (20/09). Voile 30–95 % (défaut
+ * 18–21 = textures, 22 = Solder Orange #FF6C2F (20/09), 23 = crème ANUC
+ * #F6ECDD (30/09 — couleur de la face hover du header ANUC thème sombre,
+ * extraite à la demande client ; aussi en couleur de superposition). Voile 30–95 % (défaut
  * 78), grain 0–0.24 (défaut 0.09). Choix mémorisés en localStorage
  * (`odb-bg`, `odb-bg-veil`, `odb-grain`). À RETIRER au choix final.
  */
@@ -71,6 +73,7 @@ const CANDIDATES: Candidate[] = [
   { n: 20, label: 'écaille', tile: 'tex-ecaille.jpg' },
   { n: 21, label: 'veau', tile: 'tex-veau.jpg' },
   { n: 22, label: 'Solder #FF6C2F', color: '#FF6C2F' },
+  { n: 23, label: 'Crème ANUC #F6ECDD', color: '#F6ECDD' },
 ];
 
 /** Superposition : couleurs de la palette client (index 0 = désactivée) */
@@ -83,6 +86,7 @@ const BLEND_COLORS: (string | null)[] = [
   '#E87F1F',
   '#B8704A',
   '#FF6C2F',
+  '#F6ECDD',
 ];
 const BLEND_MODES = ['multiply', 'overlay', 'soft-light', 'color', 'screen', 'normal'] as const;
 type BlendMode = (typeof BLEND_MODES)[number];

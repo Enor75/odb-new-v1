@@ -1,10 +1,30 @@
+import { useCallback, useEffect, useState } from 'react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useLanguage, type ActivitySectionData } from '@/contexts/LanguageContext';
 import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import ContactCta from '@/components/ContactCta';
+import HairlineGrid from '@/components/HairlineGrid';
 import photo15 from '@/assets/photo-15.jpg';
 import photo1 from '@/assets/photo-1.jpg';
 import photo33 from '@/assets/photo-33.jpg';
+/* Photos du module des 4 activités (déplacé d'Activity, 30/09) */
+import photo38 from '@/assets/photo-38.jpg';
+import photo34 from '@/assets/photo-34.jpg';
+import photo37 from '@/assets/photo-37.jpg';
+import photo52 from '@/assets/photo-52.jpg';
+import photo53 from '@/assets/photo-53.jpg';
+import photo54 from '@/assets/photo-54.jpg';
+import photo12 from '@/assets/photo-12.jpg';
+import photo16 from '@/assets/photo-16.jpg';
+import photo31 from '@/assets/photo-31.jpg';
+import photo26 from '@/assets/photo-26.jpg';
+import photo29 from '@/assets/photo-29.jpg';
+import photo19 from '@/assets/photo-19.jpg';
+import photo21 from '@/assets/photo-21.jpg';
+import gallery6 from '@/assets/gallery-6.jpg';
+import gallery7 from '@/assets/gallery-7.jpg';
+import photo40 from '@/assets/photo-40.jpg';
 
 /** Première photo de chaque section (réutilisation, zéro nouvel asset) —
  *  nights : emplacement vide en attente (croix fine, convention F7). */
@@ -13,6 +33,83 @@ const sectionImages: Record<string, string | null> = {
   festivals: photo1,
   listening: photo33,
   nights: null,
+};
+
+/** ── Module des 4 activités (DÉPLACÉ d'Activity, 30/09) ─────────────
+ *  Rangées alternées photo/texte ; le module cycle ses 3 premiers
+ *  emplacements au survol (~800 ms) ; le clic ouvre la lightbox filtrée
+ *  sur la section (flèches, clavier, compteur dynamique). */
+const HOVER_SLOTS = 3;
+const modulePhotos: Record<string, (string | null)[]> = {
+  brands: [photo15, photo38, photo34, photo37, photo52, photo53, photo54],
+  festivals: [photo1, photo12, photo16],
+  nights: [null, null, null],
+  listening: [photo33, photo31, photo26, photo29, photo19, photo21, gallery6, gallery7, photo40],
+};
+
+/** Module photo : cycle auto des 3 premiers emplacements au survol */
+const HoverPhotoModule = ({
+  photos,
+  slotLabel,
+  onOpen,
+}: {
+  photos: (string | null)[];
+  slotLabel: string;
+  onOpen: () => void;
+}) => {
+  const [idx, setIdx] = useState(0);
+  const [hovering, setHovering] = useState(false);
+
+  const hoverSet = photos.slice(0, HOVER_SLOTS);
+  const hasPhotos = hoverSet.some(Boolean);
+  const filled = photos.filter(Boolean).length;
+
+  useEffect(() => {
+    if (!hovering || !hasPhotos) return;
+    if (hoverSet.filter(Boolean).length < 2) return;
+    const timer = setInterval(() => setIdx((i) => (i + 1) % HOVER_SLOTS), 800);
+    return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hovering, hasPhotos]);
+
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+      aria-label="Open photos"
+      className="group relative block w-full cursor-pointer border border-foreground bg-background text-left"
+    >
+      <div className="film-grain relative aspect-[4/3] overflow-hidden">
+        {hoverSet.map((src, i) =>
+          src ? (
+            <img
+              key={i}
+              src={src}
+              alt=""
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                i === idx ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          ) : null
+        )}
+        {!hoverSet[idx] && (
+          <div className="absolute inset-0">
+            <EmptySlot />
+          </div>
+        )}
+      </div>
+
+      {/* Liseré bas — compteur d'emplacements + indice d'ouverture */}
+      <div className="flex items-center justify-between border-t border-foreground/15 px-3 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50 transition-colors duration-300 group-hover:border-foreground/40 group-hover:text-foreground">
+        <span>
+          {String(filled).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}
+        </span>
+        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+      </div>
+    </button>
+  );
 };
 
 /**
@@ -39,6 +136,11 @@ const sectionImages: Record<string, string | null> = {
  *   colonne étroite, pas de filet dur entre les sections.
  *
  * La variante retenue remplacera la présentation d'Activity.
+ *
+ * (30/09) : la Proposition 01 (Hairline grid) est RETENUE et vit
+ * désormais sur Activity (textes centrés, composant partagé
+ * HairlineGrid) ; l'ancien module des 4 activités (rangées alternées
+ * photo/texte + lightbox) a été DÉPLACÉ ICI, en bas de page.
  */
 
 /** Étiquette de variante — « Proposition 0N — Nom » */
@@ -80,31 +182,6 @@ const CaseList = ({ cases }: { cases: string[] }) => (
     ))}
   </ul>
 );
-
-/** P1 — Grille à filets : 4 cellules, filets partagés (2×2 en md,
- *  4 colonnes en lg). */
-const HairlineGrid = ({ sections }: { sections: ActivitySectionData[] }) => {
-  const cellBorders = [
-    '',
-    'border-t md:border-t-0 md:border-l',
-    'border-t lg:border-t-0 lg:border-l',
-    'border-t md:border-l lg:border-t-0',
-  ];
-  return (
-    <div className="grid border border-foreground/15 md:grid-cols-2 lg:grid-cols-4">
-      {sections.map((s, i) => (
-        <div key={s.id} className={`flex flex-col gap-4 border-foreground/15 p-6 md:p-8 ${cellBorders[i]}`}>
-          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/40">
-            {s.kicker}
-          </p>
-          <h3 className="font-serif text-2xl font-light tracking-tight">{s.title}</h3>
-          <p className="text-sm font-light leading-relaxed text-muted-foreground">{s.text}</p>
-          <CaseList cases={s.cases} />
-        </div>
-      ))}
-    </div>
-  );
-};
 
 /** P2 — Catalogue industriel : rangées « ruled bands » 1px, numéro
  *  orange, titre mono uppercase, exemples sous le titre, description
@@ -219,6 +296,38 @@ const Activity2 = () => {
     (id) => t.activityPage.sections.find((sec) => sec.id === id)!
   );
 
+  /* ── Lightbox du module photo (déplacée d'Activity, 30/09) ────── */
+  const [open, setOpen] = useState<{ section: number; index: number } | null>(null);
+  const close = useCallback(() => setOpen(null), []);
+  const prev = () =>
+    setOpen((o) => {
+      if (!o) return o;
+      const len = (modulePhotos[sections[o.section].id] ?? []).length;
+      return { ...o, index: (o.index - 1 + len) % len };
+    });
+  const next = () =>
+    setOpen((o) => {
+      if (!o) return o;
+      const len = (modulePhotos[sections[o.section].id] ?? []).length;
+      return { ...o, index: (o.index + 1) % len };
+    });
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [open, close, prev, next]);
+  const openPhotos = open ? modulePhotos[sections[open.section].id] : null;
+  const openSrc = openPhotos ? openPhotos[open.index] : null;
+
   return (
     <main className="min-h-svh">
       {/* ── En-tête — identique à Activity (titre + intro un bloc) ── */}
@@ -248,8 +357,129 @@ const Activity2 = () => {
         <EditorialSpread sections={sections} />
       </section>
 
+      {/* ── Module des 4 activités (DÉPLACÉ d'Activity, 30/09) :
+            rangées alternées photo/texte + lightbox ───────────────── */}
+      <section className="mx-auto max-w-none px-6 pt-10 md:px-10 md:pt-14">
+        <div className="flex flex-col gap-10 md:gap-14">
+          {sections.map((section, i) => {
+            const photos = modulePhotos[section.id] ?? [];
+            const textBlock = (
+              <div>
+                <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
+                  {section.title}
+                </h2>
+                <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+                  {section.text}
+                </p>
+                <CaseList cases={section.cases} />
+              </div>
+            );
+            return (
+              <Reveal key={section.id}>
+                <div className="grid items-center gap-10 md:grid-cols-12 md:gap-8">
+                  {i % 2 === 0 ? (
+                    <>
+                      <div className="md:col-span-7">{textBlock}</div>
+                      <div className="md:col-span-5">
+                        <HoverPhotoModule
+                          photos={photos}
+                          slotLabel={t.activityPage.slotLabel}
+                          onOpen={() => setOpen({ section: i, index: 0 })}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="md:col-span-5 md:order-first">
+                        <HoverPhotoModule
+                          photos={photos}
+                          slotLabel={t.activityPage.slotLabel}
+                          onOpen={() => setOpen({ section: i, index: 0 })}
+                        />
+                      </div>
+                      <div className="md:col-span-7 md:order-last">{textBlock}</div>
+                    </>
+                  )}
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
       {/* ── CTA — bouton « Contact us » partagé ──────────────────── */}
       <ContactCta />
+
+      {/* ── Lightbox plein écran, filtrée sur la section ──────────── */}
+      {open && openPhotos && (
+        <div
+          className="fixed inset-0 z-[70] flex flex-col bg-black/95"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Photo viewer"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) close();
+          }}
+        >
+          <div className="flex items-center justify-between gap-6 px-6 py-5 text-foreground md:px-10">
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
+              {sections[open.section].title}
+            </p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-foreground/60">
+              {String(open.index + 1).padStart(2, '0')} / {String(openPhotos.length).padStart(2, '0')}
+            </p>
+            <button
+              onClick={close}
+              aria-label="Close"
+              className="text-foreground/70 transition-colors hover:text-primary"
+            >
+              <X className="h-5 w-5" strokeWidth={1.5} />
+            </button>
+          </div>
+
+          <div className="relative flex flex-1 items-center justify-center px-6 pb-8 md:px-20">
+            <button
+              onClick={prev}
+              aria-label="Previous photo"
+              className="absolute left-2 z-10 p-3 text-foreground/60 transition-colors hover:text-primary md:left-6"
+            >
+              <ChevronLeft className="h-7 w-7" strokeWidth={1} />
+            </button>
+
+            <figure className="flex max-h-full flex-col items-center">
+              {openSrc ? (
+                <>
+                  <img
+                    src={openSrc}
+                    alt=""
+                    className="max-h-[72svh] w-auto max-w-full object-contain"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  <figcaption className="mt-5 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/60">
+                    {sections[open.section].cases[open.index] ??
+                      `${t.activityPage.slotLabel} — ${String(open.index + 1).padStart(2, '0')}`}
+                  </figcaption>
+                </>
+              ) : (
+                <div
+                  className="flex aspect-[4/3] w-full max-w-[640px] items-center justify-center border border-foreground/15"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <EmptySlot />
+                </div>
+              )}
+            </figure>
+
+            <button
+              onClick={next}
+              aria-label="Next photo"
+              className="absolute right-2 z-10 p-3 text-foreground/60 transition-colors hover:text-primary md:right-6"
+            >
+              <ChevronRight className="h-7 w-7" strokeWidth={1} />
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

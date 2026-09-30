@@ -252,11 +252,12 @@ const translations: Record<Language, Translations> = {
       caption: 'High-End Sound System — Designed in France, based in Paris & Milan',
     },
     ticker: [
-      'Orange Decibel',
+      'Brand activation',
       'High-End Sound System',
       'Designed in France — Based in Paris & Milan',
       'Electronic Music — DJ Sets & Live Sets',
       'Bands & Acoustic Performances',
+      'Showroom',
     ],
     home: {
       statementKicker: 'Philosophy',
@@ -324,7 +325,7 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'What we do',
       gridKicker: 'At a glance',
-      title: "Let's create the sonic identity of your event together.",
+      title: "Sonic identity service for musical and cultural events — a modular system designed around each space.",
       intro: "Sound has the power to awaken emotions and transform an event. It is not a mere accessory, but the beating heart of every experience. Reading venues, artists and our clients' intentions is part of our DNA — it is what allows us to deliver creative sound solutions, whatever the brief. Our proactive approach guarantees a reliable, powerful and constantly evolving system. With a team of passionate people and our own workshop, we offer a personal, fast and exclusive service. Through a unique sound, we help you captivate your audience and amplify the essence of your project.",
       sections: [
         {
@@ -634,11 +635,12 @@ const translations: Record<Language, Translations> = {
       caption: 'Système Son Haut de Gamme — Conçu en France, basé à Paris et à Milan',
     },
     ticker: [
-      'Orange Decibel',
+      'Activation de marque',
       'Système Son Haut de Gamme',
       'Conçu en France — Basé à Paris et à Milan',
       'Musique Électronique — DJ Sets & Live Sets',
       'Groupes & Performances Acoustiques',
+      'Showroom',
     ],
     home: {
       statementKicker: 'Philosophie',
@@ -701,7 +703,7 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'Ce que nous faisons',
       gridKicker: "En un coup d'œil",
-      title: "Créons ensemble l'identité sonore de votre événement.",
+      title: "Service d'identité sonore pour les événements musicaux et culturels — un système modulaire pensé pour chaque espace.",
       intro: "Le son a le pouvoir d'éveiller les émotions et de transformer un événement. Il n'est pas un simple accessoire, mais le cœur battant de chaque expérience. Comprendre les lieux, les artistes et les intentions de nos clients fait partie de notre ADN : c'est ce qui nous permet de proposer des solutions sonores créatives, quelle que soit la demande. Notre approche proactive garantit un système fiable, puissant et en constante évolution. Avec une équipe de passionnés et notre atelier, nous offrons un service personnalisé, rapide et exclusif. À travers un son unique, nous vous aidons à captiver votre audience et à amplifier l'essence de votre projet.",
       sections: [
         {
@@ -1011,11 +1013,12 @@ const translations: Record<Language, Translations> = {
       caption: 'High-End Sound System — Progettato in Francia, con base a Parigi e Milano',
     },
     ticker: [
-      'Orange Decibel',
+      'Attivazione brand',
       'High-End Sound System',
       'Progettato in Francia — Con base a Parigi e Milano',
       'Musica Elettronica — DJ Set e Live Set',
       'Band e Performance Acustiche',
+      'Showroom',
     ],
     home: {
       statementKicker: 'Filosofia',
@@ -1078,7 +1081,7 @@ const translations: Record<Language, Translations> = {
     activityPage: {
       kicker: 'Cosa facciamo',
       gridKicker: 'In sintesi',
-      title: "Creiamo insieme l'identità sonora del vostro evento.",
+      title: "Servizio di identità sonora per eventi musicali e culturali — un sistema modulare pensato per ogni spazio.",
       intro: "Il suono ha il potere di risvegliare le emozioni e di trasformare un evento. Non è un semplice accessorio, ma il cuore pulsante di ogni esperienza. Capire i luoghi, gli artisti e le intenzioni dei nostri clienti fa parte del nostro DNA: è ciò che ci permette di proporre soluzioni sonore creative, qualsiasi sia la richiesta. Il nostro approccio proattivo garantisce un sistema affidabile, potente e in costante evoluzione. Con una squadra di appassionati e il nostro laboratorio, offriamo un servizio personalizzato, rapido ed esclusivo. Attraverso un suono unico, vi aiutiamo a catturare il vostro pubblico e ad amplificare l'essenza del vostro progetto.",
       sections: [
         {

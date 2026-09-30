@@ -71,6 +71,13 @@ const Header = () => {
       isActive ? 'text-foreground underline underline-offset-[6px]' : 'text-foreground/40 hover:text-foreground'
     }`;
 
+  /** Langues du MENU MOBILE (30/09) : plus grandes et actives en
+   *  orange — colonne à gauche, parallèle aux liens. */
+  const mobileLangClass = (isActive: boolean) =>
+    `font-mono text-sm uppercase tracking-[0.2em] transition-colors duration-300 ${
+      isActive ? 'text-primary underline underline-offset-[6px]' : 'text-foreground/50 hover:text-foreground'
+    }`;
+
   const menuItems = [
     { to: '/', label: t.nav.home },
     { to: '/activity', label: t.nav.activity },
@@ -164,16 +171,17 @@ const Header = () => {
               tuile 15 %, steps(6) 0.3s) */}
           <GrainOverlay />
 
-          {/* Sélecteur de langue — en bas à GAUCHE (les liens restent à droite) */}
+          {/* Sélecteur de langue (30/09) — colonne à GAUCHE, parallèle
+              aux liens de droite, plus lisible (avant : petit, bas gauche) */}
           <div
-            className="mt-auto flex justify-start gap-6 px-6 pb-10 animate-in fade-in duration-500"
+            className="absolute left-6 top-28 flex flex-col items-start gap-5 animate-in fade-in duration-500"
             style={{ animationDelay: '400ms' }}
           >
             {LANGUAGES.map((lang) => (
               <button
                 key={lang}
                 onClick={() => setLanguage(lang)}
-                className={langButtonClass(language === lang)}
+                className={mobileLangClass(language === lang)}
                 aria-label={`Switch language to ${lang.toUpperCase()}`}
               >
                 {lang.toUpperCase()}
