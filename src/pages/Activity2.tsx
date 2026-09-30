@@ -5,26 +5,11 @@ import usePageMeta from '@/hooks/usePageMeta';
 import Reveal from '@/components/Reveal';
 import ContactCta from '@/components/ContactCta';
 import HairlineGrid from '@/components/HairlineGrid';
+import { sectionPhotos } from '@/data/sectionPhotos';
 import photo15 from '@/assets/photo-15.jpg';
 import photo1 from '@/assets/photo-1.jpg';
 import photo33 from '@/assets/photo-33.jpg';
 /* Photos du module des 4 activités (déplacé d'Activity, 30/09) */
-import photo38 from '@/assets/photo-38.jpg';
-import photo34 from '@/assets/photo-34.jpg';
-import photo37 from '@/assets/photo-37.jpg';
-import photo52 from '@/assets/photo-52.jpg';
-import photo53 from '@/assets/photo-53.jpg';
-import photo54 from '@/assets/photo-54.jpg';
-import photo12 from '@/assets/photo-12.jpg';
-import photo16 from '@/assets/photo-16.jpg';
-import photo31 from '@/assets/photo-31.jpg';
-import photo26 from '@/assets/photo-26.jpg';
-import photo29 from '@/assets/photo-29.jpg';
-import photo19 from '@/assets/photo-19.jpg';
-import photo21 from '@/assets/photo-21.jpg';
-import gallery6 from '@/assets/gallery-6.jpg';
-import gallery7 from '@/assets/gallery-7.jpg';
-import photo40 from '@/assets/photo-40.jpg';
 
 /** Première photo de chaque section (réutilisation, zéro nouvel asset) —
  *  nights : emplacement vide en attente (croix fine, convention F7). */
@@ -36,18 +21,12 @@ const sectionImages: Record<string, string | null> = {
 };
 
 /** ── Module des 4 activités (DÉPLACÉ d'Activity, 30/09) ─────────────
- *  Rangées alternées photo/texte ; le module cycle ses 3 premiers
- *  emplacements au survol (~800 ms) ; le clic ouvre la lightbox filtrée
- *  sur la section (flèches, clavier, compteur dynamique). */
-const HOVER_SLOTS = 3;
-const modulePhotos: Record<string, (string | null)[]> = {
-  brands: [photo15, photo38, photo34, photo37, photo52, photo53, photo54],
-  festivals: [photo1, photo12, photo16],
-  nights: [null, null, null],
-  listening: [photo33, photo31, photo26, photo29, photo19, photo21, gallery6, gallery7, photo40],
-};
-
+ *  Rangées alternées photo/texte ; cycle au survol + lightbox. Les
+ *  photos vivent dans src/data/sectionPhotos.ts (partagées avec la
+ *  page Activity — carrousels desktop et bloc mobile). */
 /** Module photo : cycle auto des 3 premiers emplacements au survol */
+const HOVER_SLOTS = 3;
+
 const HoverPhotoModule = ({
   photos,
   slotLabel,
@@ -302,13 +281,13 @@ const Activity2 = () => {
   const prev = () =>
     setOpen((o) => {
       if (!o) return o;
-      const len = (modulePhotos[sections[o.section].id] ?? []).length;
+      const len = (sectionPhotos[sections[o.section].id] ?? []).length;
       return { ...o, index: (o.index - 1 + len) % len };
     });
   const next = () =>
     setOpen((o) => {
       if (!o) return o;
-      const len = (modulePhotos[sections[o.section].id] ?? []).length;
+      const len = (sectionPhotos[sections[o.section].id] ?? []).length;
       return { ...o, index: (o.index + 1) % len };
     });
   useEffect(() => {
@@ -325,7 +304,7 @@ const Activity2 = () => {
       document.body.style.overflow = '';
     };
   }, [open, close, prev, next]);
-  const openPhotos = open ? modulePhotos[sections[open.section].id] : null;
+  const openPhotos = open ? sectionPhotos[sections[open.section].id] : null;
   const openSrc = openPhotos ? openPhotos[open.index] : null;
 
   return (
@@ -362,7 +341,7 @@ const Activity2 = () => {
       <section className="mx-auto max-w-none px-6 pt-10 md:px-10 md:pt-14">
         <div className="flex flex-col gap-10 md:gap-14">
           {sections.map((section, i) => {
-            const photos = modulePhotos[section.id] ?? [];
+            const photos = sectionPhotos[section.id] ?? [];
             const textBlock = (
               <div>
                 <h2 className="font-serif text-2xl font-light tracking-tight md:text-3xl">
